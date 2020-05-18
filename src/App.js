@@ -14,6 +14,7 @@ import * as Action from './model/state/actions';
 // Components
 import Login from './view/Login';
 import Profile from './view/Profile';
+import BoardContainer from './view/dashboard/board/BoardContainer.jsx';
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route exact path='/' component={Login}/>
         <Route path='/profile' component={Profile}/>
 
+        <Route path='/dashboard' component={BoardContainer} />
         <Route>Not Found</Route> {/* Catch all for non existing routes, will update with a 404 component that includes redirect to home page */}
       </Switch>
     </div>

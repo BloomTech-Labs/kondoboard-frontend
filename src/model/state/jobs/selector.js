@@ -1,3 +1,3 @@
-const selectJob = state => state.job;
+export const selectJob = state => state.job;
 
-const selectJobList = state => state.jobList;
+export const selectJobList = state => state.jobList;

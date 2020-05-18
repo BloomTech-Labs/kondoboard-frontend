@@ -1,13 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {makeStyles} from '@material-ui/styles';
+
+// component lacks lambda logo (far left) and Alex Parker img (far right)
+
+const useStyles = makeStyles(() => {
+    return {
+        'header-container': {
+            display: 'flex',
+            justifyContent: 'space-around',
+        }
+    }
+})
 
 const Header = () => {
+    const classes = useStyles();
     return (
-        <div>
-            <Link to='/dashboard'>Dashboard</Link>
-            <Link to='/profile'>Profile</Link>
-            <Link to='/selected'>Saved Jobs</Link>
-            <Link to='/'>Log Out</Link>
+        <div className={classes['header-container']}>
+            <h1>KondoBoard</h1>
+            <input type='text' placeholder='🔍 Search' />
+            <h3>Alex Parker</h3>
         </div>
     )
 }

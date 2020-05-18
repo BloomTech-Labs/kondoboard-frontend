@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-const dataUrl = new URL('');
-const backUrl = new URL('');
+const dataUrl = new URL('http://localhost:5000');
+const backUrl = new URL('http://localhost:5000');
 
-class JobsService {
+class JobsService { 
     async getJobsList() {
         const response = await axios.get(dataUrl);
         return response.data
     }
 
-    async addTaggedJob() {
+    async addTaggedJob(job) {
         const response = await axios.post(`${backUrl}/tagged`, {job});
         return response.data;
     }
@@ -19,12 +19,12 @@ class JobsService {
         return response.data;
     }
 
-    async addAppliedJob() {
+    async addAppliedJob(job) {
         const response = await axios.post(`${backUrl}/applied`, {job})
         return response.data;
     }
 
-    async removeJob() {
+    async removeJob(job) {
         const response = await axios.post(`${backUrl}/removed`, {job});
         return response.data;
     }
