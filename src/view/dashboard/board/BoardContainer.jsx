@@ -11,11 +11,12 @@ const useStyles = makeStyles(() => {
     return {
         'header': {
             height: '10vh',
-            borderBottom: '1px solid gray'
+            borderBottom: '1px solid #FAFAFA'
         },
         'left-side': {
             height: '90vh',
-            borderRight: '1 px solid gray'
+            borderRight: '1 px solid gray',
+            background: '#FAFAFA'
         },
         'right-side': {
             height: '90vh'
@@ -39,10 +40,10 @@ const BoardContainer = () => {
                 <Grid className={classes["left-side"]} item xs={2}>
                     <SideMenu />
                 </Grid>
-                <Grid className={classes["right-side"]} item xs={8}>
+                <Grid className={classes["middle"]} item xs={8}>
                     <BoardList />
                 </Grid>
-                <Grid className={classes["middle"]} item xs={2}>
+                <Grid className={classes['right-side']} item xs={2}>
                     <FeaturedPartners />
                 </Grid>
             </Grid>
