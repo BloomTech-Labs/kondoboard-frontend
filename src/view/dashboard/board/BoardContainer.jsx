@@ -1,12 +1,15 @@
 import React from 'react';
 
 import Header from '../../headers/Header';
+import BoardList from './BoardList';
+import TaggedApplied from './TaggedApplied';
 
 const BoardView = () => {
     return(
         <div>
             <Header />
-            <h1>Board</h1>
+            <BoardList />
+            <TaggedApplied />
         </div>
     )
 }
