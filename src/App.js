@@ -3,58 +3,73 @@ import React, { useEffect } from 'react';
 import { Switch } from 'react-router';
 import { Route, useHistory, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
+import { useOktaAuth, LoginCallback } from '@okta/okta-react';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import './App.css';
 
 //Model & Helpers
-import { selectAuthStatus, selectHistory } from './model/state/selectors';
+import { selectHistory } from './model/state/selectors';
 import store from './store';
 import * as Action from './model/state/actions';
-// import RouteHelper from './helpers/RouteHelper';
+
+
 
 // Components
 import Login from './view/Login';
 import Profile from './view/Profile';
+import Header from './view/Header';
+import NotFound from './view/NotFound';
 
 
-function App() {
+const App = () => {
 
-  const authStatus = useSelector(selectAuthStatus);
+// Initialize OktaAuth & History
   const stateHistory = useSelector(selectHistory)
+  const { authState } = useOktaAuth();
+
   let history = useHistory();
 
   if (stateHistory === null) {
     store.dispatch(Action.setHistory(history))
   }
-
+  if (authState.isAuthenticated && !window.localStorage.getItem('kondotoken')) {
+    window.localStorage.setItem('kondotoken', authState.idToken);
+  }
   useEffect(() => {
 
   }, []);
 
-    // const PrivateRoute = ({ component: Component, ...rest}) => (
-    //     <Route {...rest} render={() => (
-    //       authStatus === true 
-    //       ? <Component/>
-    //       : <Redirect to='/'/>
-    //     )}/>
-    //   );
+    const PrivateRoute = ({ component: Component, ...rest}) => (
+        <Route {...rest} render={() => (
+          authState.isAuthenticated === true 
+          ? <Component/>
+          : <Redirect to='/login'/>
+        )}/>
+      );
     
-    // const PublicRoute = ({component: Component, ...rest}) => (
-    //     <Route {...rest} render={() => (
-    //       authStatus === null ? <CircularProgress color="primary"/> :
-    //       authStatus === true
-    //       ? <Redirect to='/profile'/>
-    //       : <Component/>
-    //     )}/>
-    //   )
+    const PublicRoute = ({component: Component, ...rest}) => (
+        <Route {...rest} render={() => (
+          authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
+          authState.isAuthenticated === true
+          ? <Redirect to='/profile'/>
+          : <Component/>
+        )}/>
+      )
 
   return (
     <div className="App">
+      <Header/>
       <Switch>
-        <Route exact path='/' component={Login}/>
-        <Route path='/profile' component={Profile}/>
 
-        <Route>Not Found</Route> {/* Catch all for non existing routes, will update with a 404 component that includes redirect to home page */}
+        <PublicRoute path='/login' component={Login}/>
+        <PublicRoute path='/implicit/callback' component={LoginCallback}/>
+        <PrivateRoute path='/profile' component={Profile}/>
+        
+        <PrivateRoute exact path='/'/>
+        <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>
+
     </div>
   );
 }

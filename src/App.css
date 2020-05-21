@@ -6,6 +6,7 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
 
  */
+@import '~antd/dist/antd.css';
 html {
   line-height: 1.15;
   /* 1 */
@@ -303,4 +304,25 @@ template {
    */
 [hidden] {
   display: none;
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v9/o-0NIpQlx3QUlC5A4PNjXhFlYw.ttf) format('truetype');
+}
+.okta-logo {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+.okta-button {
+  font-weight: 700;
+}
+.header {
+  border: 1px solid #E9E9E9;
+}
+.header h2 {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 900;
 }
