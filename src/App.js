@@ -24,15 +24,17 @@ import NotFound from './view/NotFound';
 
 const App = () => {
 
-// Initialize OktaAuth & History
-  const stateHistory = useSelector(selectHistory)
+// Initialize OktaAuth
+
   const { authState } = useOktaAuth();
 
-  let history = useHistory();
+    const history = useHistory();
+    const stateHistory = useSelector(selectHistory);
 
-  if (stateHistory === null) {
-    store.dispatch(Action.setHistory(history))
-  }
+    if (stateHistory === null) {
+      store.dispatch(Action.setHistory(history));
+    }
+
   if (authState.isAuthenticated && !window.localStorage.getItem('kondotoken')) {
     window.localStorage.setItem('kondotoken', authState.idToken);
   }
@@ -41,7 +43,7 @@ const App = () => {
   }, []);
 
     const PrivateRoute = ({ component: Component, ...rest}) => (
-        <Route {...rest} render={() => (
+        <Route {...rest} render={(props) => (
           authState.isAuthenticated === true 
           ? <Component/>
           : <Redirect to='/login'/>
@@ -59,7 +61,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header/>
+      <Header />
       <Switch>
 
         <PublicRoute path='/login' component={Login}/>
