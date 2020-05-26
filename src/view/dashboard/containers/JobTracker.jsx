@@ -35,7 +35,7 @@ function JobTracker() {
                   <p>Job four</p>
                 </DummyData>
               </JobBoard> */}
-              <JobBoard id='1'>
+              <JobBoard id='board-1' className='board'>
                 <DummyData id='1' className='job' draggable='true'>
                     <p>Job one</p>
                 </DummyData>
@@ -43,23 +43,23 @@ function JobTracker() {
               </div>
               <div>
                   <h1>Phone Interview</h1>
-                  <JobBoard id='2'/>
+                  <JobBoard id='board-2' className='board' />
               </div>
               <div>
                   <h1>Interview</h1>
-                  <JobBoard id='3'/>
+                  <JobBoard id='board-3' className='board' />
               </div>
               <div>
                   <h1>Second Interview</h1>
-                  <JobBoard id='4'/>
+                  <JobBoard id='board-4' className='board' />
               </div>
               <div>
                   <h1>Third Interview</h1>
-                  <JobBoard id='5'/>
+                  <JobBoard id='board-5' className='board' />
               </div>
               <div>
                   <h1>Offer</h1>
-                  <JobBoard id='6'/>
+                  <JobBoard id='board-6' className='board' />
               </div>
             </Content>
           </Layout>

@@ -4,10 +4,10 @@ function DummyData (props) {
     const dragStart = e => {
         const target = e.target;
 
-        e.dataTransfer.setData('job_id', target.id);
+        e.dataTransfer.setData('card_id', target.id);
 
         setTimeout(() => {
-            target.style.display = 'none';
+            target.style.display = "none";
         }, 0);
     }
 
@@ -17,6 +17,7 @@ function DummyData (props) {
 
     return(
         <div
+            id={props.id}
             className={props.className}
             draggable={props.draggable}
             onDragStart={dragStart}
