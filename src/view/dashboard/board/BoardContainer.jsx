@@ -1,52 +1,45 @@
 import React from 'react';
-import {Grid} from '@material-ui/core';
-import {makeStyles} from "@material-ui/styles";
+import { Layout, Menu, Breadcrumb } from 'antd';
+import Title from 'antd/lib/typography/Title';
+import '../../../App.css'
 
-import Header from '../../headers/Header';
 import BoardList from './BoardList';
-import SideMenu from './SideMenu';
 import FeaturedPartners from './FeaturedPartners';
 
-const useStyles = makeStyles(() => {
-    return {
-        'header': {
-            height: '10vh',
-            borderBottom: '1px solid #FAFAFA'
-        },
-        'left-side': {
-            height: '90vh',
-            borderRight: '1 px solid gray',
-            background: '#FAFAFA'
-        },
-        'right-side': {
-            height: '90vh'
-        },
-        'middle': {
-            overflowY: 'scroll'
-        }
-    }
-})
+const { Header,  Sider, Content } = Layout;
 
 const BoardContainer = () => {
-    const classes = useStyles();
     return(
         <div>
-            <Grid className={classes["header"]} container xs={12}>
-                <Grid item xs={12}>
-                    <Header />
-                </Grid>
-            </Grid>
-            <Grid container xs={12}>
-                <Grid className={classes["left-side"]} item xs={2}>
-                    <SideMenu />
-                </Grid>
-                <Grid className={classes["middle"]} item xs={8}>
-                    <BoardList />
-                </Grid>
-                <Grid className={classes['right-side']} item xs={2}>
-                    <FeaturedPartners />
-                </Grid>
-            </Grid>
+            <Layout>
+                <Header style={{background: 'white'}}>
+                    <Title style={{float: 'left'}}>
+                        L Kondoboard
+                    </Title>
+                </Header>
+                <Layout style={{height: '80vh'}}>
+                    <Sider style={{background: '#FAFAFA'}}>
+                        <Menu style={{background: '#FAFAFA'}}>
+                            <Menu.Item style={{background: '#FAFAFA'}}>
+                                Web Development
+                            </Menu.Item>
+                        </Menu>
+                        <Menu>
+                            <Menu.Item style={{background: '#FAFAFA'}}>
+                                Data Science
+                            </Menu.Item>
+                        </Menu>
+                    </Sider>
+                    <Layout style={{height: '80vh'}}>
+                        <Content>
+                            <Breadcrumb style={{display: 'flex', justifyContent: 'space-around', background: 'white'}}>
+                                <Breadcrumb.Item><BoardList /></Breadcrumb.Item>
+                                <Breadcrumb.Item style={{float: 'right'}}><FeaturedPartners /></Breadcrumb.Item>
+                            </Breadcrumb>
+                        </Content>
+                    </Layout>
+                </Layout>
+            </Layout>
         </div>
     )
 }

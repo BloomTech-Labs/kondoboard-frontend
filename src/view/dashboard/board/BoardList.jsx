@@ -9,6 +9,7 @@ import SearchBar from './SearchBar.jsx';
 
 const BoardList = () => {
     const jobList = useSelector(selectJobList);
+    console.log('list', jobList)
 
     useEffect(() => {
         JobController.fetchJobsList();
@@ -17,10 +18,12 @@ const BoardList = () => {
     return(
         <div>
             <SearchBar />
+            
             <h2>Latest Jobs</h2>
             {!!(jobList && jobList.length) && jobList.map(job => {
                 return <JobList job={job} key={job.id} />
             })}
+            <JobList />
         </div>
     )
 }

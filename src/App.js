@@ -15,6 +15,8 @@ import * as Action from './model/state/actions';
 import Login from './view/Login';
 import Profile from './view/Profile';
 import BoardContainer from './view/dashboard/board/BoardContainer.jsx';
+import TagContainer from './view/dashboard/board/TagContainer';
+import JobTracker from './view/dashboard/containers/JobTracker';
 
 
 function App() {
@@ -55,6 +57,8 @@ function App() {
         <Route path='/profile' component={Profile}/>
 
         <Route path='/dashboard' component={BoardContainer} />
+        <Route path='/applied' component={JobTracker} />
+        <Route path='/tagged' component={TagContainer} />
         <Route>Not Found</Route> {/* Catch all for non existing routes, will update with a 404 component that includes redirect to home page */}
       </Switch>
     </div>

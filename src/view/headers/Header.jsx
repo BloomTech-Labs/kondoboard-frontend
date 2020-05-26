@@ -1,13 +1,11 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/styles';
 
-// component lacks lambda logo (far left) and Alex Parker img (far right)
-
 const useStyles = makeStyles(() => {
     return {
         'header-container': {
             display: 'flex',
-            justifyContent: 'space-around',
+            justifyContent: 'space-around'
         }
     }
 })

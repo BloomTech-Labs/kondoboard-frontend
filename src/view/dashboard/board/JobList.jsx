@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {useSelector} from 'react-redux';
 
 import JobController from '../../../controllers/JobController.js';
+import {selectJobList} from '../../../model/state/jobs/selector.js';
 
-const JobList = props => {
-    const job = props.job;
+import Job from './Job';
+
+const JobList = () => {
+    const jobList = useSelector(selectJobList);
+
+    useEffect(() => {
+        JobController.fetchJobsList();
+    }, [])
 
     return (
         <div>
-            <p>{job}</p>
+            {!!(jobList && jobList.length) && jobList.map(job => {
+                return <Job job={job} key={job.id} />
+            })}
         </div>
     )
 }
