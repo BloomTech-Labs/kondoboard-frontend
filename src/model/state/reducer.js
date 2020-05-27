@@ -29,7 +29,6 @@ export const reducer = (state = initialState, action) => {
                 history: action.payload
             }
         case Actions.GET_JOBS_LIST:
-            console.log('reducer', state)
             return {
                 ...state,
                 jobList: [...action.jobList]

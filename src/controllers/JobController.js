@@ -6,7 +6,6 @@ class JobController {
     async fetchJobsList() {
         const jobList = await JobsService.fetchJobsList();
         store.dispatch(Action.getJobList(jobList))
-        console.log('controller', jobList)
     }
 }
 
