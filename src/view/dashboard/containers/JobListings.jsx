@@ -11,11 +11,6 @@ const BoardContainer = () => {
     return(
         <div>
             <Layout>
-                <Header style={{background: 'white'}}>
-                    <Title style={{float: 'left'}}>
-                        L Kondoboard
-                    </Title>
-                </Header>
                 <Layout style={{height: '80vh'}}>
                     <Sider style={{background: '#FAFAFA'}}>
                         <Menu style={{background: '#FAFAFA'}}>

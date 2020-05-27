@@ -1,5 +1,5 @@
 import store from '../store';
-import * as Action from '../model/state/jobs/action.js';
+import * as Action from '../model/state/actions.js';
 import JobsService from '../model/services/JobsServices.js';
 
 class JobController {

@@ -16,10 +16,10 @@ import * as Action from './model/state/actions';
 
 
 // Components
-import Login from './view/Login';
-import Profile from './view/Profile';
-import Header from './view/Header';
-import NotFound from './view/NotFound';
+import Login from './view/dashboard/containers/Login';
+import Profile from './view/dashboard/containers/Profile';
+import Header from './view/dashboard/containers/Header';
+import NotFound from './view/dashboard/containers/NotFound';
 import JobListings from './view/dashboard/containers/JobListings.jsx';
 import JobTracker from './view/dashboard/containers/JobTracker';
 
@@ -70,6 +70,7 @@ const App = () => {
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
         
+        <Route path='/listings' component={JobListings} />
         <PrivateRoute exact path='/' component={JobListings}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>

@@ -5,10 +5,10 @@ import { useOktaAuth } from '@okta/okta-react';
 import { Button } from 'antd';
 
 // Model && Helpers
-import LoginController from '../controllers/LoginController';
-import { Providers } from '../model/services/LoginService';
+import LoginController from '../../../controllers/LoginController';
+import { Providers } from '../../../model/services/LoginService';
 
-const icon = require('../_images/okta.png');
+const icon = require('../../../_images/okta.png');
 
 const Login = () => {
     const { authService } = useOktaAuth();

@@ -9,7 +9,9 @@ const initialState = {
         user_type: 'web'
     },
     authStatus: null,
-    history: null
+    history: null,
+    jobList: [],
+    job: {}
 }
 
 export const reducer = (state = initialState, action) => {
@@ -25,6 +27,12 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 history: action.payload
+            }
+        case Actions.GET_JOBS_LIST:
+            console.log('reducer', state)
+            return {
+                ...state,
+                jobList: [...action.jobList]
             }
             default:
                 return state;
