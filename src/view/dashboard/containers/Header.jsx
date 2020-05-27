@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useLocation, Redirect } from 'react-router-dom';
 
 const jwt = require('jsonwebtoken');
 
 const Header = ( ) => {
+
+
     const token = window.localStorage.getItem('kondotoken');
     const payload = jwt.decode(token);
     const location = useLocation();
     const icon = require('../../../_images/logo.png');
-
-    console.log(payload)
 
     return (
         <div className='header' style={{display: 'flex'}}>
