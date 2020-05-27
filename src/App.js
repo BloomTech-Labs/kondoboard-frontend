@@ -21,7 +21,6 @@ import Profile from './view/dashboard/containers/Profile';
 import Header from './view/dashboard/containers/Header';
 import NotFound from './view/dashboard/containers/NotFound';
 import JobListings from './view/dashboard/containers/JobListings.jsx';
-import JobTracker from './view/dashboard/containers/JobTracker';
 
 
 const App = () => {
@@ -46,7 +45,6 @@ const App = () => {
 
     const PrivateRoute = ({ component: Component, ...rest}) => (
         <Route {...rest} render={(props) => (
-          authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
           authState.isAuthenticated === true 
           ? <Component/>
           : <Redirect to='/login'/>
@@ -57,7 +55,7 @@ const App = () => {
         <Route {...rest} render={() => (
           authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
           authState.isAuthenticated === true
-          ? <Redirect to='/'/>
+          ? <Redirect to='/profile'/>
           : <Component/>
         )}/>
       )
@@ -66,12 +64,13 @@ const App = () => {
     <div className="App">
       <Header />
       <Switch>
-        <PrivateRoute exact path='/' component={JobListings}/>
+
         <PublicRoute path='/login' component={Login}/>
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
-        <PrivateRoute path='/listings' component={JobListings} />
-
+        
+        <Route path='/listings' component={JobListings} />
+        <PrivateRoute exact path='/' component={JobListings}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>
 
