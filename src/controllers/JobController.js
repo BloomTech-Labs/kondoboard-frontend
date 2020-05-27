@@ -4,9 +4,10 @@ import JobsService from '../model/services/JobsServices.js';
 
 class JobController {
     async fetchJobsList() {
-        const jobsList = await JobsService.getJobsList();
-        store.dispatch(Action.getJobsList(jobsList))
+        const jobList = await JobsService.fetchJobsList();
+        store.dispatch(Action.getJobList(jobList))
+        console.log('controller', jobList)
     }
 }
 
-export default new JobController;
+export default new JobController();

@@ -1,32 +1,32 @@
-import React from 'react';
+// import React from 'react';
 
-function DummyData (props) {
-    const dragStart = e => {
-        const target = e.target;
+// function DummyData (props) {
+//     const dragStart = e => {
+//         const target = e.target;
 
-        e.dataTransfer.setData('job_id', target.id);
+//         e.dataTransfer.setData('job_id', target.id);
 
-        setTimeout(() => {
-            target.style.display = "none";
-        }, 0);
-    }
+//         setTimeout(() => {
+//             target.style.display = "none";
+//         }, 0);
+//     }
 
-    const dragOver = e => {
-        e.stopPropagation();
-    }
+//     const dragOver = e => {
+//         e.stopPropagation();
+//     }
 
-    return(
-        <div
-            id={props.id}
-            className={props.className}
-            draggable={props.draggable}
-            onDragStart={dragStart}
-            onDragOver={dragOver}
-            style={{background: 'white'}}
-        >
-            {props.children}
-        </div>
-    )
-}
+//     return(
+//         <div
+//             id={props.id}
+//             className={props.className}
+//             draggable={props.draggable}
+//             onDragStart={dragStart}
+//             onDragOver={dragOver}
+//             style={{background: 'white'}}
+//         >
+//             {props.children}
+//         </div>
+//     )
+// }
 
-export default DummyData;
+// export default DummyData;

@@ -3,8 +3,8 @@ export const ADD_TO_TAGGED_LIST = 'ADD_TO_TAGGED_LIST';
 export const REMOVE_FROM_TAGGED_LIST = 'REMOVE_FROM_TAGGED_LIST';
 export const ADD_TO_APPLIED_LIST = 'ADD_TO_APPLIED_LIST';
 
-export const getJobsList = jobsList => {
-    return { type: GET_JOBS_LIST, jobsList }
+export const getJobList = jobList => {
+    return { type: GET_JOBS_LIST, jobList }
 }
 
 export const addToTaggedList = taggedList => {
