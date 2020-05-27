@@ -46,6 +46,7 @@ const App = () => {
 
     const PrivateRoute = ({ component: Component, ...rest}) => (
         <Route {...rest} render={(props) => (
+          authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
           authState.isAuthenticated === true 
           ? <Component/>
           : <Redirect to='/login'/>
@@ -56,7 +57,7 @@ const App = () => {
         <Route {...rest} render={() => (
           authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
           authState.isAuthenticated === true
-          ? <Redirect to='/profile'/>
+          ? <Redirect to='/'/>
           : <Component/>
         )}/>
       )
@@ -65,13 +66,12 @@ const App = () => {
     <div className="App">
       <Header />
       <Switch>
-
+        <PrivateRoute exact path='/' component={JobListings}/>
         <PublicRoute path='/login' component={Login}/>
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
-        
-        <Route path='/listings' component={JobListings} />
-        <PrivateRoute exact path='/' component={JobListings}/>
+        <PrivateRoute path='/listings' component={JobListings} />
+
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>
 

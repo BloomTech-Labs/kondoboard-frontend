@@ -20,7 +20,7 @@ const Profile = ( ) => {
 
     return (
         <div>
-            <button onClick={() => logout()}>Sing Out</button>
+            <button onClick={() => logout()}>Sign Out</button>
         </div>
     )
 }

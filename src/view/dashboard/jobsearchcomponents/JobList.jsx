@@ -8,7 +8,7 @@ import Job from './Job.jsx';
 
 const JobList = () => {
     const jobList = useSelector(selectJobList);
-    console.log('list', jobList)
+    // console.log('list', jobList)
 
     useEffect(() => {
         JobController.fetchJobsList();
