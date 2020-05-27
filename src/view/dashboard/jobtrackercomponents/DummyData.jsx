@@ -4,7 +4,7 @@ function DummyData (props) {
     const dragStart = e => {
         const target = e.target;
 
-        e.dataTransfer.setData('card_id', target.id);
+        e.dataTransfer.setData('job_id', target.id);
 
         setTimeout(() => {
             target.style.display = "none";

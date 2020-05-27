@@ -39,6 +39,15 @@ function JobTracker() {
                 <DummyData id='1' className='job' draggable='true'>
                     <p>Job one</p>
                 </DummyData>
+                <DummyData id='2' className='job' draggable='true'>
+                    <p>Job two</p>
+                </DummyData>
+                <DummyData id='3' className='job' draggable='true'>
+                    <p>Job three</p>
+                </DummyData>
+                <DummyData id='4' className='job' draggable='true'>
+                    <p>Job four</p>
+                </DummyData>
               </JobBoard>
               </div>
               <div>
