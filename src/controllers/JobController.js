@@ -1,6 +1,6 @@
 import store from '../store';
-import * as Action from '../model/state/actions.js';
-import JobsService from '../model/services/JobsServices.js';
+import * as Action from '@state/actions.js';
+import JobsService from '@services/JobsServices.js';
 
 class JobController {
     async fetchJobsList() {

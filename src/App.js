@@ -9,18 +9,18 @@ import { LoadingOutlined } from '@ant-design/icons';
 import './App.css';
 
 //Model & Helpers
-import { selectHistory } from './model/state/selectors';
+import { selectHistory } from '@state/selectors';
 import store from './store';
-import * as Action from './model/state/actions';
+import * as Action from '@state/actions';
 
 
 
 // Components
-import Login from './view/dashboard/containers/Login';
-import Profile from './view/dashboard/containers/Profile';
-import Header from './view/dashboard/containers/Header';
-import NotFound from './view/dashboard/containers/NotFound';
-import JobListings from './view/dashboard/containers/JobListings.jsx';
+import Login from '@containers/Login';
+import Profile from '@containers/Profile';
+import Header from '@containers/Header';
+import NotFound from '@containers/NotFound';
+import JobListings from '@containers/JobListings.jsx';
 
 
 const App = () => {
@@ -45,6 +45,7 @@ const App = () => {
 
     const PrivateRoute = ({ component: Component, ...rest}) => (
         <Route {...rest} render={(props) => (
+          authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
           authState.isAuthenticated === true 
           ? <Component/>
           : <Redirect to='/login'/>
@@ -69,7 +70,7 @@ const App = () => {
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
         
-        <Route path='/listings' component={JobListings} />
+        <PrivateRoute path='/listings' component={JobListings} />
         <PrivateRoute exact path='/' component={JobListings}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>

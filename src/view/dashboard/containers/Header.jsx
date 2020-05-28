@@ -9,11 +9,11 @@ const Header = ( ) => {
     const token = window.localStorage.getItem('kondotoken');
     const payload = jwt.decode(token);
     const location = useLocation();
-    const icon = require('../../../_images/logo.png');
+    const icon = require('@images/logo.png');
 
     return (
-        <div className='header' style={{display: 'flex'}}>
-            <div className='logo' style={{display: 'flex'}}>
+        <div className='header'>
+            <div className='logo'>
             <img src={icon} alt='KondoBoard Logo'/>
             <p>KondoBoard</p>
             </div>

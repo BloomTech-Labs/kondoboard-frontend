@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileService from '../../../model/services/ProfileService.js';
+import ProfileService from '@services/ProfileService.js';
 import { useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 

@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 
-import JobController from '../../../controllers/JobController.js';
-import {selectJobList} from '../../../model/state/selectors.js';
+import JobController from '@controllers/JobController.js';
+import {selectJobList} from '@state/selectors.js';
 
 import Job from './Job.jsx';
 

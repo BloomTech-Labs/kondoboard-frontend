@@ -354,8 +354,9 @@ template {
   width: 50%;
 }
 .header .user p {
-  text-align: right;
   font-weight: 900;
   font-family: 'Noto Sans', sans-serif;
   color: black;
+  text-align: right;
+  width: 100%;
 }
