@@ -4,8 +4,11 @@ const Job = props => {
     const job = props.job;
 
     return(
-        <div>
-            <h3>{job.name}</h3>
+        <div style={{display: 'flex', justifyContent: 'space-between', width: '150%'}}>
+            <p>{job.title}</p>   
+            <p>{job.company}</p>    
+            <p>{job.location_city}</p>  
+            <p>{job.date_published}</p>
         </div>
     )
 }

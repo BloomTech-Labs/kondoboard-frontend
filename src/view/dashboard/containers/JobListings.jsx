@@ -1,6 +1,5 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import '../../../App.css'
 
 import JobList from '../jobsearchcomponents/JobList.jsx';
 
@@ -25,7 +24,7 @@ const BoardContainer = () => {
                     </Sider>
                     <Layout style={{height: '80vh'}}>
                         <Content>
-                            <Breadcrumb style={{display: 'flex', justifyContent: 'space-around', background: 'white'}}>
+                            <Breadcrumb style={{float: 'left', display: 'flex', justifyContent: 'space-around', marginLeft: '5%'}}>
                                 <Breadcrumb.Item><JobList /></Breadcrumb.Item>
                                 <Breadcrumb.Item style={{float: 'right'}}></Breadcrumb.Item>
                             </Breadcrumb>

@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const dataUrl = new URL('https://pokeapi.co/api/v2/pokemon/');
+const dataUrl = new URL('http://kondoboard-ds-environment.eba-u7c3zdzn.us-east-1.elasticbeanstalk.com/all');
 const backUrl = new URL('http://localhost:5000');
 
 class JobsService { 
     async fetchJobsList() {
         const response = await axios.get(dataUrl);
-        return response.data.results;
+        console.log('service', response)
+        return response.data.jobs;
     }
 
     async addTaggedJob(job) {
