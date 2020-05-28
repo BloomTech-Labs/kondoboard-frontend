@@ -70,7 +70,6 @@ const App = () => {
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
         
-        <PrivateRoute path='/listings' component={JobListings} />
         <PrivateRoute exact path='/' component={JobListings}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>

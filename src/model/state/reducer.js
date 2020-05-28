@@ -11,7 +11,8 @@ const initialState = {
     authStatus: null,
     history: null,
     jobList: [],
-    job: {}
+    savedJobsList: [],
+    savedJob: {}
 }
 
 export const reducer = (state = initialState, action) => {
@@ -28,10 +29,28 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 history: action.payload
             }
-        case Actions.GET_JOBS_LIST:
+        case Actions.SET_JOBS_LIST:
             return {
                 ...state,
                 jobList: [...action.jobList]
+            }
+        case Actions.SET_SAVED_JOB_LIST:
+            return {
+                ...state,
+                savedJobsList: [...action.savedJobsList]
+            }
+        case Actions.SET_SAVED_JOB:
+            return {
+                ...state,
+                savedJob: {
+                    ...state.savedJob,
+                    title: action.savedJob.title || '',
+                    datascience_id: action.savedJob.id || '',
+                    source_url: action.savedJob.source_url || '',
+                    description: action.savedJob.description || '',
+                    date_published: action.savedJob.date_published || '',
+                    location_raw: action.savedJob.location_raw || ''
+                }
             }
             default:
                 return state;

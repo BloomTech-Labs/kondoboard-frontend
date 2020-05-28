@@ -1,7 +1,6 @@
-export const GET_JOBS_LIST = 'GET_JOBS_LIST';
-export const ADD_TO_TAGGED_LIST = 'ADD_TO_TAGGED_LIST';
-export const REMOVE_FROM_TAGGED_LIST = 'REMOVE_FROM_TAGGED_LIST';
-export const ADD_TO_APPLIED_LIST = 'ADD_TO_APPLIED_LIST';
+export const SET_JOBS_LIST = 'GET_JOBS_LIST';
+export const SET_SAVED_JOB = 'ADD_TO_TAGGED_LIST';
+export const SET_SAVED_JOB_LIST = 'GET_SAVED_LIST';
 
 export const TYPES = {
     SET_USER_DATA: 'SET_USER_DATA',
@@ -9,26 +8,20 @@ export const TYPES = {
 }
 
 export const getJobList = jobList => {
-    return { type: GET_JOBS_LIST, jobList }
+    return { type: SET_JOBS_LIST, jobList }
 }
 
-export const addToTaggedList = taggedList => {
-    return { type: ADD_TO_TAGGED_LIST, taggedList }
+export const getSavedList = savedJobList => {
+    return { type: SET_SAVED_JOB_LIST, savedJobList }
 }
 
-export const removeFromTaggedList = taggedList => {
-    return { type: REMOVE_FROM_TAGGED_LIST, taggedList }
-}
-
-export const addToAppliedList = appliedList => {
-    return { type: ADD_TO_APPLIED_LIST, appliedList }
+export const setSavedJob = savedJob => {
+    return { type: SET_SAVED_JOB, savedJob }
 }
 
 export const setUserData = userData => {
     return { type: TYPES.SET_USER_DATA, payload: userData }
 }
-
-
 
 export const setHistory = history => {
     return { type: TYPES.SET_HISTORY, payload: history}

@@ -3,7 +3,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 
 import JobList from '../jobsearchcomponents/JobList.jsx';
 
-const { Header,  Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 const BoardContainer = () => {
     return(
