@@ -1,13 +1,8 @@
 import * as Actions from './actions';
+import { axiosWithAuth } from '@helpers/utils/axiosWithAuth';
 
 const initialState = {
-    user: {
-        first_name: 'test',
-        last_name: 'user',
-        email: 'test@test.com',
-        profile_img: '',
-        user_type: 'web'
-    },
+    user: {},
     authStatus: null,
     history: null,
     jobList: [],
@@ -17,13 +12,21 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
 
     switch(action.type) {
-        case Actions.TYPES.SET_USER_DATA:
+        case Actions.SET_USER_DATA:
             return {
                 ...state,
                 user: action.payload
             }
+        case Actions.GET_USER:
+            axiosWithAuth.get('https://kondo-board-api.herokuapp.com/api/email', action.payload)
+            .then(res => {
+                
+            })
+            return {
+                ...state,
 
-        case Actions.TYPES.SET_HISTORY:
+            }
+        case Actions.SET_HISTORY:
             return {
                 ...state,
                 history: action.payload
