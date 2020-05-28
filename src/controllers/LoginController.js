@@ -1,6 +1,6 @@
 import store from '../store';
-import * as Action from '../model/state/actions';
-import LoginService from '../model/services/LoginService';
+import * as Action from '@state/actions';
+import LoginService from '@services/LoginService';
 
 class LoginController {
 

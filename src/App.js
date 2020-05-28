@@ -9,18 +9,18 @@ import { LoadingOutlined } from '@ant-design/icons';
 import './App.css';
 
 //Model & Helpers
-import { selectHistory } from './model/state/selectors';
+import { selectHistory } from '@state/selectors';
 import store from './store';
-import * as Action from './model/state/actions';
+import * as Action from '@state/actions';
 
 
 
 // Components
-import Login from './view/dashboard/containers/Login';
-import Profile from './view/dashboard/containers/Profile';
-import Header from './view/dashboard/containers/Header';
-import NotFound from './view/dashboard/containers/NotFound';
-import JobListings from './view/dashboard/containers/JobListings.jsx';
+import Login from '@containers/Login';
+import Profile from '@containers/Profile';
+import Header from '@containers/Header';
+import NotFound from '@containers/NotFound';
+import JobListings from '@containers/JobListings.jsx';
 
 
 const App = () => {
