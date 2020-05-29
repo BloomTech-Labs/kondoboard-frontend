@@ -9,7 +9,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import './App.css';
 
 //Model & Helpers
-import { selectHistory } from '@state/selectors';
+import { selectHistory, selectUser } from '@state/selectors';
 import store from './store';
 import * as Action from '@state/actions';
 
@@ -31,7 +31,7 @@ const App = () => {
 
     const history = useHistory();
     const stateHistory = useSelector(selectHistory);
-
+    const user = useSelector(selectUser);
     if (stateHistory === null) {
       store.dispatch(Action.setHistory(history));
     }
@@ -43,9 +43,13 @@ const App = () => {
 
   }, []);
 
+  const loading = (
+    <Spin className='loading' indicator={<LoadingOutlined style={{ fontSize: 144}} spin/>}/>
+  )
+
     const PrivateRoute = ({ component: Component, ...rest}) => (
         <Route {...rest} render={(props) => (
-          authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
+          authState.isPending ? loading :
           authState.isAuthenticated === true 
           ? <Component/>
           : <Redirect to='/login'/>
@@ -54,7 +58,7 @@ const App = () => {
     
     const PublicRoute = ({component: Component, ...rest}) => (
         <Route {...rest} render={() => (
-          authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
+          authState.isPending ? loading :
           authState.isAuthenticated === true
           ? <Redirect to='/profile'/>
           : <Component/>

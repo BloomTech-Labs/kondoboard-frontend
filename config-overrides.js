@@ -8,7 +8,8 @@ module.exports = (config, env) => {
         "@images": resolve("src/_images"),
         "@controllers": resolve("src/controllers"),
         "@services": resolve("src/model/services"),
-        "@state": resolve("src/model/state")
+        "@state": resolve("src/model/state"),
+        "@helpers": resolve('src/helpers')
     });
     return config;
 }

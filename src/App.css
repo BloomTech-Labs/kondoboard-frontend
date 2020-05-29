@@ -12,6 +12,8 @@ html {
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
+  min-height: 100%;
+  min-width: 100%;
 }
 /* Sections
      ========================================================================== */
@@ -20,6 +22,8 @@ html {
    */
 body {
   margin: 0;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 /**
    * Render the `main` element consistently in IE.
@@ -312,6 +316,20 @@ template {
   font-display: swap;
   src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v9/o-0NIpQlx3QUlC5A4PNjXhFlYw.ttf) format('truetype');
 }
+#root {
+  width: 100%;
+  height: 100vh;
+}
+.App {
+  width: 100%;
+  height: 100vh;
+  background-color: #FAFAFA;
+}
+.loading {
+  margin: 5% auto 0 auto;
+  width: 100%;
+  height: 50%;
+}
 .okta-logo {
   margin-right: 1rem;
   margin-bottom: 0.5rem;
@@ -321,6 +339,7 @@ template {
 }
 .header {
   border: 1px solid #E9E9E9;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -352,6 +371,15 @@ template {
   flex-wrap: nowrap;
   justify-content: right;
   width: 50%;
+}
+.header .user img {
+  height: 32px;
+  width: 32px;
+  margin: 0.5rem 0.5rem 0.3rem 0.3rem;
+}
+.header .user img:hover {
+  border: 2px solid black;
+  border-radius: 46%;
 }
 .header .user p {
   font-weight: 900;

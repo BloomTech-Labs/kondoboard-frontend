@@ -30,5 +30,5 @@ export const setUserData = user => {
 }
 
 export const setHistory = history => {
-    return { type: TYPES.SET_HISTORY, payload: history}
+    return { type: SET_HISTORY, payload: history}
 }

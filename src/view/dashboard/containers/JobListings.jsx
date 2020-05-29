@@ -40,6 +40,7 @@ const JobListing = () => {
 
     return(
         <div>
+            {infoNeeded && <Redirect to='/profile'/> /**Redirect to profile if user info does not exist */}
             <Layout>
                 <Layout style={{height: '80vh'}}>
                     <Sider style={{background: '#FAFAFA'}}>
