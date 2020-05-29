@@ -19,9 +19,7 @@ const JobListing = () => {
     const first_name = name.split(' ')[0];
     const last_name = name.split(' ')[1];
 
-    console.log(last_name)
-
-    const [user, setUser] = useState({
+    const [user] = useState({
         email: email,
         first_name: first_name,
         last_name: last_name
@@ -30,7 +28,7 @@ const JobListing = () => {
     let [infoNeeded, setInfoNeeded] = useState(false);
 
     useEffect(() => {
-        LoginController.userVerification();
+        LoginController.userVerification(email);
         if (!user.id) {
             setInfoNeeded(true);
             ProfileController.addNewUser(user);

@@ -3,11 +3,8 @@ export const SET_SAVED_JOB = 'ADD_TO_TAGGED_LIST';
 export const SET_SAVED_JOB_LIST = 'GET_SAVED_LIST';
 
 export const SET_USER_EMAIL = 'SET_USER_EMAIL';
-
-export const TYPES = {
-    SET_USER_DATA: 'SET_USER_DATA',
-    SET_HISTORY: 'SET_HISTORY'
-}
+export const SET_USER_DATA = 'SET_USER_DATA';
+export const SET_HISTORY = 'SET_HISTORY';
 
 export const getJobList = jobList => {
     return { type: SET_JOBS_LIST, jobList }
@@ -26,9 +23,9 @@ export const setUserEmail = email => {
 }
 
 export const setUserData = user => {
-    return { type: TYPES.SET_USER_DATA, payload: user }
+    return { type: SET_USER_DATA, user }
 }
 
 export const setHistory = history => {
-    return { type: SET_HISTORY, payload: history}
+    return { type: SET_HISTORY, history}
 }
