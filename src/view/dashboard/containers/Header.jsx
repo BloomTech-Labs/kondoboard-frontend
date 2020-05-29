@@ -11,6 +11,8 @@ const Header = ( ) => {
     const location = useLocation();
     const icon = require('@images/logo.png');
 
+    console.log(payload)
+
     return (
         <div className='header'>
             <div className='logo'>

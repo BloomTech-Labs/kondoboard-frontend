@@ -1,11 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
+import { Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser } from '@state/selectors';
 
 import JobList from '../jobsearchcomponents/JobList.jsx';
+import LoginController from '../../../controllers/LoginController.js';
+import ProfileController from '../../../controllers/ProfileController.js';
 
 const { Sider, Content } = Layout;
 
-const BoardContainer = () => {
+const JobListing = () => {
+
+    const token = window.localStorage.getItem('kondotoken');
+    const jwt = require('jsonwebtoken');
+    const email = jwt.decode(token).email;
+    const name = jwt.decode(token).name;
+    const first_name = name.split(' ')[0];
+    const last_name = name.split(' ')[1];
+
+    console.log(last_name)
+
+    const [user, setUser] = useState({
+        email: email,
+        first_name: first_name,
+        last_name: last_name
+    })
+
+    let [infoNeeded, setInfoNeeded] = useState(false);
+
+    useEffect(() => {
+        LoginController.userVerification();
+        if (!user.id) {
+            setInfoNeeded(true);
+            ProfileController.addNewUser(user);
+            setInfoNeeded(false)
+        }
+    }, [])
+
     return(
         <div>
             <Layout>
@@ -36,4 +68,4 @@ const BoardContainer = () => {
     )
 }
 
-export default BoardContainer;
+export default JobListing;

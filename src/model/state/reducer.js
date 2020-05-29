@@ -1,13 +1,7 @@
 import * as Actions from './actions';
 
 const initialState = {
-    user: {
-        first_name: 'test',
-        last_name: 'user',
-        email: 'test@test.com',
-        profile_img: '',
-        user_type: 'web'
-    },
+    user: {},
     authStatus: null,
     history: null,
     jobList: [],
