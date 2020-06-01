@@ -33,7 +33,6 @@ export const reducer = (state = initialState, action) => {
                 savedJobsList: [...action.savedJobsList]
             }
         case Actions.SET_SAVED_JOB:
-            console.log('state in reducer:', state)
             return {
                 ...state,
                 savedJob: {

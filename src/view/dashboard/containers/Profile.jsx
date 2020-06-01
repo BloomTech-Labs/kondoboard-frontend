@@ -1,26 +1,16 @@
 import React from 'react'
 import ProfileService from '@services/ProfileService.js';
 import { useSelector } from 'react-redux';
-import { useOktaAuth } from '@okta/okta-react';
+import { selectUser } from '@state/selectors';
 
 
 const Profile = ( ) => {
 
-    const issuer = 'https://dev-625192.okta.com/oauth2/default';
-    const redirectUri = `${window.location.origin}/login`;
-
-    const { authState, authService } = useOktaAuth();
-
-    const logout = async () => {
-        const idToken = authState.idToken;
-        await authService.logout('/');
-
-        window.location.href = `${issuer}/v1/logout?id_token_hint=${idToken}&post_logout_redirect_uri=${redirectUri}`
-    }
+        let user = useSelector(selectUser);
 
     return (
         <div>
-            <button onClick={() => logout()}>Sign Out</button>
+            {JSON.stringify(user)}
         </div>
     )
 }

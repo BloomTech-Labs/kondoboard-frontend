@@ -5,7 +5,8 @@ import LoginService from '@services/LoginService';
 class LoginController {
     async userVerification(email) {
         const user = await LoginService.queryUser(email);
-        store.dispatch(Action.setUserEmail(email));
+        store.dispatch(Action.setUserData(user))
+        return user;
     }
 
 }
