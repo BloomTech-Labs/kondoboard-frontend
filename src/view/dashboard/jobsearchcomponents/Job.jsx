@@ -13,7 +13,7 @@ const Job = props => {
     }
 
     return(
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', width: '150%'}}>
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)'}}>
             <p>{job.title}</p>
             <p>{job.company}</p>    
             <p>{job.location_city}</p>  

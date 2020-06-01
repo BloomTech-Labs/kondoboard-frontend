@@ -13,9 +13,16 @@ export const reducer = (state = initialState, action) => {
 
     switch(action.type) {
         case Actions.SET_USER_DATA:
+            console.log('reducer', state)
             return {
                 ...state,
-                user: action.payload
+                user: {
+                    ...action.user,
+                    first_name: action.first_name || '',
+                    last_name: action.last_name || '',
+                    email: action.email || '',
+                    id: action.id || ''
+                }
             }
         case Actions.SET_HISTORY:
             return {
@@ -33,7 +40,6 @@ export const reducer = (state = initialState, action) => {
                 savedJobsList: [...action.savedJobsList]
             }
         case Actions.SET_SAVED_JOB:
-            console.log('state in reducer:', state)
             return {
                 ...state,
                 savedJob: {

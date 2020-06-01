@@ -3,9 +3,9 @@ import * as Action from '@state/actions';
 import LoginService from '@services/LoginService';
 
 class LoginController {
-    async userVerification(email) {
-        const user = await LoginService.queryUser(email);
-        store.dispatch(Action.setUserEmail(email));
+    async userVerification() {
+        const user = await LoginService.queryUser();
+        store.dispatch(Action.setUserEmail());
     }
 
 }
