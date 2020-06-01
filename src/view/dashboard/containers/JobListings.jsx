@@ -2,14 +2,12 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 
 import JobList from '../jobsearchcomponents/JobList.jsx';
-import UserValidation from '../profile/UserValidation.jsx';
 
 const { Sider, Content } = Layout;
 
 const JobListing = () => {
     return(
         <div>
-            <UserValidation />
             <Layout>
                 <Layout style={{height: '80vh'}}>
                     <Sider style={{background: '#FAFAFA'}}>

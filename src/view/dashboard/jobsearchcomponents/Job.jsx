@@ -2,7 +2,7 @@ import React from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { selectSavedJob } from '@state/selectors.js';
 import { useSelector } from 'react-redux';
-import JobController from '../../../controllers/JobController';
+import JobController from '@controllers/JobController';
 
 const Job = props => {
     const job = props.job;

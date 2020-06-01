@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch } from 'react-router';
 import { Route, useHistory, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -12,8 +12,8 @@ import './App.css';
 import { selectHistory, selectUser } from '@state/selectors';
 import store from './store';
 import * as Action from '@state/actions';
-
-
+import LoginController from '@controllers/LoginController.js';
+import ProfileController from '@controllers/ProfileController.js';
 
 // Components
 import Login from '@containers/Login';
@@ -25,22 +25,42 @@ import JobListings from '@containers/JobListings.jsx';
 
 const App = () => {
 
-// Initialize OktaAuth
+  // Initialize OktaAuth
 
   const { authState } = useOktaAuth();
-
     const history = useHistory();
     const stateHistory = useSelector(selectHistory);
-    const user = useSelector(selectUser);
-    if (stateHistory === null) {
-      store.dispatch(Action.setHistory(history));
-    }
+
+  if (stateHistory === null) {
+    store.dispatch(Action.setHistory(history));
+  }
 
   if (authState.isAuthenticated && !window.localStorage.getItem('kondotoken')) {
     window.localStorage.setItem('kondotoken', authState.idToken);
   }
-  useEffect(() => {
 
+  // Set up user data
+const jwt = require('jsonwebtoken');
+  let [infoNeeded, setInfoNeeded] = useState(false); //if user has not finished adding information to their profile, redirect them
+  const token = jwt.decode(window.localStorage.getItem('kondotoken'));
+  if (token !== null) {
+  const newUser = {
+    email: token.email,
+    first_name: token.name.split(' ')[0],
+    last_name: token.name.split(' ')[1]
+  };
+  LoginController.userVerification(token.email).then(data => {
+    if (!data.email) {
+      ProfileController.addNewUser(newUser);
+    }
+    if (!data.location || !data.skills) {
+      // setInfoNeeded(true);
+    }
+  });
+  }
+
+  useEffect(() => {
+  
   }, []);
 
   const loading = (
@@ -67,6 +87,7 @@ const App = () => {
 
   return (
     <div className="App">
+      {infoNeeded && <Redirect to='/profile'/> /**Redirect to profile if user info does not exist */}
       <Header />
       <Switch>
 
