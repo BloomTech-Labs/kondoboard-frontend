@@ -100,9 +100,9 @@ const UserInfo = ({user}) => {
             </form>
             <p>willing to work Remote?</p>
             <input type='radio' name='yes' value='Yes' checked={form.remote} onChange={toggleRemote}/>
-            <label for='yes'>Yes</label>
+            <label htmlFor='yes'>Yes</label>
             <input type='radio' name='No' value='No' checked={!form.remote} onChange={toggleRemote}/>
-            <label for='no'>No</label>
+            <label htmlFor='no'>No</label>
 
         </div>
     )
