@@ -45,6 +45,12 @@ const Header = ( ) => {
                     history.go();
                 }
                 break;
+            case 'home':
+                if (location.pathname !=='/') {
+                    history.push('/');
+                    history.go();
+                }
+                break;
             case 'logout':
                 logout();
                 break;
@@ -56,13 +62,17 @@ const Header = ( ) => {
     const menu = (
         <Menu>
             <Menu.Item key='0'>
+                <Button type='secondary' onClick={() => handleClick('home')}>Home</Button>
+            </Menu.Item>
+
+            <Menu.Item key='1'>
                 <Button type='secondary' onClick={() => handleClick('profile')}>Profile</Button>
             </Menu.Item>
-            
+
             <Menu.Divider/> {/** Only Logout button should go below this, all other menu options above this line */}
                             {/** Change key numbers accordingly, please.*/}
 
-            <Menu.Item key='1'>
+            <Menu.Item key='2'>
                 <Button type='danger' onClick={() => handleClick('logout')}>Logout</Button>
             </Menu.Item>
         </Menu>
