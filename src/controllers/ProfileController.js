@@ -9,6 +9,12 @@ class ProfileController {
         store.dispatch(Action.setUserData({}));
     }
 
+    async updateUser(user, id) {
+        const response = await ProfileService.updateUser(user, id);
+        if (response.status === 201) {
+            store.dispatch(Action.setUserData(response.data));
+        }
+    }
 
 }
 

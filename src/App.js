@@ -40,6 +40,30 @@ const App = () => {
     window.localStorage.setItem('kondotoken', authState.idToken);
   }
 
+  // Set up user data
+const jwt = require('jsonwebtoken');
+  let [infoNeeded, setInfoNeeded] = useState(false); //if user has not finished adding information to their profile, redirect them
+  const token = jwt.decode(window.localStorage.getItem('kondotoken'));
+  if (token !== null) {
+  const newUser = {
+    email: token.email,
+    first_name: token.name.split(' ')[0],
+    last_name: token.name.split(' ')[1]
+  };
+  LoginController.userVerification(token.email).then(data => {
+    if (!data.location || !data.skills) {
+      setInfoNeeded(true);
+    }
+  }).catch(() => {
+    ProfileController.addNewUser(newUser);
+  });
+  }
+
+  useEffect(() => {
+  
+  }, []);
+
+
   const loading = (
     <Spin className='loading' indicator={<LoadingOutlined style={{ fontSize: 144}} spin/>}/>
   )

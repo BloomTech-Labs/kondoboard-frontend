@@ -8,7 +8,7 @@ export const SET_HISTORY = 'SET_HISTORY';
 export const getJobList = jobList => {
     return { type: SET_JOBS_LIST, jobList }
 }
-
+ 
 export const getSavedList = savedJobList => {
     return { type: SET_SAVED_JOB_LIST, savedJobList }
 }
