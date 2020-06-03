@@ -50,12 +50,11 @@ const jwt = require('jsonwebtoken');
     last_name: token.name.split(' ')[1]
   };
   LoginController.userVerification(token.email).then(data => {
-    if (!data.email) {
-      ProfileController.addNewUser(newUser);
-    }
     if (!data.location || !data.skills) {
-      // setInfoNeeded(true);
+      setInfoNeeded(true);
     }
+  }).catch(() => {
+    ProfileController.addNewUser(newUser);
   });
   }
 
