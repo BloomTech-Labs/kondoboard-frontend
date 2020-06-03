@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
+import { Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser } from '@state/selectors';
 
 import JobList from '../jobsearchcomponents/JobList.jsx';
 
-const { Header,  Sider, Content } = Layout;
 
-const BoardContainer = () => {
+const { Sider, Content } = Layout;
+
+const JobListing = () => {
+
+    useEffect(() => {
+
+    }, [])
+
     return(
         <div>
             <Layout>
@@ -24,7 +33,7 @@ const BoardContainer = () => {
                     </Sider>
                     <Layout style={{height: '80vh'}}>
                         <Content>
-                            <Breadcrumb style={{display: 'flex', justifyContent: 'space-around', background: 'white'}}>
+                            <Breadcrumb style={{float: 'left', display: 'flex', justifyContent: 'space-around', marginLeft: '5%'}}>
                                 <Breadcrumb.Item><JobList /></Breadcrumb.Item>
                                 <Breadcrumb.Item style={{float: 'right'}}></Breadcrumb.Item>
                             </Breadcrumb>
@@ -36,4 +45,4 @@ const BoardContainer = () => {
     )
 }
 
-export default BoardContainer;
+export default JobListing;
