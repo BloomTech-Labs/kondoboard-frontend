@@ -6,6 +6,7 @@ const baseUrl = new URL('https://kondo-board-api.herokuapp.com/api');
 class LoginService {
     async queryUser() {
         const response = await axiosWithAuth().get(`${baseUrl}/users`);
+        console.log('RESPONSE: ',response.data)
         store.dispatch(Action.setUserData(response.data));
         return response.data;
     }

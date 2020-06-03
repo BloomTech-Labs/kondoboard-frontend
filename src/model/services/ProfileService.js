@@ -7,6 +7,11 @@ class ProfileService {
         const response = await axiosWithAuth().post(`${baseUrl}/users`, user);
         return response.data;
     }
+
+    async updateUser(user, id) {
+        const response = await axiosWithAuth().put(`${baseUrl}/users/${id}`, user);
+        return response;
+    }
 }
 
 export default new ProfileService();
