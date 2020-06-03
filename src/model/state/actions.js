@@ -1,6 +1,6 @@
 export const SET_JOBS_LIST = 'GET_JOBS_LIST';
 export const SET_SAVED_JOB = 'ADD_TO_TAGGED_LIST';
-export const SET_SAVED_JOB_LIST = 'GET_SAVED_LIST';
+export const SET_SAVED_JOB_LIST = 'SET_SAVED_JOB_LIST';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_HISTORY = 'SET_HISTORY';

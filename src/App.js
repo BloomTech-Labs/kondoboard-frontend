@@ -21,6 +21,7 @@ import Profile from '@containers/Profile';
 import Header from '@containers/Header';
 import NotFound from '@containers/NotFound';
 import JobListings from '@containers/JobListings.jsx';
+import SavedListings from './view/dashboard/containers/SavedListings';
 
 
 const App = () => {
@@ -62,6 +63,7 @@ const jwt = require('jsonwebtoken');
   
   }, []);
 
+
   const loading = (
     <Spin className='loading' indicator={<LoadingOutlined style={{ fontSize: 144}} spin/>}/>
   )
@@ -86,7 +88,6 @@ const jwt = require('jsonwebtoken');
 
   return (
     <div className="App">
-      {infoNeeded && <Redirect to='/profile'/> /**Redirect to profile if user info does not exist */}
       <Header />
       <Switch>
 
@@ -94,6 +95,7 @@ const jwt = require('jsonwebtoken');
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
         
+        <PrivateRoute path='/saved' component={SavedListings} />
         <PrivateRoute exact path='/' component={JobListings}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>

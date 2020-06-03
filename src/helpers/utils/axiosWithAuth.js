@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 export const axiosWithAuth = (url) => {
     const storage = window.localStorage.getItem('okta-token-storage');
     let token;
@@ -12,7 +11,6 @@ export const axiosWithAuth = (url) => {
             headers:{
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${token}`,
-            },
-            baseURL: ''
+            }
         })
 }

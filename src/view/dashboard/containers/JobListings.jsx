@@ -1,33 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectUser } from '@state/selectors';
+import { Link } from 'react-router-dom';
 
 import JobList from '../jobsearchcomponents/JobList.jsx';
-
+import UserValidation from '../profile/UserValidation.jsx';
 
 const { Sider, Content } = Layout;
 
 const JobListing = () => {
-
-    useEffect(() => {
-
-    }, [])
-
     return(
         <div>
             <Layout>
+                <UserValidation />
                 <Layout style={{height: '80vh'}}>
                     <Sider style={{background: '#FAFAFA'}}>
                         <Menu style={{background: '#FAFAFA'}}>
                             <Menu.Item style={{background: '#FAFAFA'}}>
-                                Web Development
+                                <Link to='/'>Jobs</Link>
                             </Menu.Item>
                         </Menu>
                         <Menu>
                             <Menu.Item style={{background: '#FAFAFA'}}>
-                                Data Science
+                                <Link to='/saved'>Saved Jobs</Link>
                             </Menu.Item>
                         </Menu>
                     </Sider>
