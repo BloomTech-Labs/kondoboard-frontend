@@ -4,7 +4,10 @@ import ProfileService from '@services/ProfileService';
 
 
 class ProfileController {
-
+    async addNewUser(first_name, last_name, email) {
+        const user = await ProfileService.addNewUser(first_name, last_name, email);
+        store.dispatch(Action.setUserData({}));
+    }
 
 
 }
