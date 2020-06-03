@@ -8,9 +8,7 @@ module.exports = (config, env) => {
         "@images": resolve("src/_images"),
         "@controllers": resolve("src/controllers"),
         "@services": resolve("src/model/services"),
-        "@state": resolve("src/model/state"),
-        "@helpers": resolve('src/helpers'),
-        "@root": resolve('src')
+        "@state": resolve("src/model/state")
     });
     return config;
 }

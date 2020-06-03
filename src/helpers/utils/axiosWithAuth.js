@@ -1,11 +1,12 @@
 import axios from 'axios';
+
 export const axiosWithAuth = (url) => {
-    const storage = window.localStorage.getItem('okta-token-storage');
-        const token = JSON.parse(storage).accessToken.value;
+    const token = window.localStorage.getItem('okta-token-storage');
         return axios.create({
             headers:{
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${token}`,
-            }
+                'authorization': `Bearer ${token.accessToken.value}`,
+            },
+            baseURL: ''
         })
 }
