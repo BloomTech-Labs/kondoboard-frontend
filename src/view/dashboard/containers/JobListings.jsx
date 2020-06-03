@@ -1,33 +1,30 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { Link } from 'react-router-dom';
 
 import JobList from '../jobsearchcomponents/JobList.jsx';
-import UserValidation from '../profile/UserValidation.jsx';
 
-const { Sider, Content } = Layout;
+const { Header,  Sider, Content } = Layout;
 
-const JobListing = () => {
+const BoardContainer = () => {
     return(
         <div>
             <Layout>
-                <UserValidation />
                 <Layout style={{height: '80vh'}}>
                     <Sider style={{background: '#FAFAFA'}}>
                         <Menu style={{background: '#FAFAFA'}}>
                             <Menu.Item style={{background: '#FAFAFA'}}>
-                                <Link to='/'>Jobs</Link>
+                                Web Development
                             </Menu.Item>
                         </Menu>
                         <Menu>
                             <Menu.Item style={{background: '#FAFAFA'}}>
-                                <Link to='/saved'>Saved Jobs</Link>
+                                Data Science
                             </Menu.Item>
                         </Menu>
                     </Sider>
                     <Layout style={{height: '80vh'}}>
                         <Content>
-                            <Breadcrumb style={{float: 'left', display: 'flex', justifyContent: 'space-around', marginLeft: '5%'}}>
+                            <Breadcrumb style={{display: 'flex', justifyContent: 'space-around', background: 'white'}}>
                                 <Breadcrumb.Item><JobList /></Breadcrumb.Item>
                                 <Breadcrumb.Item style={{float: 'right'}}></Breadcrumb.Item>
                             </Breadcrumb>
@@ -39,4 +36,4 @@ const JobListing = () => {
     )
 }
 
-export default JobListing;
+export default BoardContainer;
