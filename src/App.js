@@ -21,6 +21,7 @@ import Profile from '@containers/Profile';
 import Header from '@containers/Header';
 import NotFound from '@containers/NotFound';
 import JobListings from '@containers/JobListings.jsx';
+import SavedListings from './view/dashboard/containers/SavedListings';
 
 
 const App = () => {
@@ -38,30 +39,6 @@ const App = () => {
   if (authState.isAuthenticated && !window.localStorage.getItem('kondotoken')) {
     window.localStorage.setItem('kondotoken', authState.idToken);
   }
-
-  // Set up user data
-const jwt = require('jsonwebtoken');
-  let [infoNeeded, setInfoNeeded] = useState(false); //if user has not finished adding information to their profile, redirect them
-  const token = jwt.decode(window.localStorage.getItem('kondotoken'));
-  if (token !== null) {
-  const newUser = {
-    email: token.email,
-    first_name: token.name.split(' ')[0],
-    last_name: token.name.split(' ')[1]
-  };
-  LoginController.userVerification(token.email).then(data => {
-    if (!data.email) {
-      ProfileController.addNewUser(newUser);
-    }
-    if (!data.location || !data.skills) {
-      // setInfoNeeded(true);
-    }
-  });
-  }
-
-  useEffect(() => {
-  
-  }, []);
 
   const loading = (
     <Spin className='loading' indicator={<LoadingOutlined style={{ fontSize: 144}} spin/>}/>
@@ -87,7 +64,6 @@ const jwt = require('jsonwebtoken');
 
   return (
     <div className="App">
-      {infoNeeded && <Redirect to='/profile'/> /**Redirect to profile if user info does not exist */}
       <Header />
       <Switch>
 
@@ -95,6 +71,7 @@ const jwt = require('jsonwebtoken');
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
         
+        <PrivateRoute path='/saved' component={SavedListings} />
         <PrivateRoute exact path='/' component={JobListings}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>

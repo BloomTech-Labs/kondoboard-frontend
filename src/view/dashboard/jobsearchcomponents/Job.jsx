@@ -1,15 +1,27 @@
 import React from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
-import { selectSavedJob } from '@state/selectors.js';
+import { selectUser } from '@state/selectors.js';
 import { useSelector } from 'react-redux';
 import JobController from '@controllers/JobController';
 
 const Job = props => {
     const job = props.job;
-    const saveJob = useSelector(selectSavedJob);
+    const saved_job = {
+        ds_id: props.job.id,
+        source_url: props.job.source_url,
+        title: props.job.title,
+        company: props.job.company,
+        description: props.job.description,
+        date_published: props.job.date_published,
+        location_city: props.job.location_city,
+        location_state: props.job.location_state,
+        geo_locat: props.job.geo_locat
+    };
+    const status = 'favorite';
+    const id = useSelector(selectUser).id
     const addToSaved = e => {
         e.preventDefault();
-        JobController.addSavedJob(saveJob);
+        JobController.addSavedJob(id, saved_job, status);
     }
 
     return(

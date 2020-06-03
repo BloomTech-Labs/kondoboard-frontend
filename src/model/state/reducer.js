@@ -5,7 +5,7 @@ const initialState = {
     authStatus: null,
     history: null,
     jobList: [],
-    savedJobsList: [],
+    savedJobList: [],
     savedJob: {}
 }
 
@@ -13,15 +13,19 @@ export const reducer = (state = initialState, action) => {
 
     switch(action.type) {
         case Actions.SET_USER_DATA:
-            console.log('reducer', state)
             return {
                 ...state,
                 user: {
                     ...action.user,
-                    first_name: action.first_name || '',
-                    last_name: action.last_name || '',
-                    email: action.email || '',
-                    id: action.id || ''
+                    first_name: action.payload.first_name || '',
+                    last_name: action.payload.last_name || '',
+                    email: action.payload.email || '',
+                    id: action.payload.id || '',
+                    locations: action.payload.locations || null,
+                    profile_image: action.payload.profile_image || null,
+                    remote: action.payload.remote || null,
+                    skills: action.payload.skills || null,
+                    user_track: action.payload.user_track || null
                 }
             }
         case Actions.SET_HISTORY:
@@ -37,20 +41,7 @@ export const reducer = (state = initialState, action) => {
         case Actions.SET_SAVED_JOB_LIST:
             return {
                 ...state,
-                savedJobsList: [...action.savedJobsList]
-            }
-        case Actions.SET_SAVED_JOB:
-            return {
-                ...state,
-                savedJob: {
-                    ...state.savedJob,
-                    title: action.savedJob.title || '',
-                    datascience_id: action.savedJob.id || '',
-                    source_url: action.savedJob.source_url || '',
-                    description: action.savedJob.description || '',
-                    date_published: action.savedJob.date_published || '',
-                    location_raw: action.savedJob.location_raw || ''
-                }
+                savedJobList: [...action.savedJobList]
             }
             default:
                 return state;

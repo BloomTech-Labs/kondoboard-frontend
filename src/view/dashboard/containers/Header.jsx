@@ -68,7 +68,6 @@ const Header = ( ) => {
         </Menu>
     )
 
-    console.log(payload)
 
     return (
         <div className='header'>
