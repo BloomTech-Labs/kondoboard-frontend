@@ -10,7 +10,7 @@ module.exports = (config, env) => {
         "@services": resolve("src/model/services"),
         "@state": resolve("src/model/state"),
         "@helpers": resolve('src/helpers'),
-        "@root": resolve('src')
+        "@root": resolve('src'),
     });
     return config;
-}
+};

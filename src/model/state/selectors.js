@@ -1,4 +1,3 @@
-
 export const selectHistory = state => state.history;
 
 export const selectSavedJobList = state => state.savedJobList;
