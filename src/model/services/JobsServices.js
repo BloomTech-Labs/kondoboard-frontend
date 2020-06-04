@@ -3,7 +3,7 @@ import { axiosWithAuth } from '@helpers/utils/axiosWithAuth';
 import * as Action from '@state/actions';
 import store from '../../store';
 
-const dataUrl = new URL('http://kondoboard-ds-environment.eba-u7c3zdzn.us-east-1.elasticbeanstalk.com');
+const dataUrl = new URL('https://l24api.kondoboard.org/');
 const backEndUrl = new URL('https://kondo-board-api.herokuapp.com/api');
 
 class JobsService { 
