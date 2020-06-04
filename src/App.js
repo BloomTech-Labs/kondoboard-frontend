@@ -81,7 +81,7 @@ const jwt = require('jsonwebtoken');
         <Route {...rest} render={() => (
           authState.isPending ? loading :
           authState.isAuthenticated === true
-          ? <Redirect to='/profile'/>
+          ? <Redirect to='/'/>
           : <Component/>
         )}/>
       )
