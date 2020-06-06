@@ -23,7 +23,7 @@ const UserValidation = () => {
     if (!user.id) {
       setInfoNeeded(true);
       ProfileController.addNewUser(user);
-      setInfoNeeded(false)
+      setInfoNeeded(false);
     }
   }, []);
 

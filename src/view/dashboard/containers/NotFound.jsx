@@ -18,7 +18,6 @@ const NotFound = () => {
     history.go();
   };
   
-
   return (
     <div>
       Looks like you navigated to the wrong page. Don't worry, we'll redirect you in {timer} seconds.

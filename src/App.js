@@ -68,22 +68,22 @@ const App = () => {
   );
 
   const PrivateRoute = ({ component: Component, ...rest}) => (
-      <Route {...rest} render={(props) => (
-        authState.isPending ? loading :
-        authState.isAuthenticated === true 
-        ? <Component/>
-        : <Redirect to='/login'/>
-      )}/>
-    );
+    <Route {...rest} render={(props) => (
+      authState.isPending ? loading :
+      authState.isAuthenticated === true 
+      ? <Component/>
+      : <Redirect to='/login'/>
+    )}/>
+  );
     
   const PublicRoute = ({component: Component, ...rest}) => (
-      <Route {...rest} render={() => (
-        authState.isPending ? loading :
-        authState.isAuthenticated === true
-        ? <Redirect to='/profile'/>
-        : <Component/>
-      )}/>
-    );
+    <Route {...rest} render={() => (
+      authState.isPending ? loading :
+      authState.isAuthenticated === true
+      ? <Redirect to='/profile'/>
+      : <Component/>
+    )}/>
+  );
 
   return (
     <div className="App">
