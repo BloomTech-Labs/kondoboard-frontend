@@ -8,12 +8,10 @@ class ProfileService {
         return response.data;
     }
 
-
     async updateUser(user, id) {
         const response = await axiosWithAuth().put(`${baseUrl}/users/${id}`, user);
         return response;
     }
-
 }
 
 export default new ProfileService();

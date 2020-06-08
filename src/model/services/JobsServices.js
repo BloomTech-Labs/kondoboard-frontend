@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { axiosWithAuth } from '@helpers/utils/axiosWithAuth';
-import * as Action from '@state/actions';
-import store from '../../store';
 
 const dataUrl = new URL('https://l24api.kondoboard.org/');
 const backEndUrl = new URL('https://kondo-board-api.herokuapp.com/api');
@@ -9,7 +7,7 @@ const backEndUrl = new URL('https://kondo-board-api.herokuapp.com/api');
 class JobsService { 
     async fetchJobsList() {
         const response = await axios.get(`${dataUrl}/all`);
-        return response.data.jobs;
+        return response.data;
     }
 
     async saveJob(id, job, status) {

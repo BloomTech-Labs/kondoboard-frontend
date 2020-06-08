@@ -2,12 +2,12 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 
-import SavedJobList from '../savedjobcomponents/SavedJobsList.jsx';
 import UserValidation from '../profile/UserValidation.jsx';
+import AppliedJobList from '../appliedjobs/AppliedJobList.jsx';
 
 const { Sider, Content } = Layout;
 
-const SavedListings = () => {
+const AppliedJobListings = () => {
     return(
         <div>
             <Layout>
@@ -16,7 +16,7 @@ const SavedListings = () => {
                     <Sider style={{background: '#FAFAFA'}}>
                         <Menu style={{background: '#FAFAFA'}}>
                             <Menu.Item style={{background: '#FAFAFA'}}>
-                            <Link to='/'>Jobs</Link>
+                                <Link to='/'>Jobs</Link>
                             </Menu.Item>
                         </Menu>
                         <Menu>
@@ -33,7 +33,7 @@ const SavedListings = () => {
                     <Layout style={{height: '80vh'}}>
                         <Content>
                             <Breadcrumb style={{float: 'left', display: 'flex', justifyContent: 'space-around', marginLeft: '5%'}}>
-                                <Breadcrumb.Item><SavedJobList /></Breadcrumb.Item>
+                                <Breadcrumb.Item><AppliedJobList /></Breadcrumb.Item>
                                 <Breadcrumb.Item style={{float: 'right'}}></Breadcrumb.Item>
                             </Breadcrumb>
                         </Content>
@@ -44,4 +44,4 @@ const SavedListings = () => {
     )
 }
 
-export default SavedListings;
+export default AppliedJobListings;

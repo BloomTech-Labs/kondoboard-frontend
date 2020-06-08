@@ -9,8 +9,8 @@ class JobController {
     }
     async addSavedJob(id, saved_job, status) {
         const job = saved_job;
-        const savedJobList = await JobsService.saveJob(id, job, status);
-        store.dispatch(Action.setSavedJob({}));
+        await JobsService.saveJob(id, job, status);
+        store.dispatch(Action.setSavedJob({id, job, status}));
     }
     async fetchSavedJobList(id) {
         const savedJobList = await JobsService.fetchSavedJobList(id);

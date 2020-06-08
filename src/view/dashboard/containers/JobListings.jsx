@@ -24,6 +24,11 @@ const JobListing = () => {
                                 <Link to='/saved'>Saved Jobs</Link>
                             </Menu.Item>
                         </Menu>
+                        <Menu>
+                            <Menu.Item style={{background: '#FAFAFA'}}>
+                                <Link to='/applied'>Applied Jobs</Link>
+                            </Menu.Item>
+                        </Menu>
                     </Sider>
                     <Layout style={{height: '80vh'}}>
                         <Content>
