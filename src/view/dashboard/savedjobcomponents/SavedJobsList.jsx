@@ -3,13 +3,14 @@ import {useSelector} from 'react-redux';
 
 import JobController from '@controllers/JobController.js';
 import {selectSavedJobList} from '@state/selectors.js';
-import {selectUser} from '@state/selectors.js';
+import {selectUserId} from '@state/selectors.js';
 
 import SavedJob from './SavedJob.jsx';
 
 const SavedJobList = () => {
     const savedJobList = useSelector(selectSavedJobList);
-    const id = useSelector(selectUser).id
+    const id = useSelector(selectUserId)
+    console.log('saved', savedJobList.ds_id)
 
     useEffect(() => {
         JobController.fetchSavedJobList(id);

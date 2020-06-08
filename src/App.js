@@ -9,7 +9,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import './App.css';
 
 //Model & Helpers
-import { selectHistory, selectUser } from '@state/selectors';
+import { selectHistory } from '@state/selectors';
 import store from './store';
 import * as Action from '@state/actions';
 import LoginController from '@controllers/LoginController.js';
@@ -21,7 +21,8 @@ import Profile from '@containers/Profile';
 import Header from '@containers/Header';
 import NotFound from '@containers/NotFound';
 import JobListings from '@containers/JobListings.jsx';
-import SavedListings from './view/dashboard/containers/SavedListings';
+import SavedListings from './view/dashboard/containers/SavedListings.jsx';
+import AppliedJobListings from './view/dashboard/containers/AppliedListings.jsx';
 
 
 const App = () => {
@@ -40,28 +41,6 @@ const App = () => {
     window.localStorage.setItem('kondotoken', authState.idToken);
   }
 
-  // Set up user data
-const jwt = require('jsonwebtoken');
-  let [infoNeeded, setInfoNeeded] = useState(false); //if user has not finished adding information to their profile, redirect them
-  const token = jwt.decode(window.localStorage.getItem('kondotoken'));
-  if (token !== null) {
-  const newUser = {
-    email: token.email,
-    first_name: token.name.split(' ')[0],
-    last_name: token.name.split(' ')[1]
-  };
-  LoginController.userVerification(token.email).then(data => {
-    if (!data.location || !data.skills) {
-      setInfoNeeded(true);
-    }
-  }).catch(() => {
-    ProfileController.addNewUser(newUser);
-  });
-  }
-
-  useEffect(() => {
-  
-  }, []);
 
   const loading = (
     <Spin className='loading' indicator={<LoadingOutlined style={{ fontSize: 144}} spin/>}/>
@@ -80,7 +59,7 @@ const jwt = require('jsonwebtoken');
         <Route {...rest} render={() => (
           authState.isPending ? loading :
           authState.isAuthenticated === true
-          ? <Redirect to='/profile'/>
+          ? <Redirect to='/'/>
           : <Component/>
         )}/>
       )
@@ -94,6 +73,7 @@ const jwt = require('jsonwebtoken');
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
         
+        <PrivateRoute path='/applied' component={AppliedJobListings} />
         <PrivateRoute path='/saved' component={SavedListings} />
         <PrivateRoute exact path='/' component={JobListings}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}

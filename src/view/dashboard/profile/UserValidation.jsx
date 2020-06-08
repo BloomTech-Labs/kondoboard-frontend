@@ -8,15 +8,14 @@ const UserValidation = () => {
     
     const token = window.localStorage.getItem('kondotoken');
     const jwt = require('jsonwebtoken');
-    const email = jwt.decode(token).email;
-    const name = jwt.decode(token).name;
-    const first_name = name.split(' ')[0];
-    const last_name = name.split(' ')[1];
+    const {email, name} = jwt.decode(token);
+    const nameArr = name.split(' ');
+
 
     const [user] = useState({
         email: email,
-        first_name: first_name,
-        last_name: last_name
+        first_name: nameArr[0],
+        last_name: nameArr[1]
     })
 
     let [infoNeeded, setInfoNeeded] = useState(false);

@@ -1,27 +1,21 @@
 import React from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
-import { selectUser } from '@state/selectors.js';
+
+import { selectUserId } from '@state/selectors.js';
 import { useSelector } from 'react-redux';
 import JobController from '@controllers/JobController';
+import JobHelpers from '../../../helpers/Job.js';
 
 const Job = props => {
     const job = props.job;
-    const saved_job = {
-        ds_id: props.job.id,
-        source_url: props.job.source_url,
-        title: props.job.title,
-        company: props.job.company,
-        description: props.job.description,
-        date_published: props.job.date_published,
-        location_city: props.job.location_city,
-        location_state: props.job.location_state,
-        geo_locat: props.job.geo_locat
-    };
+    const saved_job = JobHelpers.formatSavedJob(job);
     const status = 'favorite';
-    const id = useSelector(selectUser).id
+    const id = useSelector(selectUserId)
+    
     const addToSaved = e => {
         e.preventDefault();
         JobController.addSavedJob(id, saved_job, status);
+        JobController.fetchSavedJobList(id);
     }
 
     return(
@@ -30,6 +24,7 @@ const Job = props => {
             <p>{job.company}</p>    
             <p>{job.location_city}</p>  
             <p>{job.date_published}</p>
+            {/* {(job.id === saved_job.ds_id) ? <CheckOutlined /> : <span onClick={addToSaved}><PlusCircleOutlined /></span>} */}
             <span onClick={addToSaved}><PlusCircleOutlined /></span>
         </div>
     )
