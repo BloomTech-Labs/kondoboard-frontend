@@ -1,6 +1,5 @@
 // Core
 import React from 'react'
-import { useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react'; 
 import { Button } from 'antd';
 

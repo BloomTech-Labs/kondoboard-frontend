@@ -1,8 +1,9 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 
 import SavedJobList from '../savedjobcomponents/SavedJobsList.jsx';
+import DetailedJob from '../detailedjob/DetailedJob.jsx';
 
 const { Sider, Content } = Layout;
 
@@ -30,10 +31,11 @@ const SavedListings = () => {
                     </Sider>
                     <Layout style={{height: '80vh'}}>
                         <Content>
-                            <Breadcrumb style={{float: 'left', display: 'flex', justifyContent: 'space-around', marginLeft: '5%'}}>
-                                <Breadcrumb.Item><SavedJobList /></Breadcrumb.Item>
-                                <Breadcrumb.Item style={{float: 'right'}}></Breadcrumb.Item>
-                            </Breadcrumb>
+                            <Row>
+                                <Col span={8}><SavedJobList /></Col>
+                                <Col span={4}></Col>
+                                <Col span={12}><DetailedJob /></Col>
+                            </Row>
                         </Content>
                     </Layout>
                 </Layout>

@@ -7,7 +7,8 @@ const initialState = {
     history: null,
     jobList: [{}],
     savedJobList: [{}],
-    savedJobIds: [{}]
+    savedJobIds: [{}],
+    job: {}
 }
 
 export const reducer = (state = initialState, action) => {
@@ -27,6 +28,22 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 savedJobList: [...action.savedJobList]
+            }
+        case Actions.SET_SAVED_JOB_IDS:
+            return {
+                ...state,
+                savedJobIds: [...state.savedJobIds, action.savedJobIds
+                ]
+            }
+        case Actions.SELECT_SAVED_JOB:
+            return {
+                ...state,
+                job: action.job
+            }
+        case Actions.SET_QUERY_LIST:
+            return {
+                ...state,
+                userQuery: [...action.userQuery.jobs]
             }
             default:
                 return state;

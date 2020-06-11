@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-reqired test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "less": "less-watch-compiler ./src/less ./src App.less"
   },
