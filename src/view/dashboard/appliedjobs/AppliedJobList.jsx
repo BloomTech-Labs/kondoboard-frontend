@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux';
-import DropZone from './DropZone.jsx';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import JobController from '@controllers/JobController.js';
-import {selectSavedJobList} from '@state/selectors.js';
-import {selectUserId} from '@state/selectors.js';
+import { selectSavedJobList } from '@state/selectors.js';
+import { selectUserId } from '@state/selectors.js';
 
 import AppliedJob from './AppliedJob.jsx';
 

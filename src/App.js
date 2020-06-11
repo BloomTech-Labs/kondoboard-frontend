@@ -12,8 +12,7 @@ import './App.css';
 import { selectHistory } from '@state/selectors';
 import store from './store';
 import * as Action from '@state/actions';
-import LoginController from '@controllers/LoginController.js';
-import ProfileController from '@controllers/ProfileController.js';
+
 
 // Components
 import Login from '@containers/Login';

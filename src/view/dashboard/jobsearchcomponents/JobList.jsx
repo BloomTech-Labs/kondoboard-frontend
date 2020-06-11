@@ -1,8 +1,11 @@
-import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import JobController from '@controllers/JobController.js';
-import {selectJobList} from '@state/selectors.js';
+import { selectJobList } from '@state/selectors.js';
+
+import JobSearch from '../forms/JobSearch.jsx';
+
 
 import Job from './Job.jsx';
 
@@ -15,7 +18,7 @@ const JobList = () => {
 
     return(
         <div>
-            <h2>Latest Jobs</h2>
+            <h2 style={{display: 'flex', justifyContent: 'space-between'}}>Latest Jobs <JobSearch /></h2> 
             {jobList && jobList.map(job => {
                 return <Job job={job} key={job.id} />
             })}
