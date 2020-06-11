@@ -17,9 +17,9 @@ class JobController {
         const savedJobList = await JobsService.fetchSavedJobList(id);
         store.dispatch(Action.getSavedList(savedJobList));
     }
-    async searchJobs(title, city, state) {
-        const jobList = await JobsService.queryJob(title, city, state)
-        store.dispatch(Action.getQueryList(jobList))
+    async searchJobs(search, city, state) {
+        const userQuery = await JobsService.queryJob(search, city, state)
+        store.dispatch(Action.getQueryList(userQuery))
     }
     async selectJob(job) {
         store.dispatch(Action.selectSavedJob(job))

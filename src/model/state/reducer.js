@@ -45,6 +45,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 job: action.job
             }
+        case Actions.SET_QUERY_LIST:
+            return {
+                ...state,
+                userQuery: [...action.userQuery.jobs]
+            }
             default:
                 return state;
     }

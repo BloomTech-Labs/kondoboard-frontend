@@ -2,7 +2,6 @@ import { locations } from './Locations.js';
 
 class City {
     static checkAgainstLocationsObject(state) {
-        console.log('state is', state)
         const cityObject = locations.filter(location => {
             return (location.state === state)
         })
@@ -10,7 +9,6 @@ class City {
             return city.city
         })
         
-        console.log('cities are', cities)
         return cities;
     }
         

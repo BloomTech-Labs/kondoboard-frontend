@@ -8,25 +8,30 @@ import { Select } from 'antd';
 import { states } from '../../../helpers/StatesList.js';
 
 const JobSearch = () => {
-    const [title, setTitle] = useState('');
+    const [search, setSearch] = useState('');
     const [state, setState] = useState(null);
     const [city, setCity] = useState(null);
+
     const { Option } = Select;
+    
     const handleSearchChange = e => {
-        setTitle(e.target.value);
+        setSearch(e.target.value);
     }
 
     function handleStateChange(value) {
-        console.log('value is', value)
         setState(value)
     }
 
     function handleCityChange(value) {
         setCity(value);
     }
+    
+    const handleSearchSubmit = e => {
+        e.preventDefault();
+        JobController.searchJobs(search, city, state);
+    }
 
     const cities = CityHelpers.checkAgainstLocationsObject(state)
-    console.log('cities', cities)
     
     const statesDropDown = (
         <Select defaultValue="Select State" onChange={handleStateChange}>
@@ -43,20 +48,14 @@ const JobSearch = () => {
             })}
         </Select>
     )
-    
-    const handleSearchSubmit = e => {
-        e.preventDefault();
-        console.log('search for', {title, city, state})
-        JobController.searchJobs(title, city, state);
-    }
     return(
         <div>
             <form onSubmit={handleSearchSubmit}>
                 <input
-                    placeholder='Search by title'
-                    name='title'
-                    value={title}
-                    id='title'
+                    placeholder='Search by job title'
+                    name='search'
+                    value={search}
+                    id='search'
                     type='text'
                     onChange={handleSearchChange}
                 />

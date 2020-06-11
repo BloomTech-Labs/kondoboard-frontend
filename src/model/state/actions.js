@@ -17,8 +17,8 @@ export const getSavedList = savedJobList => {
     return { type: SET_SAVED_JOB_LIST, savedJobList }
 }
 
-export const getQueryList = jobList => {
-    return { type: SET_QUERY_LIST, jobList }
+export const getQueryList = userQuery => {
+    return { type: SET_QUERY_LIST, userQuery }
 }
 
 export const getSavedIds = savedJobIds => {
