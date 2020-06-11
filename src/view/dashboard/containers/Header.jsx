@@ -1,12 +1,10 @@
 // Core
-import React, { useState, useEffect } from 'react'
-import { useLocation, Redirect } from 'react-router-dom';
+import React from 'react'
+import { useLocation, useHistory } from 'react-router-dom';
 import { Menu, Dropdown, Button } from 'antd';
-import { useSelector } from 'react-redux';
-import { useOktaAuth } from '@okta/okta-react';
-
+import { useLogout } from '@helpers/utils/useLogout';
 // Model & Helpers
-import { selectHistory } from '@state/selectors';
+
 
 
 
@@ -19,23 +17,13 @@ const Header = ( ) => {
 
     // Routing
     const location = useLocation();
-    const history = useSelector(selectHistory);
+    const history = useHistory();
 
     // Resources
     const logo = require('@images/logo.png');
     const default_pic = require('@images/default-profile.png')
-    
-    // Auth
-    const { authState, authService } = useOktaAuth();
-    const issuer = 'https://dev-625192.okta.com/oauth2/default';
-    const redirectUri = `${window.location.origin}/login`;
+    const logout = useLogout();
 
-    const logout = async () => {
-        const idToken = authState.idToken;
-        await authService.logout('/');
-
-        window.location.href = `${issuer}/v1/logout?id_token_hint=${idToken}&post_logout_redirect_uri=${redirectUri}`
-    }
 
     let handleClick = (action) => { // Handles drop down menu clicks
         switch(action) {

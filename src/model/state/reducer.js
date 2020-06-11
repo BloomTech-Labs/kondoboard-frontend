@@ -18,11 +18,6 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 user: { ...action.payload }
             }
-        case Actions.SET_HISTORY:
-            return {
-                ...state,
-                history: action.payload
-            }
         case Actions.SET_JOBS_LIST:
             return {
                 ...state,

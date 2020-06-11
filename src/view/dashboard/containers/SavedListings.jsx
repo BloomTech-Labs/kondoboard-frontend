@@ -3,7 +3,6 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 
 import SavedJobList from '../savedjobcomponents/SavedJobsList.jsx';
-import UserValidation from '../profile/UserValidation.jsx';
 
 const { Sider, Content } = Layout;
 
@@ -11,7 +10,6 @@ const SavedListings = () => {
     return(
         <div>
             <Layout>
-                <UserValidation />
                 <Layout style={{height: '80vh'}}>
                     <Sider style={{background: '#FAFAFA'}}>
                         <Menu style={{background: '#FAFAFA'}}>

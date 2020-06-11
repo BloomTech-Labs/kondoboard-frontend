@@ -17,7 +17,10 @@ const JobList = () => {
         <div>
             <h2>Latest Jobs</h2>
             {jobList && jobList.map(job => {
-                return <Job job={job} key={job.id} />
+                if (JSON.stringify(job) === '{}') {} // empty obj, prevents key mapping error
+                 else {
+                return <Job key={job.id} job={job} />
+                }
             })}
         </div>
     )

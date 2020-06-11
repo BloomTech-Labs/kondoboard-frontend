@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from 'react'
+import { Button } from 'antd';
 
 import ProfileController from '@controllers/ProfileController';
+import UserTrack from '@dashboard/profile/UserTrack';
 
 const UserInfo = ({user}) => {
 
-    let [form, setForm] = useState({
-        user_track:  user.user_track === null ? '' : user.user_track,
-        locations: user.locations === null ? [] : user.locations,
-        skills: user.skills === null ? [] : user.skills,
-        remote: user.remote === 1 ? true : false
 
+    const [editting, setEditting] = useState('');
+    const [form, setForm] = useState({
+        user_track: user.user_track || '',
+        locations: user.locations || [],
+        skills: user.skills || [],
+        remote: user.remote === 1 ? true : false
     });
 
-    let handleChange = (e) => {
-        setForm({...form, user_track: e.target.value});
-    }
+    useEffect(() => {
+        setForm({
+            user_track: user.updateUser || '',
+            locations: user.locations || [],
+            skills: user.skills || [],
+            remote: user.remote === 1 ? true : false
+        })
+    }, [user]);
+
 
     let addLocation = (e) => {
         e.preventDefault();
@@ -74,37 +83,66 @@ const UserInfo = ({user}) => {
 
 
     return (
-        <div>
-            <form onSubmit={submitAll}>
-                <input type='text' placeholder={form.user_track === null ? 'Track' : form.user_track} id='track' onChange={handleChange}/>
-                <button type='submit'>Submit</button>
-            </form>
-            <form onSubmit={addLocation}>
-                <input required={true} type='text' placeholder='Locations' id='locations'/>
-                <button type='submit'>Add Location</button>
-                <div>
-                {form.locations && form.locations.map(location => (
-                <div key={location}>
-                <p>{location}<button value={location} onClick={removeLocation}>X</button></p>
-                </div>
-            ))}</div>
-            </form>
-            <form onSubmit={addSkill}>
-                <input required={true} type='text' placeholder='skills' id='skills'/>
-                <button type='submit'>Add Skill</button>
-                {form.skills && form.skills.map(skill => (
-                    <div key={skill}>
-                    <p>{skill}<button value={skill} onClick={removeSkill}>X</button></p>
+    <div className='user-box'>
+        <h1>{user && `${user.first_name} ${user.last_name}`}</h1>
+
+        <div className='user-form'>
+            {JSON.stringify(user)}<br/>
+            {JSON.stringify(form)}<br/><br/>
+
+        <UserTrack form={form} setForm={setForm} />
+
+            <div className='field-container'>
+                <span>Locations: </span>
+                    <Button className='add' type='primary' size='small' disabled={editting === 'locations'} onClick={() => setEditting('locations')}>Add</Button>
+                    {form.locations && form.locations.map(location => (
+                    <div key={location}>
+                        <p>{location}<button value={location} onClick={removeLocation}>X</button></p>
                     </div>
+                    ))}
+                    
+                {form.locations.length === 0 && <p className='err'>Please Add Locations. i.e: Austin, TX</p>}
+
+                {editting === 'locations' && 
+                    <form onSubmit={addLocation}>
+                        <input required={true} type='text' placeholder='Austin, Tx'/>
+                        <button className='confirm' type='submit'>Confirm</button>
+                        <button className='done' onClick={() => setEditting('')}>Done</button>
+                    </form>
+                }
+            </div>
+
+        <div className='field-container'>
+            <span>Skills: </span>
+                <Button className='add' type='primary' size='small' disabled={editting === 'skills'} onClick={() => setEditting('skills')}>Add</Button>
+                {form.skills && form.skills.map(skill => (
+                <div key={skill}>
+                    <p>{skill}<button value={skill} onClick={removeSkill}>X</button></p>
+                </div>
                 ))}
-            </form>
+
+            {form.skills.length === 0 && <p className='err'>Please Add Skills. i.e: Javascript</p>}
+
+            {editting === 'skills' && 
+                <form onSubmit={addSkill}>
+                    <input required={true} type='text' placeholder='Javascript'/>
+                    <button className='confirm' type='submit'>Confirm</button>
+                    <button className='done' onClick={() => setEditting('')}>Done</button>
+                </form>
+            }
+        </div>
+
+
+
             <p>willing to work Remote?</p>
             <input type='radio' name='yes' value='Yes' checked={form.remote} onChange={toggleRemote}/>
             <label htmlFor='yes'>Yes</label>
             <input type='radio' name='No' value='No' checked={!form.remote} onChange={toggleRemote}/>
             <label htmlFor='no'>No</label>
 
-        </div>
+        </div> {/* user-form */}
+
+    </div> /* user-box */
     )
 }
 

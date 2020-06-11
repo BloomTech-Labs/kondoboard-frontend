@@ -1,16 +1,13 @@
 import React from 'react'
-import ProfileService from '@services/ProfileService.js';
+import UserInfo from '../forms/UserInfo';
 import { useSelector } from 'react-redux';
 import { selectUser } from '@state/selectors';
-import UserInfo from '../forms/UserInfo';
-
 
 const Profile = ( ) => {
 
-        const user = useSelector(selectUser);
-
+    const user = useSelector(selectUser);
     return (
-        <div>
+        <div className='profile'>
            <UserInfo user={user}/>
         </div>
     )

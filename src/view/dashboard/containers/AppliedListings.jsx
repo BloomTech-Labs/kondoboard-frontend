@@ -2,7 +2,6 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 
-import UserValidation from '../profile/UserValidation.jsx';
 import AppliedJobList from '../appliedjobs/AppliedJobList.jsx';
 
 const { Sider, Content } = Layout;
@@ -11,7 +10,6 @@ const AppliedJobListings = () => {
     return(
         <div>
             <Layout>
-                <UserValidation />
                 <Layout style={{height: '80vh'}}>
                     <Sider style={{background: '#FAFAFA'}}>
                         <Menu style={{background: '#FAFAFA'}}>

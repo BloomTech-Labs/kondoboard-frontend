@@ -388,3 +388,67 @@ template {
   text-align: right;
   width: 100%;
 }
+.profile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+.profile .user-box {
+  width: 70%;
+}
+.profile .user-box .user-form {
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: #FFFFFF;
+  border: solid 1px #E9E9E9;
+}
+.profile .user-box .user-form .field-container {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.profile .user-box .user-form .field-container .err {
+  background-color: rgba(250, 191, 191, 0.795);
+  color: #c70a0a;
+  border: 1px solid red;
+  padding: 0 0.4rem;
+  display: inline-block;
+  font-weight: 600;
+  font-size: small;
+}
+.profile .user-box .user-form .field-container span {
+  font-weight: 600;
+  font-size: larger;
+}
+.profile .user-box .user-form .field-container .add {
+  font-size: 0.6rem;
+  background-color: #00b400;
+  border-color: green;
+  margin-right: 1rem;
+}
+.profile .user-box .user-form .field-container .confirm {
+  margin-left: 0.3rem;
+  font-size: 1rem;
+  background-color: rgba(152, 196, 150, 0.192);
+  border: 1px solid #99cc99;
+  border-radius: 1rem;
+  height: 1.45rem;
+}
+.profile .user-box .user-form .field-container .done {
+  font-size: 1rem;
+  background-color: rgba(196, 157, 150, 0.192);
+  border: 1px solid #cc9c99;
+  border-radius: 1rem;
+  height: 1.45rem;
+}
+.profile .user-box .user-form .field-container .track-tag {
+  font-weight: 500;
+  font-size: small;
+  background-color: rgba(168, 212, 255, 0.774);
+  border: 1px solid rgba(67, 157, 241, 0.87);
+}
+.profile .user-box .user-form .field-container .track-tag-check {
+  font-weight: 500;
+  font-size: small;
+}

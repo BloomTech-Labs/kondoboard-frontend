@@ -10,7 +10,6 @@ import SavedJob from './SavedJob.jsx';
 const SavedJobList = () => {
     const savedJobList = useSelector(selectSavedJobList);
     const id = useSelector(selectUserId)
-    console.log('saved', savedJobList.ds_id)
 
     useEffect(() => {
         JobController.fetchSavedJobList(id);
