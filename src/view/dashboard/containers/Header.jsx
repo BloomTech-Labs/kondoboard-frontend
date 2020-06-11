@@ -1,6 +1,6 @@
 // Core
-import React, { useState, useEffect } from 'react'
-import { useLocation, Redirect } from 'react-router-dom';
+import React from 'react'
+import { useLocation } from 'react-router-dom';
 import { Menu, Dropdown, Button } from 'antd';
 import { useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
