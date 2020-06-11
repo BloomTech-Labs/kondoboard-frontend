@@ -14,7 +14,6 @@ const JobList = () => {
     const jobList = useSelector(selectJobList);
     const queryList = useSelector(selectUserQuery);
 
-    console.log('flag',jobList)
     useEffect(() => {
         JobController.fetchJobsList();
     }, []);
