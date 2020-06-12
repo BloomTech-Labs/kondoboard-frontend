@@ -11,9 +11,11 @@ const JobSearch = () => {
     const [search, setSearch] = useState('');
     const [state, setState] = useState(null);
     const [city, setCity] = useState(null);
+    
+    const cities = CityHelpers.checkAgainstLocationsObject(state)
 
     const { Option } = Select;
-    
+        
     const handleSearchChange = e => {
         setSearch(e.target.value);
     }
@@ -30,27 +32,10 @@ const JobSearch = () => {
         e.preventDefault();
         JobController.searchJobs(search, city, state);
     }
-
-    const cities = CityHelpers.checkAgainstLocationsObject(state)
     
-    const statesDropDown = (
-        <Select defaultValue="Select State" onChange={handleStateChange}>
-            {states && states.map(qState => {
-                return <Option value={qState}>{qState}</Option>
-            })}
-        </Select>
-    )
-
-    const citiesDropDown = (
-        <Select defaultValue="Select City" onChange={handleCityChange}>
-            {cities && cities.map(qCity => {
-                return <Option value={qCity}>{qCity}</Option>
-            })}
-        </Select>
-    )
     return(
         <div>
-            <form onSubmit={handleSearchSubmit}>
+            <form onSubmit={handleSearchSubmit} style={{display: 'flex', justifyContent: 'space-evenly'}}>
                 <input
                     placeholder='Search by job title'
                     name='search'
@@ -59,9 +44,17 @@ const JobSearch = () => {
                     type='text'
                     onChange={handleSearchChange}
                 />
-            {statesDropDown}
-            {citiesDropDown}
-            <button type="submit">Search</button>
+                <Select defaultValue="Select State" onChange={handleStateChange}>
+                    {states && states.map(qState => {
+                        return <Option value={qState}>{qState}</Option>
+                    })}
+                </Select>
+                <Select defaultValue="Select City" onChange={handleCityChange}>
+                    {cities && cities.map(qCity => {
+                        return <Option value={qCity}>{qCity}</Option>
+                    })}
+                </Select>
+                <button type="submit">Search</button>
             </form>
         </div>
     )
