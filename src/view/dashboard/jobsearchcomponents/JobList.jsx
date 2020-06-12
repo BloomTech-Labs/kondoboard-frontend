@@ -20,7 +20,7 @@ const JobList = () => {
 
     return(
         <div>
-            <h2 style={{display: 'flex', justifyContent: 'space-between'}}>Latest Jobs <JobSearch /></h2> 
+            <JobSearch />
             {jobList && jobList.map(job => {
                 return <Job job={job} key={job.id} />
             })}
