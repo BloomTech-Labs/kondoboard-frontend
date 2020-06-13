@@ -12,10 +12,10 @@ const SavedListings = () => {
         <div>
             <Layout>
                 <Layout>
-                    <Sider>
+                    <Sider style={{background: 'white'}}>
                         <SideBar />
                     </Sider>
-                    <Layout style={{height: '80vh'}}>
+                    <Layout style={{height: '80vh', background: 'white'}}>
                         <Content>
                             <Row>
                                 <Col span={8}><SavedJobList /></Col>

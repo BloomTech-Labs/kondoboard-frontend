@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Switch } from 'react-router';
 import { Route, useHistory, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
