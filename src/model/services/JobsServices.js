@@ -31,7 +31,6 @@ class JobsService {
 
     async queryJob(search, city, state) {
         const response = await axios.post(`${dataUrl}/search/`, {search, city, state})
-        console.log(response.data)
         return response.data;
     }
 }

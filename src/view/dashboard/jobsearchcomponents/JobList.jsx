@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import JobController from '@controllers/JobController.js';
@@ -20,11 +21,12 @@ const JobList = () => {
 
     return(
         <div>
+            <Link to='/'>Results</Link><Link to='/saved'> Tagged</Link>
             <JobSearch />
-            {jobList && jobList.map(job => {
+            {queryList && queryList.map(job => {
                 return <Job job={job} key={job.id} />
             })}
-            {queryList && queryList.map(job => {
+            {jobList && jobList.map(job => {
                 return <Job job={job} key={job.id} />
             })}
 

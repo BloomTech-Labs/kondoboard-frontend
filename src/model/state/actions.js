@@ -5,6 +5,8 @@ export const SET_SAVED_JOB_IDS = 'SET_SAVED_JOB_IDS';
 export const SET_QUERY_LIST = 'SET_QUERY_LIST';
 
 export const SELECT_SAVED_JOB = 'SELECT_SAVED_JOB';
+export const ADD_NEW_TAG = 'ADD_NEW_TAG';
+export const GET_JOB_TAGS = 'GET_JOB_TAGS';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_HISTORY = 'SET_HISTORY';
@@ -31,6 +33,14 @@ export const setSavedJob = savedJob => {
 
 export const selectSavedJob = job => {
     return { type: SELECT_SAVED_JOB, job }
+}
+
+export const addNewTag = tags => {
+    return { type: ADD_NEW_TAG, tags }
+}
+
+export const getJobTags = tags => {
+    return { type: GET_JOB_TAGS, tags}
 }
 
 export const setUserData = user => {

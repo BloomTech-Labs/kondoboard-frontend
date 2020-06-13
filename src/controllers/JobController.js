@@ -11,7 +11,6 @@ class JobController {
         const job = saved_job;
         await JobsService.saveJob(id, job);
         store.dispatch(Action.setSavedJob({id, job}));
-        store.dispatch(Action.getSavedIds(job.ds_id))
     }
     async fetchSavedJobList(id) {
         const savedJobList = await JobsService.fetchSavedJobList(id);
@@ -23,6 +22,12 @@ class JobController {
     }
     async selectJob(job) {
         store.dispatch(Action.selectSavedJob(job))
+    }
+    async addTag(tag) {
+        store.dispatch(Action.addNewTag(tag))
+    }
+    async getJobTags() {
+        store.dispatch(Action.getJobTags())
     }
 }
 

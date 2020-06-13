@@ -15,11 +15,6 @@ const SideBar = () => {
             </Menu>
             <Menu>
                 <Menu.Item>
-                    <Link to='/saved'>Tagged</Link>
-                </Menu.Item>
-            </Menu>
-            <Menu>
-                <Menu.Item>
                     <Link to='/applied'>App Dash</Link>
                 </Menu.Item>
             </Menu>
