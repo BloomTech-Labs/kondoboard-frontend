@@ -14,7 +14,6 @@ const SavedJobList = () => {
     const savedJobList = useSelector(selectSavedJobList);
     const id = useSelector(selectUserId)
     const location = useLocation();
-    console.log('saved', savedJobList.ds_id)
 
     useEffect(() => {
         JobController.fetchSavedJobList(id);
