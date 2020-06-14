@@ -55,7 +55,6 @@ export const reducer = (state = initialState, action) => {
                 userQuery: [...action.userQuery.jobs]
             }
         case Actions.ADD_NEW_TAG:
-            console.log('reducer', action)
             return {
                 ...state,
                 tags: [...state.tags, action.tags]

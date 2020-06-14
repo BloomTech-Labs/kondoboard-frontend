@@ -26,21 +26,19 @@ const AddTag = () => {
         e.preventDefault();
         JobController.addTag(tags)
         JobController.getJobTags()
+        setName("")
+        setColor(null)
     }
 
     return(
         <>
         <form onSubmit={submitTag}>
             <h2>+ Add new tag</h2>
-            <div>
-                    {existingTags.jobs_id === jobs_id ?
-                        tags.map(color => {
-                            return <div style={{background: `${color}`, height: '20px', width: '20px'}}></div>
-                        })
-                        :
-                        null
-                    }
-                </div>
+            {/* <div>
+                {tags && tags.map(color => {
+                    return <div style={{background: `${color}`, height: '20px', width: '20px'}}></div>
+                })}   
+            </div> */}
             <h3>Tag name:</h3>
             <input
                 placeholder='Add a tag'

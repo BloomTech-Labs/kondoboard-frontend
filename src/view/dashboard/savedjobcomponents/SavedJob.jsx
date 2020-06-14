@@ -13,7 +13,6 @@ const SavedJob = props => {
     const job = props.job;
     const selectedJob = useSelector(selectSavedJob);
     const tags = useSelector(selectJobTags)
-    console.log('saved',tags)
 
     const [visible, setVisible] = useState(false)
 
@@ -51,13 +50,10 @@ const SavedJob = props => {
             <Col span={2}></Col>
             <Col span={8} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginTop: '7%'}}>
                 <p onClick={showModal}>{job && 'Add Tag'}{job && <CaretDownFilled />}</p>
-                <div>
-                    {tags.jobs_id === job.jobs_id ?
-                        tags.map(color => {
-                            return <div style={{background: `${color}`, height: '20px', width: '20px'}}></div>
+                <div style={{display: 'flex'}}>
+                    {tags && tags.map(tag => {
+                            return <div style={{backgroundColor: `${tag.color}`, height: '20px', width: '20px', borderRadius: '50%', marginRight: '2%'}}></div>
                         })
-                        :
-                        null
                     }
                 </div>
                 <p>{(daysAgo === 0) ? job && 'Today' : (daysAgo === 1) ? job && '1 day ago' : job && `${daysAgo} days ago`}</p>

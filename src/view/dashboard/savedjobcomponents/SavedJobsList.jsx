@@ -6,14 +6,12 @@ import JobController from '@controllers/JobController.js';
 import {selectSavedJobList} from '@state/selectors.js';
 import {selectUserId} from '@state/selectors.js';
 
-import { useLocation } from 'react-router-dom';
-
 import SavedJob from './SavedJob.jsx';
+import TagList from './tagsList.jsx';
 
 const SavedJobList = () => {
     const savedJobList = useSelector(selectSavedJobList);
     const id = useSelector(selectUserId)
-    const location = useLocation();
 
     useEffect(() => {
         JobController.fetchSavedJobList(id);
@@ -21,6 +19,7 @@ const SavedJobList = () => {
 
     return(
         <div>
+            <TagList />
             <Link to='/'>Results</Link><Link to='/saved'> Tagged</Link>
             {savedJobList && savedJobList.map(job => {
                 return <SavedJob job={job} key={job.id} />
