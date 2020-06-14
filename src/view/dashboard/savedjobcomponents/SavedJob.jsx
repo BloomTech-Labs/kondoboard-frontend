@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { CaretDownFilled } from '@ant-design/icons';
 import { Col, Modal } from 'antd';
-import { useSelector } from 'react-redux';
-
-import { selectSavedJob } from '@state/selectors.js';
-import { selectJobTags } from '@state/selectors.js';
 
 import JobController from '@controllers/JobController.js';
-import AddTag from '../forms/AddTag';
+import AddTag from '../forms/AddTag.jsx';
+import TagDisplay from './TagsDisplay.jsx';
 
 const SavedJob = props => {
     const job = props.job;
-    const selectedJob = useSelector(selectSavedJob);
-    const tags = useSelector(selectJobTags)
 
     const [visible, setVisible] = useState(false)
 
@@ -49,16 +44,13 @@ const SavedJob = props => {
             </Col>
             <Col span={2}></Col>
             <Col span={8} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginTop: '7%'}}>
-                <p onClick={showModal}>{job && 'Add Tag'}{job && <CaretDownFilled />}</p>
-                <div style={{display: 'flex'}}>
-                    {tags && tags.map(tag => {
-                            return <div style={{backgroundColor: `${tag.color}`, height: '20px', width: '20px', borderRadius: '50%', marginRight: '2%'}}></div>
-                        })
-                    }
-                </div>
+                <p onClick={showModal}>{job && 'Add Tag'}{job && <CaretDownFilled />}
+                    <TagDisplay />
+                </p>
                 <p>{(daysAgo === 0) ? job && 'Today' : (daysAgo === 1) ? job && '1 day ago' : job && `${daysAgo} days ago`}</p>
             </Col>
             <Modal
+                style={{width: '260px'}}
                 title='Add Tag'
                 visible={visible}
                 onOk={handleOk}

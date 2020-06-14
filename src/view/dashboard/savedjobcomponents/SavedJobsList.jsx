@@ -19,8 +19,8 @@ const SavedJobList = () => {
 
     return(
         <div>
-            <TagList />
             <Link to='/'>Results</Link><Link to='/saved'> Tagged</Link>
+            <TagList />
             {savedJobList && savedJobList.map(job => {
                 return <SavedJob job={job} key={job.id} />
             })}

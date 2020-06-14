@@ -9,11 +9,7 @@ const initialState = {
     savedJobList: [{}],
     savedJobIds: [{}],
     job: {},
-    tags: [{
-        jobs_id: '',
-        name: '',
-        color: ''
-    }]
+    tags: []
 }
 
 export const reducer = (state = initialState, action) => {
