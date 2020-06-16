@@ -8,8 +8,6 @@ import { Security } from '@okta/okta-react';
 import Config from './helpers/utils/okta-sdk';
 import './less/components/app.less';
 
-
-
 ReactDOM.render(
   <Provider store={store}>
     <Security {...Config}>

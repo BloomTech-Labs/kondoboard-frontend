@@ -1,5 +1,4 @@
 import * as Actions from './actions';
-import UserHelpers from '../../helpers/User.js';
 
 const initialState = {
   user: {},

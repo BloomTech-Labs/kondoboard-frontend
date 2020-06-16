@@ -13,7 +13,6 @@ import { selectHistory } from '@state/selectors';
 import store from './store';
 import * as Action from '@state/actions';
 
-
 // Components
 import Login from '@containers/Login';
 import Profile from '@containers/Profile';
@@ -22,7 +21,6 @@ import NotFound from '@containers/NotFound';
 import JobListings from '@containers/JobListings.jsx';
 import SavedListings from './view/dashboard/containers/SavedListings.jsx';
 import AppliedJobListings from './view/dashboard/containers/AppliedListings.jsx';
-
 
 const App = () => {
 
@@ -40,13 +38,12 @@ const App = () => {
     window.localStorage.setItem('kondotoken', authState.idToken);
   }
 
-
   const loading = (
     <Spin className='loading' indicator={<LoadingOutlined style={{ fontSize: 144}} spin />} />
   );
 
   const PrivateRoute = ({ component: Component, ...rest}) => (
-    <Route {...rest} render={(props) => (
+    <Route {...rest} render={() => (
       authState.isPending ? loading :
         authState.isAuthenticated === true 
           ? <Component />
