@@ -29,8 +29,8 @@ const App = () => {
   // Initialize OktaAuth
 
   const { authState } = useOktaAuth();
-    const history = useHistory();
-    const stateHistory = useSelector(selectHistory);
+  const history = useHistory();
+  const stateHistory = useSelector(selectHistory);
 
   if (stateHistory === null) {
     store.dispatch(Action.setHistory(history));
@@ -42,44 +42,46 @@ const App = () => {
 
 
   const loading = (
-    <Spin className='loading' indicator={<LoadingOutlined style={{ fontSize: 144}} spin/>}/>
-  )
+    <Spin className='loading' indicator={<LoadingOutlined style={{ fontSize: 144}} spin />} />
+  );
 
-    const PrivateRoute = ({ component: Component, ...rest}) => (
-        <Route {...rest} render={(props) => (
-          authState.isPending ? loading :
-          authState.isAuthenticated === true 
-          ? <Component/>
-          : <Redirect to='/login'/>
-        )}/>
-      );
+  const PrivateRoute = ({ component: Component, ...rest}) => (
+    <Route {...rest} render={(props) => (
+      authState.isPending ? loading :
+        authState.isAuthenticated === true 
+          ? <Component />
+          : <Redirect to='/login' />
+    )}
+    />
+  );
     
-    const PublicRoute = ({component: Component, ...rest}) => (
-        <Route {...rest} render={() => (
-          authState.isPending ? loading :
-          authState.isAuthenticated === true
-          ? <Redirect to='/'/>
-          : <Component/>
-        )}/>
-      )
+  const PublicRoute = ({component: Component, ...rest}) => (
+    <Route {...rest} render={() => (
+      authState.isPending ? loading :
+        authState.isAuthenticated === true
+          ? <Redirect to='/' />
+          : <Component />
+    )}
+    />
+  );
 
   return (
     <div className="App">
       <Header />
       <Switch>
 
-        <PublicRoute path='/login' component={Login}/>
-        <PublicRoute path='/implicit/callback' component={LoginCallback}/>
-        <PrivateRoute path='/profile' component={Profile}/>
+        <PublicRoute path='/login' component={Login} />
+        <PublicRoute path='/implicit/callback' component={LoginCallback} />
+        <PrivateRoute path='/profile' component={Profile} />
         
         <PrivateRoute path='/applied' component={AppliedJobListings} />
         <PrivateRoute path='/saved' component={SavedListings} />
-        <PrivateRoute exact path='/' component={JobListings}/>
-        <Route component={NotFound}/> {/* Catch all for non existing routes */}
+        <PrivateRoute exact path='/' component={JobListings} />
+        <Route component={NotFound} /> {/* Catch all for non existing routes */}
       </Switch>
 
     </div>
   );
-}
+};
 
 export default App;
