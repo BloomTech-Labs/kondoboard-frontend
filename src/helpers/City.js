@@ -5,8 +5,8 @@ class City {
         const cityObject = locations.filter(location => {
             return (location.state === state)
         })
-        const cities = cityObject.map(city => {
-            return city.city
+        const cities = cityObject.map(location => {
+            return location.city
         })
         
         return cities;

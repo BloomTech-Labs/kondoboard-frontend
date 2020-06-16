@@ -10,7 +10,7 @@ const AppliedJobListings = () => {
     return(
         <div>
             <Layout>
-                <Layout style={{height: '80vh'}}>
+                <Layout style={{height: '80vh', backgroundColor: 'white'}}>
                     <Sider>
                         <SideBar />
                     </Sider>

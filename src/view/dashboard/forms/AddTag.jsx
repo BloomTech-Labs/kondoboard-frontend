@@ -1,32 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { colors } from '../../../helpers/Colors.js';
 import { useSelector } from 'react-redux';
 
-import { selectSavedJob } from '../../../model/state/selectors.js';
-import { selectJobTags } from '@state/selectors.js';
+import { selectSavedJobList } from '@state/selectors.js';
+
+import { selectUserId } from '@state/selectors.js';
+
 import JobController from '../../../controllers/JobController.js';
 
-const AddTag = () => {
-    const [name, setName] = useState('');
+import JobHelpers from '../../../helpers/Job.js';
+import IdHelpers from '../../../helpers/SavedJobId.js';
+
+const AddTag = props => {
+    const [tag_name, setTag_Name] = useState('');
     const [color, setColor] = useState(null);
-    const jobs_id = useSelector(selectSavedJob).jobs_id;
-    const existingTags = useSelector(selectJobTags)
+    const saved = useSelector(selectSavedJobList)
+    const id = useSelector(selectUserId);
+    const job = props.job;
+    const saved_job = JobHelpers.formatSavedJob(job);
+    const savedIds = IdHelpers.filterJobIds(saved)
 
     const enterTag = e => {
-        setName(e.target.value)
+        setTag_Name(e.target.value)
     }
-
-    const tags = {jobs_id, name, color}
 
     const enterColor = e => {
         setColor(e.target.style.backgroundColor)
     }
 
+    useEffect(() => {
+        JobController.fetchSavedJobList(id);
+    }, [])
+
     const submitTag = e => {
         e.preventDefault();
-        JobController.addTag(tags)
-        JobController.getJobTags()
-        setName("")
+        {savedIds.includes(job.ds_id || job.id) ? JobController.getJobTags() : JobController.addSavedJob(id, saved_job)}
+        JobController.addTag(tag_name, id, color)
+        JobController.getJobTags(id)
+        setTag_Name("")
         setColor(null)
     }
 
@@ -34,18 +45,18 @@ const AddTag = () => {
         <>
         <form onSubmit={submitTag}>
             <h2>+ Add new tag</h2>
-            {/* <div>
-                {tags && tags.map(color => {
+            <div>
+                {/* {tags && tags.map(color => {
                     return <div style={{background: `${color}`, height: '20px', width: '20px'}}></div>
-                })}   
-            </div> */}
+                })}    */}
+            </div>
             <h3>Tag name:</h3>
             <input
                 placeholder='Add a tag'
-                name='name'
-                label='name'
-                value={name}
-                id='name'
+                name='tag_name'
+                label='tag_name'
+                value={tag_name}
+                id='tag_name'
                 type='text'
                 onChange={enterTag}
             />

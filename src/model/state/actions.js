@@ -35,8 +35,8 @@ export const selectSavedJob = job => {
     return { type: SELECT_SAVED_JOB, job }
 }
 
-export const addNewTag = tags => {
-    return { type: ADD_NEW_TAG, tags }
+export const setTag = tag => {
+    return { type: ADD_NEW_TAG, tag }
 }
 
 export const getJobTags = tags => {
