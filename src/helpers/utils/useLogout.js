@@ -2,8 +2,6 @@ import React, { useEffect } from 'react'
 import { useOktaAuth } from '@okta/okta-react';
 
 
-
-
 export const useLogout = () => {
         // Auth
         const { authState, authService } = useOktaAuth();

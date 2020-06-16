@@ -3,77 +3,47 @@ import { Button } from 'antd';
 
 import ProfileController from '@controllers/ProfileController';
 import UserTrack from '@dashboard/profile/UserTrack';
+import UserRemote from '@dashboard/profile/UserRemote';
+import UserSkills from '@dashboard/profile/UserSkills';
+import UserLocations from '@dashboard/profile/UserLocations';
+import Spinner from '@helpers/Spinner';
 
 const UserInfo = ({user}) => {
 
-
-    const [editting, setEditting] = useState('');
     const [form, setForm] = useState({
         user_track: user.user_track || '',
-        locations: user.locations || [],
+        display_track: user.display_track || '',
+        cities: user.cities || [],
+        states: user.states || [],
         skills: user.skills || [],
         remote: user.remote === 1 ? true : false
+    });
+    const [err, setErr] = useState({
+        trackErr: form.user_track === '' ? true : false,
+        skillsErr: form.skills.length === 0 ? true : false,
+        locationErr: form.cities.length === 0 ? true : false
     });
 
     useEffect(() => {
         setForm({
-            user_track: user.updateUser || '',
-            locations: user.locations || [],
+            user_track: user.user_track || '',
+            display_track: user.display_track || '',
+            cities: user.cities || [],
+            states: user.states || [],
             skills: user.skills || [],
             remote: user.remote === 1 ? true : false
-        })
+        });
     }, [user]);
 
-
-    let addLocation = (e) => {
-        e.preventDefault();
-        let duplicate = false;
-        form.locations.forEach(location => {
-            if (location === e.target[0].value) {
-                duplicate = true;
-            }
+    useEffect(() => {
+        setErr({
+            trackErr: form.user_track === '' ? true : false,
+            skillsErr: form.skills.length === 0 ? true : false,
+            locationErr: form.cities.length === 0 ? true : false
         });
-        duplicate === false ?
-        setForm({...form, locations: [...form.locations, e.target[0].value]})
-        :
-        window.alert(`${e.target[0].value} Already Added`);
-        e.target.reset();
-    }
+    },[form.cities.length, form.skills.length, form.user_track]);
 
-    let removeLocation = (e) => {
-        e.preventDefault();
-        let newLocations = form.locations.filter(loc => {
-            return loc !== e.target.value;
-        });
-        setForm({...form, locations: newLocations});
-    }
 
-    let addSkill = (e) => {
-        e.preventDefault();
-        let duplicate = false;
-        form.skills.forEach(skill => {
-            if (skill === e.target[0].value) {
-                duplicate = true;
-            }
-        });
-        duplicate === false ?
-        setForm({...form, skills: [...form.skills, e.target[0].value]})
-        :
-        window.alert(`${e.target[0].value} Already Added`);
-        e.target.reset();
-    }
-
-    let removeSkill = (e) => {
-        e.preventDefault();
-        let newSkills = form.skills.filter(skill => {
-            return skill !== e.target.value;
-        });
-        setForm({...form, skills: newSkills});
-    }
-
-    let toggleRemote = (e) => {
-        setForm({...form, remote: !form.remote});
-    }
     let submitAll = (e) => {
         e.preventDefault();
         ProfileController.updateUser(form, user.id).catch(err => {
@@ -83,66 +53,31 @@ const UserInfo = ({user}) => {
 
 
     return (
-    <div className='user-box'>
+        <>
+        {user.first_name === undefined && <Spinner />}
+        {user.first_name !== undefined && 
+        <div className='user-box'>
         <h1>{user && `${user.first_name} ${user.last_name}`}</h1>
 
         <div className='user-form'>
-            {JSON.stringify(user)}<br/>
-            {JSON.stringify(form)}<br/><br/>
-
         <UserTrack form={form} setForm={setForm} />
+        {form.user_track === '' && <p className='err'>Please Select a Track</p>}
 
-            <div className='field-container'>
-                <span>Locations: </span>
-                    <Button className='add' type='primary' size='small' disabled={editting === 'locations'} onClick={() => setEditting('locations')}>Add</Button>
-                    {form.locations && form.locations.map(location => (
-                    <div key={location}>
-                        <p>{location}<button value={location} onClick={removeLocation}>X</button></p>
-                    </div>
-                    ))}
-                    
-                {form.locations.length === 0 && <p className='err'>Please Add Locations. i.e: Austin, TX</p>}
+        <UserSkills form={form} setForm={setForm} user={user} />
+        {form.skills.length === 0 && <p className='err'>Please Add Skills</p>}
 
-                {editting === 'locations' && 
-                    <form onSubmit={addLocation}>
-                        <input required={true} type='text' placeholder='Austin, Tx'/>
-                        <button className='confirm' type='submit'>Confirm</button>
-                        <button className='done' onClick={() => setEditting('')}>Done</button>
-                    </form>
-                }
-            </div>
+        <UserLocations form={form} setForm={setForm} user={user} />
+        {form.cities.length === 0 && <p className='err'>Please Add Locations</p>}
+
+        <UserRemote form={form} setForm={setForm} />
 
         <div className='field-container'>
-            <span>Skills: </span>
-                <Button className='add' type='primary' size='small' disabled={editting === 'skills'} onClick={() => setEditting('skills')}>Add</Button>
-                {form.skills && form.skills.map(skill => (
-                <div key={skill}>
-                    <p>{skill}<button value={skill} onClick={removeSkill}>X</button></p>
-                </div>
-                ))}
-
-            {form.skills.length === 0 && <p className='err'>Please Add Skills. i.e: Javascript</p>}
-
-            {editting === 'skills' && 
-                <form onSubmit={addSkill}>
-                    <input required={true} type='text' placeholder='Javascript'/>
-                    <button className='confirm' type='submit'>Confirm</button>
-                    <button className='done' onClick={() => setEditting('')}>Done</button>
-                </form>
-            }
+            <Button className='submit-all' disabled={err.locationErr || err.skillsErr || err.trackErr ? true : false} onClick={submitAll}>Submit</Button>
         </div>
 
-
-
-            <p>willing to work Remote?</p>
-            <input type='radio' name='yes' value='Yes' checked={form.remote} onChange={toggleRemote}/>
-            <label htmlFor='yes'>Yes</label>
-            <input type='radio' name='No' value='No' checked={!form.remote} onChange={toggleRemote}/>
-            <label htmlFor='no'>No</label>
-
         </div> {/* user-form */}
-
-    </div> /* user-box */
+    </div>} {/* user-box */}
+    </>
     )
 }
 

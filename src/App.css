@@ -393,6 +393,7 @@ template {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-evenly;
+  background-color: #FAFAFA;
 }
 .profile .user-box {
   width: 70%;
@@ -407,8 +408,70 @@ template {
 .profile .user-box .user-form .field-container {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 55%;
 }
-.profile .user-box .user-form .field-container .err {
+.profile .user-box .user-form .field-container a {
+  font-weight: bold;
+  color: #6335BF;
+  font-size: 1rem;
+  width: fit-content;
+  min-width: fit-content;
+  margin-left: auto;
+  text-align: right;
+  max-height: min-content;
+  height: min-content;
+}
+.profile .user-box .user-form .field-container a .ico-caret {
+  font-size: 1.2rem;
+  color: black;
+}
+.profile .user-box .user-form .field-container p {
+  font-weight: bold;
+  font-size: 1.12rem;
+}
+.profile .user-box .user-form .field-container .container {
+  width: 100%;
+}
+.profile .user-box .user-form .field-container .container .skill-box,
+.profile .user-box .user-form .field-container .container .location-box {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  justify-content: left;
+}
+.profile .user-box .user-form .field-container .container .skill-box .skill,
+.profile .user-box .user-form .field-container .container .location-box .skill,
+.profile .user-box .user-form .field-container .container .skill-box .location,
+.profile .user-box .user-form .field-container .container .location-box .location {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+.profile .user-box .user-form .field-container .container .skill-box .saved,
+.profile .user-box .user-form .field-container .container .location-box .saved {
+  color: black;
+}
+.profile .user-box .user-form .field-container .container .skill-box .pending,
+.profile .user-box .user-form .field-container .container .location-box .pending {
+  color: #6335bfb2;
+}
+.profile .user-box .user-form .field-container .container .suggested {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.profile .user-box .user-form .field-container .container .track,
+.profile .user-box .user-form .field-container .container .remote {
+  font-size: 1rem;
+  font-weight: 600;
+  color: black;
+  margin-left: 1rem;
+}
+.profile .user-box .user-form .err {
   background-color: rgba(250, 191, 191, 0.795);
   color: #c70a0a;
   border: 1px solid red;
@@ -417,38 +480,77 @@ template {
   font-weight: 600;
   font-size: small;
 }
-.profile .user-box .user-form .field-container span {
-  font-weight: 600;
-  font-size: larger;
-}
-.profile .user-box .user-form .field-container .add {
-  font-size: 0.6rem;
-  background-color: #00b400;
-  border-color: green;
-  margin-right: 1rem;
-}
-.profile .user-box .user-form .field-container .confirm {
-  margin-left: 0.3rem;
+.profile .user-box .user-form .submit-all {
+  margin-left: auto;
+  background-color: #6335BF;
+  border: 1px solid #E9E9E9;
+  color: white;
   font-size: 1rem;
-  background-color: rgba(152, 196, 150, 0.192);
-  border: 1px solid #99cc99;
-  border-radius: 1rem;
-  height: 1.45rem;
+  line-height: 0.5rem;
 }
-.profile .user-box .user-form .field-container .done {
+.profile .user-box .user-form .submit-all:hover,
+.profile .user-box .user-form .submit-all:focus {
+  background: #6335bfb2;
+  border: 1px solid black;
+  color: rgba(255, 255, 255, 0.712);
+}
+.modal-save {
+  background-color: #6335BF;
+  border: 1px solid #E9E9E9;
+}
+.modal-save:hover,
+.modal-save:focus {
+  background: #6335bfb2;
+  border: 1px solid black;
+}
+.modal-cancel {
+  background-color: #ec5a5a;
+  border: 1px solid #E9E9E9;
+  color: black;
+}
+.modal-cancel:hover,
+.modal-cancel:focus {
+  background-color: rgba(236, 90, 90, 0.733);
+  border: 1px solid black;
+  color: black;
+}
+.ant-btn-loading {
+  background-color: #6335bfb2;
+  border: 1px solid black;
+}
+.ant-modal-title {
+  font-weight: bold;
+  color: #6335BF;
+}
+.modal-input {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.modal-input input {
+  width: 100%;
+}
+.modal-add {
+  background-color: rgba(36, 168, 24);
+  color: black;
+  border: 1px solid #E9E9E9;
+}
+.modal-add:hover,
+.modal-add:focus {
+  background-color: rgba(36, 168, 24, 0.671);
+  color: rgba(0, 0, 0, 0.726);
+  border: 1px solid black;
+}
+.modal-tag {
   font-size: 1rem;
-  background-color: rgba(196, 157, 150, 0.192);
-  border: 1px solid #cc9c99;
-  border-radius: 1rem;
-  height: 1.45rem;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
 }
-.profile .user-box .user-form .field-container .track-tag {
-  font-weight: 500;
-  font-size: small;
-  background-color: rgba(168, 212, 255, 0.774);
-  border: 1px solid rgba(67, 157, 241, 0.87);
-}
-.profile .user-box .user-form .field-container .track-tag-check {
-  font-weight: 500;
-  font-size: small;
+.skill-box-modal {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  justify-content: left;
 }
