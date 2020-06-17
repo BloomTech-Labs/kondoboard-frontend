@@ -49,7 +49,7 @@ const SearchTagged = props => {
                 <Col span={2}></Col>
                 <Col span={8} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
                     <p onClick={showModal}>{'Add Tag'}<CaretDownFilled />
-                        <TagDisplay />
+                        <TagDisplay job={job} />
                     </p>
                     <p>{daysAgo === 0 ? 'Today' : daysAgo === 1 ? '1 day ago' : `${daysAgo} days ago`}</p>
                 </Col>

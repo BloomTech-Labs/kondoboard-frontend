@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectSavedJob } from '@state/selectors.js';
 
+import TagsDisplay from '../savedjobcomponents/TagsDisplay.jsx';
+
 import { Modal } from 'antd';
 import { CaretDownFilled } from '@ant-design/icons';
 
@@ -35,7 +37,8 @@ const DetailedJob = () => {
                         <div style={{display: 'flex', justifyContent: 'space-between'}}>
                             <h1>{job && job.company}</h1>
                             <p>{(daysAgo === 0) ? job && 'Today' : (daysAgo === 1) ? job && '1 day ago' : job && `${daysAgo} days ago`}</p>
-                            <p>{job && 'Add Tag'}{job && <CaretDownFilled />}</p>
+                            <p>{job && 'Add Tag'}{job && <CaretDownFilled />}
+                                                <TagsDisplay job={job} /></p>
                         </div>
                         <div style={{display: 'flex', justifyContent: 'space-between'}}>
                             <div>

@@ -60,6 +60,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 tags: [...action.tags]
             }
+        case Actions.SELECT_TAGGED_JOBS:
+            return {
+                ...state,
+                taggedJob: [...action.taggedJob]
+            }
             default:
                 return state;
     }

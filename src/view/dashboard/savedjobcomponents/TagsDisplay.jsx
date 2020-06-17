@@ -8,11 +8,15 @@ import { selectJobTags } from '@state/selectors.js';
 import JobController from '../../../controllers/JobController';
 
 import TagHelper from '../../../helpers/AbridgeTags.js';
+import TagMatcher from '../../../helpers/TagIdMatch.js';
 
-const TagDisplay = () => {
+const TagDisplay = props => {
+    let job_id;
+    {props.job.ds_id ? job_id = props.job.ds_id : job_id = props.job.id}
     const id = useSelector(selectUserId)
     const tags = useSelector(selectJobTags)
-    const lessTags = TagHelper.shortenArr(tags)
+    const jobTags = TagMatcher.matchTagsToJobs(tags, job_id)
+    const lessTags = TagHelper.shortenArr(jobTags)
 
     useEffect(() => {
         JobController.getJobTags(id)

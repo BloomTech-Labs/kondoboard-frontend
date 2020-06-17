@@ -23,13 +23,17 @@ class JobController {
     async selectJob(job) {
         store.dispatch(Action.selectSavedJob(job))
     }
-    async addTag(tag_name, id, color) {
-        await JobsService.submitTag(tag_name, id, color)
-        store.dispatch(Action.setTag(tag_name, id, color))
+    async addTag(tag_name, id, color, job_id) {
+        await JobsService.submitTag(tag_name, id, color, job_id)
+        store.dispatch(Action.setTag(tag_name, id, color, job_id))
     }
     async getJobTags(id) {
         const tags = await JobsService.fetchTagsList(id);
         store.dispatch(Action.getJobTags(tags));
+    }
+    async selectTaggedJobs(id) {
+        console.log('controller',id)
+        store.dispatch(Action.setSelectTaggedJob(id))
     }
 }
 

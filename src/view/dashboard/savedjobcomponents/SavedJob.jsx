@@ -7,10 +7,14 @@ import AddTag from '../forms/AddTag.jsx';
 import TagDisplay from './TagsDisplay.jsx';
 import DateHelper from '../../../helpers/DateConversion.js';
 
+import { useSelector } from 'react-redux';
+import { selectUserId } from '../../../model/state/selectors.js';
+
 const SavedJob = props => {
     const job = props.job;
+    const id = useSelector(selectUserId);
     const daysAgo = DateHelper.convertToDays(job.date_published);
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(false);
 
     const showModal = () => {
         setVisible(true);
@@ -30,7 +34,7 @@ const SavedJob = props => {
     }
 
     useEffect(() => {
-        JobController.getJobTags();
+        JobController.getJobTags(id);
     }, [])
     return(
         <div onClick={selectJob} style={{border: '3px solid gray', borderRadius: '5%', display: 'flex', marginBottom: '5%'}}>
