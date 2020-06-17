@@ -8,7 +8,8 @@ const initialState = {
     jobList: [{}],
     savedJobList: [{}],
     savedJobIds: [{}],
-    job: {}
+    job: {},
+    tags: []
 }
 
 export const reducer = (state = initialState, action) => {
@@ -32,8 +33,7 @@ export const reducer = (state = initialState, action) => {
         case Actions.SET_SAVED_JOB_IDS:
             return {
                 ...state,
-                savedJobIds: [...state.savedJobIds, action.savedJobIds
-                ]
+                savedJobIds: [...state.savedJobIds, action.savedJobIds]
             }
         case Actions.SELECT_SAVED_JOB:
             return {
@@ -44,6 +44,21 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 userQuery: [...action.userQuery.jobs]
+            }
+        case Actions.ADD_NEW_TAG:
+            return {
+                ...state,
+                tags: [...state.tags, action.tags]
+            }
+        case Actions.GET_JOB_TAGS:
+            return {
+                ...state,
+                tags: [...action.tags]
+            }
+        case Actions.SELECT_TAGGED_JOBS:
+            return {
+                ...state,
+                taggedJob: [...action.taggedJob]
             }
             default:
                 return state;

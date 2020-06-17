@@ -6,6 +6,7 @@ import store from './store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Security } from '@okta/okta-react';
 import Config from './helpers/utils/okta-sdk';
+import './less/components/app.less'
 
 
 

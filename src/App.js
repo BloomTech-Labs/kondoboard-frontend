@@ -20,7 +20,6 @@ import SavedListings from './view/dashboard/containers/SavedListings.jsx';
 import AppliedJobListings from './view/dashboard/containers/AppliedListings.jsx';
 import UserValidation from '@dashboard/profile/UserValidation';
 
-
 const App = () => {
 
   // Initialize OktaAuth
