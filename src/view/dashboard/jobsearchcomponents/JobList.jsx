@@ -7,9 +7,7 @@ import { selectJobList } from '@state/selectors.js';
 import { selectUserQuery } from '@state/selectors.js';
 
 import JobSearch from '../forms/JobSearch.jsx';
-
-
-import Job from './Job.jsx';
+import SearchTagged from './SearchTagged.jsx';
 
 const JobList = () => {
     const jobList = useSelector(selectJobList);
@@ -24,10 +22,10 @@ const JobList = () => {
             <Link to='/'>Results</Link><Link to='/saved'> Tagged</Link>
             <JobSearch />
             {queryList && queryList.map(job => {
-                return <Job job={job} key={job.id} />
+                return <SearchTagged job={job} key={job.id} />
             })}
             {jobList && jobList.map(job => {
-                return <Job job={job} key={job.id} />
+                return <SearchTagged job={job} key={job.id} />
             })}
 
         </div>

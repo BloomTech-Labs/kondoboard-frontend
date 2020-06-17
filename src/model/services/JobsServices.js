@@ -29,6 +29,16 @@ class JobsService {
         return response.data;
     }
 
+    async submitTag(tag_name, id, color, job_id) {
+        const response = await axiosWithAuth().post(`${backEndUrl}/users/${id}/tag/`, {tag_name, color, job_id})
+        return response.data;
+    }
+
+    async fetchTagsList(id, job_id) {
+        const response = await axiosWithAuth().get(`${backEndUrl}/users/${id}/tag/`);
+        return response.data;
+    }
+
     async queryJob(search, city, state) {
         const response = await axios.post(`${dataUrl}/search/`, {search, city, state})
         return response.data;

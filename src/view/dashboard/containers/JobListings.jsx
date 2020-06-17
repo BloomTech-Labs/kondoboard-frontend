@@ -18,8 +18,8 @@ const JobListing = () => {
                     <Layout style={{height: '80vh', background: 'white'}}>
                         <Content>
                             <Row>
-                                <Col span={8}><JobList /></Col>
-                                <Col span={4}></Col>
+                                <Col span={10}><JobList /></Col>
+                                <Col span={2}></Col>
                                 <Col span={12}><DetailedJob /></Col>
                             </Row>
                         </Content>

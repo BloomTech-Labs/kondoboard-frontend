@@ -23,7 +23,6 @@ import JobListings from '@containers/JobListings.jsx';
 import SavedListings from './view/dashboard/containers/SavedListings.jsx';
 import AppliedJobListings from './view/dashboard/containers/AppliedListings.jsx';
 
-
 const App = () => {
 
   // Initialize OktaAuth

@@ -7,6 +7,7 @@ import { selectSavedJob } from '@state/selectors.js';
 import { useSelector } from 'react-redux';
 import JobController from '@controllers/JobController';
 import JobHelpers from '../../../helpers/Job.js';
+import DateHelper from '../../../helpers/DateConversion.js';
 
 import AddTag from '../forms/AddTag.jsx';
 
@@ -22,9 +23,7 @@ const Job = props => {
         setVisible(true);
     }
 
-    const dayPosted = new Date(job.date_published)
-    const currentDate = new Date();
-    const daysAgo = Math.floor((currentDate - dayPosted)/86400000)
+    const daysAgo = DateHelper.convertToDays(job.date_published);
     
     const addToSaved = e => {
         e.preventDefault();
@@ -43,7 +42,7 @@ const Job = props => {
     }
 
     return(
-        <div onClick={selectJob} style={{border: '3px solid gray', borderRadius: '5%', display: 'flex'}}>
+        <div onClick={selectJob} style={{border: '3px solid gray', borderRadius: '5%', display: 'flex', marginBottom: '5%'}}>
             <Col span={14} style={{marginLeft: '7%'}}>
                 <h1>{job.company}</h1>    
                 <p>{job.title}</p>
@@ -60,7 +59,7 @@ const Job = props => {
                 onOk={addToSaved}
                 onCancel={handleCancel}
             >
-                <AddTag />
+                <AddTag job={job} />
             </Modal>
         </div>
     )

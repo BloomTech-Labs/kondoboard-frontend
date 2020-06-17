@@ -5,11 +5,16 @@ import { Col, Modal } from 'antd';
 import JobController from '@controllers/JobController.js';
 import AddTag from '../forms/AddTag.jsx';
 import TagDisplay from './TagsDisplay.jsx';
+import DateHelper from '../../../helpers/DateConversion.js';
+
+import { useSelector } from 'react-redux';
+import { selectUserId } from '../../../model/state/selectors.js';
 
 const SavedJob = props => {
     const job = props.job;
-
-    const [visible, setVisible] = useState(false)
+    const id = useSelector(selectUserId);
+    const daysAgo = DateHelper.convertToDays(job.date_published);
+    const [visible, setVisible] = useState(false);
 
     const showModal = () => {
         setVisible(true);
@@ -23,31 +28,27 @@ const SavedJob = props => {
         setVisible(false)
     }
 
-    const dayPosted = new Date(job.date_published)
-    const currentDate = new Date();
-    const daysAgo = Math.floor((currentDate - dayPosted)/86400000)
-
     const selectJob = e => {
         e.preventDefault();
         JobController.selectJob(job)
     }
 
     useEffect(() => {
-        JobController.getJobTags();
+        JobController.getJobTags(id);
     }, [])
     return(
-        <div onClick={selectJob} style={{border: '3px solid gray', borderRadius: '5%', display: 'flex'}}>
+        <div onClick={selectJob} style={{border: '3px solid gray', borderRadius: '5%', display: 'flex', marginBottom: '5%'}}>
             <Col span={14} style={{marginLeft: '7%'}}>
                 <h1>{job.company}</h1>    
                 <p>{job.title}</p>
                 <p>{job.location_city}, {job.location_state}</p>  
             </Col>
             <Col span={2}></Col>
-            <Col span={8} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginTop: '7%'}}>
+            <Col span={8} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
                 <p onClick={showModal}>{job && 'Add Tag'}{job && <CaretDownFilled />}
                     <TagDisplay />
                 </p>
-                <p>{(daysAgo === 0) ? job && 'Today' : (daysAgo === 1) ? job && '1 day ago' : job && `${daysAgo} days ago`}</p>
+                <p>{daysAgo === 0 ? job && 'Today' : daysAgo === 1 ? job && '1 day ago' : job && `${daysAgo} days ago`}</p>
             </Col>
             <Modal
                 style={{width: '260px'}}
@@ -56,7 +57,7 @@ const SavedJob = props => {
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
-                <AddTag />
+                <AddTag job={job} />
             </Modal>
         </div>
     )
