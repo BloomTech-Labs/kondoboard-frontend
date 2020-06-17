@@ -3,8 +3,8 @@ name: pr-beta
 on:
   pull_request:
     branches: 
-      - master 
-      - dev
+    - 'master'
+    - 'dev'
 
 jobs:
   main:
