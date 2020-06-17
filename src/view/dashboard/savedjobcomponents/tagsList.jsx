@@ -8,12 +8,14 @@ import { Select } from 'antd';
 
 import TagHelpers from '../../../helpers/FilterTag.js';
 import JobHelpers from '../../../helpers/FindMatch.js';
+import DupHelpers from '../../../helpers/TagDuplicateChecker';
 
 const TagList = () => {
     const [tag, setTag] = useState(null)
     const id = useSelector(selectUserId)
     const tags = useSelector(selectJobTags)
     const jobs = useSelector(selectSavedJobList)
+    const tagsList = DupHelpers.removeDuplicates(tags)
     const { Option } = Select;
 
     function handleValueChange(value) {
@@ -34,7 +36,7 @@ const TagList = () => {
     return(
         <div>
             <Select defaultValue="Filter tags by name" onChange={handleValueChange}> 
-                {tags && tags.map(tag => {
+                {tagsList && tagsList.map(tag => {
                     return <Option style={{color: `${tag.color}`}} value={tag.tag_name}>{tag.tag_name}</Option>
                 })}
             </Select>
