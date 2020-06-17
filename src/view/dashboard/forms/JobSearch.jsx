@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import JobController from '@controllers/JobController.js';
 import CityHelpers from '../../../helpers/City.js';
 
-import { Select } from 'antd';
+import { Select, Col } from 'antd';
 
 import { states } from '../../../helpers/StatesList.js';
 
@@ -11,9 +11,11 @@ const JobSearch = () => {
     const [search, setSearch] = useState('');
     const [state, setState] = useState(null);
     const [city, setCity] = useState(null);
+    
+    const cities = CityHelpers.checkAgainstLocationsObject(state)
 
     const { Option } = Select;
-    
+
     const handleSearchChange = e => {
         setSearch(e.target.value);
     }
@@ -30,40 +32,48 @@ const JobSearch = () => {
         e.preventDefault();
         JobController.searchJobs(search, city, state);
     }
-
-    const cities = CityHelpers.checkAgainstLocationsObject(state)
     
-    const statesDropDown = (
-        <Select defaultValue="Select State" onChange={handleStateChange}>
-            {states && states.map(qState => {
-                return <Option value={qState}>{qState}</Option>
-            })}
-        </Select>
-    )
-
-    const citiesDropDown = (
-        <Select defaultValue="Select City" onChange={handleCityChange}>
-            {cities && cities.map(qCity => {
-                return <Option value={qCity}>{qCity}</Option>
-            })}
-        </Select>
-    )
     return(
-        <div>
-            <form onSubmit={handleSearchSubmit}>
-                <input
-                    placeholder='Search by job title'
-                    name='search'
-                    value={search}
-                    id='search'
-                    type='text'
-                    onChange={handleSearchChange}
-                />
-            {statesDropDown}
-            {citiesDropDown}
-            <button type="submit">Search</button>
+        <>
+            <form
+                onSubmit={handleSearchSubmit}
+                name="Search"
+                style={{display: 'flex', }}
+            >
+                <Col span={6}>
+                    <h2>Job/Skill</h2>
+                    <input
+                        placeholder='Search by job title or skill'
+                        name='search'
+                        label='search'
+                        value={search}
+                        id='search'
+                        type='text'
+                        onChange={handleSearchChange}
+                    />
+                </Col>
+                <Col span={6}>
+                    <h2>State</h2>
+                    <Select defaultValue="Select State" onChange={handleStateChange}>
+                        {states && states.map(qState => {
+                            return <Option value={qState}>{qState}</Option>
+                        })}
+                    </Select>
+                </Col>
+                <Col span={6}>
+                    <h2>City</h2>
+                    <Select defaultValue="Select City" onChange={handleCityChange}>
+                        {cities && cities.map(qCity => {
+                            return <Option value={qCity}>{qCity}</Option>
+                        })}
+                    </Select>
+                </Col>
+                <Col span={6}>
+                    <h2>Go</h2>
+                    <button type="submit" onSubmit={handleSearchSubmit}>Search</button>
+                </Col>
             </form>
-        </div>
+        </>
     )
 }
 

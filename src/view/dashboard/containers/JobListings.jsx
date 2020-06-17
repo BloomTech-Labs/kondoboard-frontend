@@ -1,9 +1,9 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import { Link } from 'react-router-dom';
+import { Layout, Row, Col } from 'antd';
 
 import JobList from '../jobsearchcomponents/JobList.jsx';
-
+import DetailedJob from '../detailedjob/DetailedJob.jsx';
+import SideBar from '../nav/SideBar.jsx';
 
 const { Sider, Content } = Layout;
 
@@ -12,29 +12,16 @@ const JobListing = () => {
         <div>
             <Layout>
                 <Layout style={{height: '80vh'}}>
-                    <Sider style={{background: '#FAFAFA'}}>
-                        <Menu style={{background: '#FAFAFA'}}>
-                            <Menu.Item style={{background: '#FAFAFA'}}>
-                                <Link to='/'>Jobs</Link>
-                            </Menu.Item>
-                        </Menu>
-                        <Menu>
-                            <Menu.Item style={{background: '#FAFAFA'}}>
-                                <Link to='/saved'>Saved Jobs</Link>
-                            </Menu.Item>
-                        </Menu>
-                        <Menu>
-                            <Menu.Item style={{background: '#FAFAFA'}}>
-                                <Link to='/applied'>Applied Jobs</Link>
-                            </Menu.Item>
-                        </Menu>
+                    <Sider style={{background: 'white'}}>
+                        <SideBar />
                     </Sider>
-                    <Layout style={{height: '80vh'}}>
+                    <Layout style={{height: '80vh', background: 'white'}}>
                         <Content>
-                            <Breadcrumb style={{float: 'left', display: 'flex', justifyContent: 'space-around', marginLeft: '5%'}}>
-                                <Breadcrumb.Item><JobList /></Breadcrumb.Item>
-                                <Breadcrumb.Item style={{float: 'right'}}></Breadcrumb.Item>
-                            </Breadcrumb>
+                            <Row>
+                                <Col span={10}><JobList /></Col>
+                                <Col span={2}></Col>
+                                <Col span={12}><DetailedJob /></Col>
+                            </Row>
                         </Content>
                     </Layout>
                 </Layout>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import JobController from '@controllers/JobController.js';
@@ -6,9 +7,7 @@ import { selectJobList } from '@state/selectors.js';
 import { selectUserQuery } from '@state/selectors.js';
 
 import JobSearch from '../forms/JobSearch.jsx';
-
-
-import Job from './Job.jsx';
+import SearchTagged from './SearchTagged.jsx';
 
 const JobList = () => {
     const jobList = useSelector(selectJobList);
@@ -20,15 +19,13 @@ const JobList = () => {
 
     return(
         <div>
-            <h2 style={{display: 'flex', justifyContent: 'space-between'}}>Latest Jobs <JobSearch /></h2> 
-            {jobList && jobList.map(job => {
-                if (JSON.stringify(job) === '{}') {} // empty obj, prevents key mapping error
-                 else {
-                return <Job key={job.id} job={job} />
-                }
-            })}
+            <Link to='/'>Results</Link><Link to='/saved'> Tagged</Link>
+            <JobSearch />
             {queryList && queryList.map(job => {
-                return <Job job={job} key={job.id} />
+                return <SearchTagged job={job} key={job.id} />
+            })}
+            {jobList && jobList.map(job => {
+                return <SearchTagged job={job} key={job.id} />
             })}
 
         </div>
