@@ -31,10 +31,11 @@ class JobsService {
 
     async submitTag(tag_name, id, color, job_id) {
         const response = await axiosWithAuth().post(`${backEndUrl}/users/${id}/tag/`, {tag_name, color, job_id})
+        console.log('service', response.data)
         return response.data;
     }
 
-    async fetchTagsList(id, job_id) {
+    async fetchTagsList(id) {
         const response = await axiosWithAuth().get(`${backEndUrl}/users/${id}/tag/`);
         return response.data;
     }

@@ -37,6 +37,7 @@ export const selectSavedJob = job => {
 }
 
 export const setTag = tag => {
+    console.log('action file', tag)
     return { type: ADD_NEW_TAG, tag }
 }
 

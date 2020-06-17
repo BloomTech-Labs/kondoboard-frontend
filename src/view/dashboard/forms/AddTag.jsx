@@ -28,7 +28,6 @@ const AddTag = props => {
     const savedIds = IdHelpers.filterJobIds(saved)
     const tags = useSelector(selectJobTags);
     const notTagged = ArrHelpers.filterOutTag(tags, job_id);
-    console.log('add', tags)
     const { Option } = Select;
 
     function handleValueChange(value) {

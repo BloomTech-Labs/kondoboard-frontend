@@ -20,15 +20,12 @@ const TagList = () => {
         setTag(value)
     }
     
-    console.log('value', tag)
     const selectTag = e => {
         e.preventDefault();
         const filteredArr = TagHelpers.filterByName(tags, tag)
         const matchedQuery = JobHelpers.matchByJobId(jobs, filteredArr)
-        console.log('selection',matchedQuery)
         JobController.selectTaggedJobs(matchedQuery);
     }
-    console.log('list', tags)
 
     useEffect(() => {
         JobController.getJobTags(id)
