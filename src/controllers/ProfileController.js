@@ -15,7 +15,6 @@ class ProfileController {
       store.dispatch(Action.setUserData(response.data));
     }
   }
-
 }
 
 export default new ProfileController();
