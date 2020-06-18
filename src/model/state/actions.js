@@ -1,3 +1,5 @@
+import AppliedJob from "@dashboard/appliedjobs/AppliedJob";
+
 export const SET_JOBS_LIST = 'GET_JOBS_LIST';
 export const SET_SAVED_JOB = 'ADD_TO_TAGGED_LIST';
 export const SET_SAVED_JOB_LIST = 'SET_SAVED_JOB_LIST';
@@ -9,7 +11,10 @@ export const ADD_NEW_TAG = 'ADD_NEW_TAG';
 export const GET_JOB_TAGS = 'GET_JOB_TAGS';
 export const SELECT_TAGGED_JOBS = 'SELECT_TAGGED_JOBS';
 
+export const GET_APPLIED_JOB = 'GET_APPLIED_JOB'
+
 export const SET_USER_DATA = 'SET_USER_DATA';
+
 
 export const getJobList = jobList => {
     return { type: SET_JOBS_LIST, jobList }
@@ -36,11 +41,16 @@ export const selectSavedJob = job => {
 }
 
 export const setTag = tag => {
+    console.log('action file', tag)
     return { type: ADD_NEW_TAG, tag }
 }
 
 export const getJobTags = tags => {
-    return { type: GET_JOB_TAGS, tags}
+    return { type: GET_JOB_TAGS, tags }
+}
+
+export const setAppliedJob = AppliedJob => {
+    return { type: GET_APPLIED_JOB, AppliedJob }
 }
 
 export const setSelectTaggedJob = taggedJob => {

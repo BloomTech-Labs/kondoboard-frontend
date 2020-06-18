@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 
-import UserValidation from '../profile/UserValidation.jsx';
+import UserValidation from '@dashboard/profile/UserValidation.jsx';
 
 const SideBar = () => {
     return(

@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { Col, Modal } from 'antd';
 
 import JobController from '@controllers/JobController.js';
-import AddTag from '../forms/AddTag.jsx';
-import TagDisplay from '../savedjobcomponents/TagsDisplay.jsx';
-import DateHelper from '../../../helpers/DateConversion.js';
+import AddTag from '@dashboard/forms/AddTag.jsx';
+import TagDisplay from '@dashboard/savedjobcomponents/TagsDisplay.jsx';
+import DateHelper from '@helpers/DateConversion.js';
 
 import { selectUserId } from '@state/selectors.js';
 

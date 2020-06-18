@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import JobController from '../../../controllers/JobController.js';
-import { selectJobTags } from '../../../model/state/selectors.js';
-import { selectUserId } from '../../../model/state/selectors.js';
-import { selectSavedJobList } from '../../../model/state/selectors.js';
+import JobController from '@controllers/JobController.js';
+import { selectJobTags } from '@state/selectors.js';
+import { selectUserId } from '@state/selectors.js';
+import { selectSavedJobList } from '@state/selectors.js';
 import { Select } from 'antd';
 
-import TagHelpers from '../../../helpers/FilterTag.js';
-import JobHelpers from '../../../helpers/FindMatch.js';
+import TagHelpers from '@helpers/FilterTag.js';
+import JobHelpers from '@helpers/FindMatch.js';
 
 const TagList = () => {
     const [tag, setTag] = useState(null)

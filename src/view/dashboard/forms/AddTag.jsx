@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { colors } from '../../../helpers/Colors.js';
+import { colors } from '@helpers/Colors.js';
 import { CaretDownFilled } from '@ant-design/icons';
 import { Select } from 'antd';
 
@@ -9,13 +9,13 @@ import { selectSavedJobList } from '@state/selectors.js';
 import { selectJobTags } from '@state/selectors.js';
 import { selectUserId } from '@state/selectors.js';
 
-import JobController from '../../../controllers/JobController.js';
+import JobController from '@controllers/JobController.js';
 
-import JobHelpers from '../../../helpers/Job.js';
-import IdHelpers from '../../../helpers/SavedJobId.js';
-import ArrHelpers from '../../../helpers/FilterOutTag.js';
+import JobHelpers from '@helpers/Job.js';
+import IdHelpers from '@helpers/SavedJobId.js';
+import ArrHelpers from '@helpers/FilterOutTag.js';
 
-import TagsDisplay from '../savedjobcomponents/TagsDisplay.jsx';
+import TagsDisplay from '@dashboard/savedjobcomponents/TagsDisplay.jsx';
 
 const AddTag = props => {
     const [tag_name, setTag_Name] = useState('');

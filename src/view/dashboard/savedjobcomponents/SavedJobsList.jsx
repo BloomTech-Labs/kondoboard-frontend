@@ -7,7 +7,7 @@ import {selectSavedJobList} from '@state/selectors.js';
 import {selectUserId} from '@state/selectors.js';
 import { selectTaggedJobs } from '@state/selectors.js';
 
-import SearchTagged from '../jobsearchcomponents/SearchTagged.jsx';
+import SearchTagged from '@dashboard/jobsearchcomponents/SearchTagged.jsx';
 import TagList from './tagsList.jsx';
 
 const SavedJobList = () => {

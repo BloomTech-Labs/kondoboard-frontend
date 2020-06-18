@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 import JobController from '@controllers/JobController.js';
-import CityHelpers from '../../../helpers/City.js';
+import CityHelpers from '@helpers/City.js';
 
 import { Select, Col } from 'antd';
 
-import { states } from '../../../helpers/StatesList.js';
+import { states } from '@helpers/StatesList.js';
 
 const JobSearch = () => {
     const [search, setSearch] = useState('');

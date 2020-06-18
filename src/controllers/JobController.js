@@ -1,4 +1,4 @@
-import store from '../store';
+import store from '@root/store';
 import * as Action from '@state/actions.js';
 import JobsService from '@services/JobsServices.js';
 
@@ -24,16 +24,20 @@ class JobController {
         store.dispatch(Action.selectSavedJob(job))
     }
     async addTag(tag_name, id, color, job_id) {
+        const tag = {tag_name, color, job_id}
         await JobsService.submitTag(tag_name, id, color, job_id)
-        store.dispatch(Action.setTag(tag_name, id, color, job_id))
+        store.dispatch(Action.setTag(tag))
     }
     async getJobTags(id) {
         const tags = await JobsService.fetchTagsList(id);
         store.dispatch(Action.getJobTags(tags));
     }
     async selectTaggedJobs(id) {
-        console.log('controller',id)
         store.dispatch(Action.setSelectTaggedJob(id))
+    }
+    async setApplied(id) {
+        const appliedJob = await JobsService.setApplied(id);
+        store.dispatch(Action.setAppliedJob(appliedJob))
     }
 }
 
