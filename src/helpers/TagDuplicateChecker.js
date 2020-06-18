@@ -4,7 +4,6 @@ class RemoveDuplicates {
             return notTagged.find(a => a.tag_name === tag_name)
         })
 
-            console.log('helper', list)
             return list
     }
 }

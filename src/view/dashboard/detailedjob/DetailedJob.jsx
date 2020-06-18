@@ -8,11 +8,14 @@ import { Modal } from 'antd';
 import { CaretDownFilled } from '@ant-design/icons';
 
 import DateHelper from '../../../helpers/DateConversion.js';
+import JobController from '../../../controllers/JobController.js';
 
 const DetailedJob = () => {
     const [visible, setVisible] = useState(false)
 
     const job = useSelector(selectSavedJob);
+    const id = job.jobs_id;
+    console.log('detail', id)
 
     const daysAgo = DateHelper.convertToDays(job.date_published);
 
@@ -21,6 +24,7 @@ const DetailedJob = () => {
     }
 
     const handleOk = e => {
+        JobController.setApplied(id)
         setVisible(false)
     }
 

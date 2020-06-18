@@ -44,6 +44,12 @@ class JobsService {
         const response = await axios.post(`${dataUrl}/search/`, {search, city, state})
         return response.data;
     }
+
+    async setApplied(id) {
+        await axiosWithAuth().put(`${backEndUrl}/users/saved_job/${id}`, {applied: true});
+        const response = await axiosWithAuth().get(`${backEndUrl}/users/saved_job/${id}`)
+        return response.data;
+    }
 }
 
 export default new JobsService();

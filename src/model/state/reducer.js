@@ -64,6 +64,12 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 taggedJob: [...action.taggedJob]
             }
+        case Actions.GET_APPLIED_JOB:
+            console.log('action', action)
+            return {
+                ...state,
+                AppliedJob: [...action.AppliedJob]
+            }
             default:
                 return state;
     }

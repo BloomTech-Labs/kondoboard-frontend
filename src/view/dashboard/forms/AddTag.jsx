@@ -31,7 +31,6 @@ const AddTag = props => {
     const list = DupHelpers.removeDuplicates(tags)
     const notTagged = ArrHelpers.filterOutTag(list, job_id);
     const { Option } = Select;
-    console.log('form', list)
 
     function handleValueChange(value) {
         console.log(value)

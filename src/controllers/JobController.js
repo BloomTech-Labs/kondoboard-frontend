@@ -35,6 +35,10 @@ class JobController {
     async selectTaggedJobs(id) {
         store.dispatch(Action.setSelectTaggedJob(id))
     }
+    async setApplied(id) {
+        const appliedJob = await JobsService.setApplied(id);
+        store.dispatch(Action.setAppliedJob(appliedJob))
+    }
 }
 
 export default new JobController();
