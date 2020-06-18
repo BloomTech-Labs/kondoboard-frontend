@@ -6,8 +6,10 @@ const initialState = {
     jobList: [{}],
     savedJobList: [{}],
     savedJobIds: [{}],
+    appliedJobList: [],
     job: {},
-    tags: []
+    tags: [],
+    columns: []
 }
 
 export const reducer = (state = initialState, action) => {
@@ -63,10 +65,15 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 taggedJob: [...action.taggedJob]
             }
-        case Actions.GET_APPLIED_JOB:
+        case Actions.GET_APPLIED_JOBS:
             return {
                 ...state,
-                AppliedJob: [...action.AppliedJob]
+                appliedJobList: [...action.appliedJobList]
+            }
+        case Actions.GET_JOB_COLUMNS:
+            return {
+                ...state,
+                columns: [...state.columns, action.columns]
             }
             default:
                 return state;

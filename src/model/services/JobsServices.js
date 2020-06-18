@@ -49,6 +49,21 @@ class JobsService {
         const response = await axiosWithAuth().get(`${backEndUrl}/users/saved_job/${id}`)
         return response.data;
     }
+
+    async fetchAppliedList(id) {
+        const response = await axiosWithAuth().get(`${backEndUrl}/users/${id}/applied`);
+        return response.data;
+    }
+
+    async getColumns(id) {
+        const response = await axiosWithAuth().get(`${backEndUrl}/jobs/${id}/column`)
+        return response.data;
+    }
+
+    async addColumn(id, name, location) {
+        const response = await axiosWithAuth().post(`${backEndUrl}/jobs/${id}/column`, {name, location})
+        return response.data;
+    }
 }
 
 export default new JobsService();

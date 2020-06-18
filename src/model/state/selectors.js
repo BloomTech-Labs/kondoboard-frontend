@@ -15,3 +15,7 @@ export const selectUserId = state => state.user.id;
 export const selectJobTags = state => state.tags;
 
 export const selectTaggedJobs = state => state.taggedJob;
+
+export const selectAppliedJobs = state => state.appliedJobList;
+
+export const selectJobColumns = state => state.columns;

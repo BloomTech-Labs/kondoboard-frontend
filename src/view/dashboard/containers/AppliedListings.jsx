@@ -11,10 +11,10 @@ const AppliedJobListings = () => {
         <div>
             <Layout>
                 <Layout style={{height: '80vh', backgroundColor: 'white'}}>
-                    <Sider>
+                    <Sider style={{background: 'white'}}>
                         <SideBar />
                     </Sider>
-                    <Layout style={{height: '80vh'}}>
+                    <Layout style={{height: '80vh', background: 'white'}}>
                         <Content>
                             <Breadcrumb style={{float: 'left', display: 'flex', justifyContent: 'space-around', marginLeft: '5%'}}>
                                 <Breadcrumb.Item><AppliedJobList /></Breadcrumb.Item>

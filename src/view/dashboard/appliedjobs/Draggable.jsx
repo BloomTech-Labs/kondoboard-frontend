@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchTagged from '../jobsearchcomponents/SearchTagged.jsx';
 
 const AppliedJob = props => {
     const job = props.job;
@@ -17,16 +18,13 @@ const AppliedJob = props => {
         e.stopPropagation();
     }
     return(
-        <div style={{ background: 'pink', borderRadius: '5%', width: '200px'}}
+        <div
         id={job.id}
         draggable='true'
         onDragStart={dragStart}
         onDragOver={dragOver}
         >
-            <p>{job.title}</p>
-            <p>{job.company}</p>    
-            <p>{job.location_city}</p>  
-            <p>{job.date_published}</p>
+            <SearchTagged job={job} />
         </div>
     )
 }
