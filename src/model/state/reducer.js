@@ -1,5 +1,4 @@
 import * as Actions from './actions';
-import UserHelpers from '../../helpers/User.js'
 
 const initialState = {
     user: {},
@@ -53,7 +52,7 @@ export const reducer = (state = initialState, action) => {
         case Actions.ADD_NEW_TAG:
             return {
                 ...state,
-                tags: [...state.tags, action.tags]
+                tags: [...state.tags, action.tag]
             }
         case Actions.GET_JOB_TAGS:
             return {
@@ -64,6 +63,12 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 taggedJob: [...action.taggedJob]
+            }
+        case Actions.GET_APPLIED_JOB:
+            console.log('action', action)
+            return {
+                ...state,
+                AppliedJob: [...action.AppliedJob]
             }
             default:
                 return state;

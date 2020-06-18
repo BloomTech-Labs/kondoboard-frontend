@@ -14,6 +14,7 @@ import JobController from '../../../controllers/JobController.js';
 import JobHelpers from '../../../helpers/Job.js';
 import IdHelpers from '../../../helpers/SavedJobId.js';
 import ArrHelpers from '../../../helpers/FilterOutTag.js';
+import DupHelpers from '../../../helpers/TagDuplicateChecker.js';
 
 import TagsDisplay from '../savedjobcomponents/TagsDisplay.jsx';
 
@@ -27,8 +28,8 @@ const AddTag = props => {
     const saved_job = JobHelpers.formatSavedJob(job);
     const savedIds = IdHelpers.filterJobIds(saved)
     const tags = useSelector(selectJobTags);
-    const notTagged = ArrHelpers.filterOutTag(tags, job_id);
-    console.log('add', tags)
+    const list = DupHelpers.removeDuplicates(tags)
+    const notTagged = ArrHelpers.filterOutTag(list, job_id);
     const { Option } = Select;
 
     function handleValueChange(value) {
@@ -51,7 +52,6 @@ const AddTag = props => {
         e.preventDefault();
         {savedIds.includes(job.ds_id || job.id) ? JobController.getJobTags() : JobController.addSavedJob(id, saved_job)}
         JobController.addTag(tag_name, id, color, job_id)
-        JobController.getJobTags(id)
         setTag_Name("")
         setColor(null)
     }
