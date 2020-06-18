@@ -35,7 +35,7 @@ const AppliedJobList = () => {
                 id='1'
                 onDrop={drop}
                 onDragOver={dragOver}
-                style={{width: '300px', height: '75vh', outline: '1px solid blue'}}
+                style={{width: '300px', height: '75vh'}}
                 >
                 <h2>Applied Jobs</h2>
                 {savedJobList && savedJobList.map(job => {
