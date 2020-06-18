@@ -13,7 +13,7 @@ const AppliedJobList = () => {
 
     useEffect(() => {
         JobController.fetchSavedJobList(id);
-    });
+    },[]);
 
     const drop = e => {
         e.preventDefault();
