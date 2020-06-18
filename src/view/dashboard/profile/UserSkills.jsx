@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { CaretDownFilled, AuditOutlined } from '@ant-design/icons';
-import { Modal, Button, Tag } from 'antd';
+import { CaretDownFilled, AuditOutlined, SearchOutlined } from '@ant-design/icons';
+import { Modal, Button, Tag, Dropdown, Menu } from 'antd';
 import SuggestedSkills from './SuggestedSkills';
+import { skills } from './SkillList';
 
 
 const UserSkills = ({form, setForm, user}) => {
@@ -9,6 +10,8 @@ const UserSkills = ({form, setForm, user}) => {
     const [state, setState] = useState({visible: false, pending: false});
     const [pendingSkills, setPendingSkills] = useState([]);
     const [removedSkills, setRemovedSkills] = useState([]);
+    const [search, setSearch] = useState({typed: '', filter: []});
+    const [isValid, setIsValid] = useState(false);
 
     const showModal = () => {
         setState({...state, visible: true});
@@ -34,6 +37,57 @@ const UserSkills = ({form, setForm, user}) => {
         setTimeout(() => {
             setPendingSkills([]);
         }, 500);
+    }
+
+    const menuClick = (e) => {
+        document.getElementById('location-search').value = e.item.props.value;
+        setIsValid(true);
+    }
+
+    const handleSearch = (e) => {
+        let typed = e.target.value  || '';
+        const mostRelevant = [];
+
+        // Filters all results by whole string inclusion
+        skills.filter(s => {
+            return s.toLowerCase().includes(typed.toLowerCase()) 
+            && !pendingSkills.includes(s) && !form.skills.includes(s)
+        }).forEach(s => {
+
+            // Add marker to end of string to signify exit condition for next loop
+            if (s.length > typed.length) {
+                typed += '~';
+            }
+
+            // Determines relevancy of matches by total number of charcter matches in the string
+            let score = 0;
+
+            for (let i = 0; i < s.length; i++) {
+                if (s[i].toLowerCase() === typed[i].toLowerCase()) {
+                    score += 1;
+                } else { /* End the loop once final score is determined */
+                    i = s.length;
+                }
+            }
+            mostRelevant.push({score: score, s: s});
+        });
+
+        // Sorts results based on score
+        const results = mostRelevant.sort((a, b) => {
+            if (a.score < b.score) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }).map(object => { /* map results for display */
+            return object.s;
+        }).slice(0, 10); /* limit to top 10 */
+
+        // Update search
+        setSearch({typed: e.target.value, filter: results});
+
+        setIsValid(false);
+
     }
 
     const addPendingSkills = (e) => {
@@ -68,6 +122,17 @@ const UserSkills = ({form, setForm, user}) => {
         }));
         setRemovedSkills([...removedSkills, skill])
     }
+
+    const menu = (
+        <Menu onClick={menuClick}>
+            {search.typed.length > 0 && 
+            search.filter.map(skill => {
+                return <Menu.Item key={skill} value={skill}>{skill}</Menu.Item>
+            })
+            }
+        </Menu>
+    );
+
     return (
         <div className='field-container'>
             <div className='container'>
@@ -83,9 +148,12 @@ const UserSkills = ({form, setForm, user}) => {
              title='Add Skills' visible={state.visible} closable={false} onOk={handleOk} confirmLoading={state.pending} onCancel={handleCancel}
              okText='Save' cancelText='Cancel' okButtonProps={{className: 'modal-save'}} cancelButtonProps={{className: 'modal-cancel'}}>
 
-                <form className='modal-input' onSubmit={addPendingSkills}>
-                <AuditOutlined style={{fontSize: '2.4rem'}}/><input size='large' placeholder='Skill' required={true}/>
-                    <Button size='large' className='modal-add' htmlType='submit'>Add</Button>
+                <form className='modal-input' onSubmit={addPendingSkills} autoComplete='off'>
+                <AuditOutlined style={{fontSize: '2.4rem'}}/>
+                <Dropdown overlay={menu} trigger={['focus']} placement='bottomCenter'>
+                    <input placeholder='Search...' size='large' onChange={handleSearch} id='location-search' prefix={<SearchOutlined style={{fontSize: '2rem'}}/>} />
+                </Dropdown>
+                    <Button size='large' className='modal-add' htmlType='submit' disabled={!isValid}>Add</Button>
                 </form>
                 {pendingSkills && <div className='skill-box-modal'>
                     {form.skills.map(skill => {

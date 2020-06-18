@@ -4,7 +4,7 @@ import { CaretDownFilled, AimOutlined, SearchOutlined } from '@ant-design/icons'
 import { locations } from '@helpers/Locations';
 
 
-// This would have been much simpler if we stuck with a single locations array on the user instead of city and state separately. Just sayin.
+// This would have been much simpler if we stuck with a single locations array on the user instead of city and state separately.
 
 const UserLocations = ({form, setForm, user}) => {
 
@@ -48,15 +48,52 @@ const UserLocations = ({form, setForm, user}) => {
         setIsValid(true);
     }
     
-
     const handleSearch = (e) => {
-        setSearch({typed: e.target.value, filter: locations.filter(loc => {
-            return loc.city.toLowerCase().includes(e.target.value.toLowerCase()) 
-            && !pendingJoined.includes(`${loc.city}, ${loc.state}`)
-        }).slice(0, 10),
+        let typed = e.target.value || '';
+        const mostRelevant = [];
+
+
+        // Filters all results by whole string inclusion
+        locations.filter(loc => {
+            return loc.city.toLowerCase().includes(typed.toLowerCase()) 
+            && !pendingJoined.includes(`${loc.city}, ${loc.state}`) && !form.cities.includes(loc)
+        }).forEach(loc => {
+
+            // Add marker to end of string to signify exit condition for next loop
+            if (loc.city.length > typed.length) { 
+                typed += '~';
+            }
+
+            // Determines relevancy of matches by total number of character matches in the string
+            let score = 0;
+
+            for (let i = 0; i < loc.city.length; i++) {
+                if (loc.city[i].toLowerCase() === typed[i].toLowerCase()) {
+                    score+=1;
+                } else { /* End the loop once final score is determined */
+                    i = loc.city.length;
+                }
+            }
+            mostRelevant.push({score: score, ...loc});
         });
+
+        // Sorts results based on score
+        const results = mostRelevant.sort((a, b) => {
+            if (a.score < b.score) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }).map(object => { /* map results for display */
+            return {city: object.city, state: object.state};
+        }).slice(0, 10); /* limit to top 10 */
+
+        // Update search
+        setSearch({typed: e.target.value, filter: results});
+
         setIsValid(false);
     }
+
     const showModal = () => {
         setState({...state, visible: true});
         let tmp = {city: [], state: []};
@@ -69,7 +106,7 @@ const UserLocations = ({form, setForm, user}) => {
         });
         setPendingLocations(tmp);
     }
-
+ 
     const handleOk = () => {
         setState({...state, pending: true});
         setTimeout(() => {
@@ -103,7 +140,7 @@ const UserLocations = ({form, setForm, user}) => {
             return !loc.includes(e.target[0].value);
         }));
         if (isValid) {
-        setPendingLocations({city: [...pendingLocations.city, loc[0]], state: [...pendingLocations.state, loc[1]]});
+            setPendingLocations({city: [...pendingLocations.city, loc[0]], state: [...pendingLocations.state, loc[1]]});
         }
         e.target.reset();
         setSearch({typed: '', filter: []})
@@ -134,29 +171,29 @@ const UserLocations = ({form, setForm, user}) => {
 
     return (
         <div className='field-container'>
-        <div className='container'>
-            <p>Locations</p>
-            <div className='location-box'>{joinedLocations.map(loc => {
-                return <p key={loc} className={userJoined.includes(loc) ? 'location saved' : 'location pending'}>{loc}</p>
-            })}
+            <div className='container'>
+                <p>Locations</p>
+                <div className='location-box'>{joinedLocations.map(loc => {
+                    return <p key={loc} className={userJoined.includes(loc) ? 'location saved' : 'location pending'}>{loc}</p>
+                })}
+                </div>
             </div>
-        </div>
         <a className='ant-dropdown-link' onClick={showModal}>Add City <CaretDownFilled className='ico-caret'/></a>
         <Modal
          title='Add City' visible={state.visible} closable={false} onOk={handleOk} confirmLoading={state.pending} onCancel={handleCancel}
          okText='Save' cancelText='Cancel' okButtonProps={{className: 'modal-save'}} cancelButtonProps={{className: 'modal-cancel'}}>
 
             <form className='modal-input' onSubmit={addPendingLocations} autoComplete='off'>
-            <AimOutlined style={{fontSize: '2.4rem'}}/>        
-            <Dropdown overlay={menu} trigger={['focus']} placement='bottomCenter'>
-            <input placeholder='Search...' size='large' onChange={handleSearch} id='location-search' prefix={<SearchOutlined style={{fontSize: '2rem'}}/>} />
-            </Dropdown>
+                <AimOutlined style={{fontSize: '2.4rem'}}/>        
+                <Dropdown overlay={menu} trigger={['focus']} placement='bottomCenter'>
+                    <input placeholder='Search...' size='large' onChange={handleSearch} id='location-search' />
+                </Dropdown>
                 <Button size='large' className='modal-add' htmlType='submit' disabled={!isValid}>Add</Button>
             </form>
                 {pendingLocations.city && <div className='skill-box-modal'>
                     {joinedLocations.map(loc => {
-                        let locSplit = loc.split(', ');
-                        return pendingLocations.city.includes(locSplit[0]) === true && pendingLocations.state.includes(locSplit[1]) ? 
+                        let split = loc.split(', ');
+                        return pendingLocations.city.includes(split[0]) === true && pendingLocations.state.includes(split[1]) ? 
                         null
                         : removedLocations.includes(loc) === true ?
                         null
