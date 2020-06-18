@@ -52,7 +52,6 @@ const AddTag = props => {
         e.preventDefault();
         {savedIds.includes(job.ds_id || job.id) ? JobController.getJobTags() : JobController.addSavedJob(id, saved_job)}
         JobController.addTag(tag_name, id, color, job_id)
-        JobController.getJobTags(id)
         setTag_Name("")
         setColor(null)
     }
