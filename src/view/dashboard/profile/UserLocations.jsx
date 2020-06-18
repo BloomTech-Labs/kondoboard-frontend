@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button, Dropdown, Menu, Tag } from 'antd';
-import { CaretDownFilled, AimOutlined, SearchOutlined } from '@ant-design/icons';
+import { CaretDownFilled, AimOutlined } from '@ant-design/icons';
 import { locations } from '@helpers/Locations';
 
 
@@ -178,7 +178,7 @@ const UserLocations = ({form, setForm, user}) => {
                 })}
                 </div>
             </div>
-        <a className='ant-dropdown-link' onClick={showModal}>Add City <CaretDownFilled className='ico-caret'/></a>
+        <button className='ant-dropdown-link' onClick={showModal}>Add City <CaretDownFilled className='ico-caret'/></button>
         <Modal
          title='Add City' visible={state.visible} closable={false} onOk={handleOk} confirmLoading={state.pending} onCancel={handleCancel}
          okText='Save' cancelText='Cancel' okButtonProps={{className: 'modal-save'}} cancelButtonProps={{className: 'modal-cancel'}}>

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { useOktaAuth } from '@okta/okta-react';
 
 
