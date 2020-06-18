@@ -1,15 +1,13 @@
 // Core
 import React from 'react';
 import { Switch } from 'react-router';
-import { Route, Redirect, useHistory } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { useOktaAuth, LoginCallback } from '@okta/okta-react';
 import './App.css';
 
 //Model & Helpers
 import Spinner from '@helpers/Spinner';
-import LoginController from '@controllers/LoginController';
 
-import ProfileController from '@controllers/ProfileController';
 // Components
 import Login from '@containers/Login';
 import Profile from '@containers/Profile';

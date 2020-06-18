@@ -143,7 +143,7 @@ const UserSkills = ({form, setForm, user}) => {
             </div>
             <SuggestedSkills form={form} setForm={setForm} user={user} pendingSkills={pendingSkills} addSuggestedSkill={addSuggestedSkill} />
             </div>
-            <a className='ant-dropdown-link' onClick={showModal}>Add Skills <CaretDownFilled className='ico-caret'/></a>
+            <button className='ant-dropdown-link' onClick={showModal}>Add Skills <CaretDownFilled className='ico-caret'/></button>
             <Modal
              title='Add Skills' visible={state.visible} closable={false} onOk={handleOk} confirmLoading={state.pending} onCancel={handleCancel}
              okText='Save' cancelText='Cancel' okButtonProps={{className: 'modal-save'}} cancelButtonProps={{className: 'modal-cancel'}}>
