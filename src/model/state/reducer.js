@@ -19,6 +19,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 user: { ...action.payload }
             }
+        case Actions.SET_HISTORY:
+            return {
+                ...state,
+                history: action.payload
+            }
         case Actions.SET_JOBS_LIST:
             return {
                 ...state,
@@ -60,7 +65,6 @@ export const reducer = (state = initialState, action) => {
                 taggedJob: [...action.taggedJob]
             }
         case Actions.GET_APPLIED_JOB:
-            console.log('action', action)
             return {
                 ...state,
                 AppliedJob: [...action.AppliedJob]

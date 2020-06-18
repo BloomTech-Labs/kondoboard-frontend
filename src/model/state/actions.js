@@ -14,6 +14,7 @@ export const SELECT_TAGGED_JOBS = 'SELECT_TAGGED_JOBS';
 export const GET_APPLIED_JOB = 'GET_APPLIED_JOB'
 
 export const SET_USER_DATA = 'SET_USER_DATA';
+export const SET_HISTORY = 'SET_HISTORY';
 
 export const getJobList = jobList => {
     return { type: SET_JOBS_LIST, jobList }
@@ -40,7 +41,6 @@ export const selectSavedJob = job => {
 }
 
 export const setTag = tag => {
-    console.log('action file', tag)
     return { type: ADD_NEW_TAG, tag }
 }
 
@@ -58,4 +58,8 @@ export const setSelectTaggedJob = taggedJob => {
 
 export const setUserData = user => {
     return { type: SET_USER_DATA, payload: user }
+}
+
+export const setHistory = history => {
+    return { type: SET_HISTORY, payload: history}
 }
