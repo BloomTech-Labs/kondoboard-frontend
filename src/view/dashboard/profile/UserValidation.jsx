@@ -1,38 +1,36 @@
-import React, {useState, useEffect} from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
-import LoginController from '../../../controllers/LoginController.js';
-import ProfileController from '../../../controllers/ProfileController.js';
+import LoginController from '@controllers/LoginController.js';
+import ProfileController from '@controllers/ProfileController.js';
 
 const UserValidation = () => {
-    
-    const token = window.localStorage.getItem('kondotoken');
+
+    const history = useHistory();
     const jwt = require('jsonwebtoken');
-    const {email, name} = jwt.decode(token);
-    const nameArr = name.split(' ');
 
+    const token = jwt.decode(window.localStorage.getItem('kondotoken'));
+    
+    if (token !== null) {
+    const newUser = {
+      email: token.email,
+      first_name: token.name.split(' ')[0],
+      last_name: token.name.split(' ')[1]
+    };
 
-    const [user] = useState({
-        email: email,
-        first_name: nameArr[0],
-        last_name: nameArr[1]
-    })
-
-    let [infoNeeded, setInfoNeeded] = useState(false);
-
-    useEffect(() => {
-        LoginController.userVerification();
-        if (!user.id) {
-            setInfoNeeded(true);
-            ProfileController.addNewUser(user);
-            setInfoNeeded(false)
+    LoginController.userVerification(token.email).then(data => {
+      if (!data.location || !data.skills) {
+        if (history.location.pathname !== '/profile') {
+            // history.push('/profile');
+            // history.go();
         }
-    }, [])
-    return(
-        <div>
-            {infoNeeded && <Redirect to='/profile'/> /**Redirect to profile if user info does not exist */}
-        </div>
-    )
+      }
+    }).catch(() => {
+      ProfileController.addNewUser(newUser);
+    });
+    }
+
+    return(null)
 }
 
 export default UserValidation;
