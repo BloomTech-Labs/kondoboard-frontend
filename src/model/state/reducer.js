@@ -3,7 +3,6 @@ import * as Actions from './actions';
 const initialState = {
     user: {},
     authStatus: null,
-    history: null,
     jobList: [{}],
     savedJobList: [{}],
     savedJobIds: [{}],

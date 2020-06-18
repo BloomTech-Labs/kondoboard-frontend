@@ -1,8 +1,8 @@
 import React from 'react';
 import { Layout, Breadcrumb } from 'antd';
 
-import AppliedJobList from '../appliedjobs/AppliedJobList.jsx';
-import SideBar from '../nav/SideBar.jsx';
+import AppliedJobList from '@dashboard/appliedjobs/AppliedJobList.jsx';
+import SideBar from '@dashboard/nav/SideBar.jsx';
 
 const { Sider, Content } = Layout;
 

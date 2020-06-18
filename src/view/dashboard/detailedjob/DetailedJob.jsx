@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectSavedJob } from '@state/selectors.js';
 
-import TagsDisplay from '../savedjobcomponents/TagsDisplay.jsx';
+import TagsDisplay from '@dashboard/savedjobcomponents/TagsDisplay.jsx';
 
 import { Modal } from 'antd';
 import { CaretDownFilled } from '@ant-design/icons';
 
-import DateHelper from '../../../helpers/DateConversion.js';
-import JobController from '../../../controllers/JobController.js';
+import DateHelper from '@helpers/DateConversion.js';
+import JobController from '@controllers/JobController.js';
 
 const DetailedJob = () => {
     const [visible, setVisible] = useState(false)
@@ -67,5 +67,4 @@ const DetailedJob = () => {
         </>
     )
 }
-
 export default DetailedJob;

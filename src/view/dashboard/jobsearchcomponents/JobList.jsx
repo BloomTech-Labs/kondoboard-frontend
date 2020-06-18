@@ -6,7 +6,7 @@ import JobController from '@controllers/JobController.js';
 import { selectJobList } from '@state/selectors.js';
 import { selectUserQuery } from '@state/selectors.js';
 
-import JobSearch from '../forms/JobSearch.jsx';
+import JobSearch from '@dashboard/forms/JobSearch.jsx';
 import SearchTagged from './SearchTagged.jsx';
 
 const JobList = () => {

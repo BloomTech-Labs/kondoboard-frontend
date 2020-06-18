@@ -5,10 +5,10 @@ import { useSelector }from 'react-redux';
 import { selectUserId } from '@state/selectors.js';
 import { selectJobTags } from '@state/selectors.js';
 
-import JobController from '../../../controllers/JobController';
+import JobController from '@controllers/JobController';
 
-import TagHelper from '../../../helpers/AbridgeTags.js';
-import TagMatcher from '../../../helpers/TagIdMatch.js';
+import TagHelper from '@helpers/AbridgeTags.js';
+import TagMatcher from '@helpers/TagIdMatch.js';
 
 const TagDisplay = props => {
     let job_id;
