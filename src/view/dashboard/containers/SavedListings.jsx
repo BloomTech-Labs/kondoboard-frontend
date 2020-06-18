@@ -1,9 +1,9 @@
 import React from 'react';
 import { Layout, Row, Col } from 'antd';
 
-import SavedJobList from '../savedjobcomponents/SavedJobsList.jsx';
-import DetailedJob from '../detailedjob/DetailedJob.jsx';
-import SideBar from '../nav/SideBar.jsx';
+import SavedJobList from '@dashboard/savedjobcomponents/SavedJobsList.jsx';
+import DetailedJob from '@dashboard/detailedjob/DetailedJob.jsx';
+import SideBar from '@dashboard/nav/SideBar.jsx';
 
 const { Sider, Content } = Layout;
 

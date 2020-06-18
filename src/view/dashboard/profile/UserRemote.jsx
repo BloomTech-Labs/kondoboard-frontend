@@ -20,7 +20,7 @@ const UserRemote = ({form, setForm}) => {
             <p className='remote'>{form.remote === true ? 'Yes' : 'No'}</p>
             </div>
             <Dropdown overlay={menu} trigger={['click']}>
-            <a className='ant-dropdown-link'>Remote <CaretDownFilled className='ico-caret'/></a>
+            <button className='ant-dropdown-link'>Remote <CaretDownFilled className='ico-caret'/></button>
         </Dropdown>
         </div>
     )

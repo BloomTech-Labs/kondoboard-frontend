@@ -1,5 +1,5 @@
 import React from 'react'
-import UserInfo from '../forms/UserInfo';
+import UserInfo from '@dashboard/forms/UserInfo';
 import { useSelector } from 'react-redux';
 import { selectUser } from '@state/selectors';
 

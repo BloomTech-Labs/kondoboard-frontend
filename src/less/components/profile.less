@@ -20,7 +20,9 @@
                 flex-wrap: nowrap;
                 justify-content: space-between;
                 width: 55%;
-                a {
+                .ant-dropdown-link {
+                    background-color: inherit;
+                    border: none;
                     font-weight: bold;
                     color: @primary-color;
                     font-size: 1rem;
@@ -30,6 +32,10 @@
                     text-align: right;
                     max-height: min-content;
                     height: min-content;
+                    &:hover {
+                        cursor: pointer;
+                    }
+
                     .ico-caret {
                         font-size: 1.2rem;
                         color: black;

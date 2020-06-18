@@ -1,4 +1,4 @@
-import store from '../store';
+import store from '@root/store';
 import * as Action from '@state/actions.js';
 import JobsService from '@services/JobsServices.js';
 

@@ -4,14 +4,13 @@ import { selectSavedJob } from '@state/selectors.js';
 
 import { Modal } from 'antd';
 
-import DateHelper from '../../../helpers/DateConversion.js';
-import JobController from '../../../controllers/JobController.js';
+import DateHelper from '@helpers/DateConversion.js';
+import JobController from '@controllers/JobController.js';
 
 import TagAdder from './TagAdder.jsx';
 
 const DetailedJob = () => {
     const [visible, setVisible] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
 
     const job = useSelector(selectSavedJob);
     const id = job.jobs_id;
@@ -65,5 +64,4 @@ const DetailedJob = () => {
         </>
     )
 }
-
 export default DetailedJob;

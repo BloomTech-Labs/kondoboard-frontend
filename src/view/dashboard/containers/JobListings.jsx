@@ -1,9 +1,9 @@
 import React from 'react';
 import { Layout, Row, Col } from 'antd';
 
-import JobList from '../jobsearchcomponents/JobList.jsx';
-import DetailedJob from '../detailedjob/DetailedJob.jsx';
-import SideBar from '../nav/SideBar.jsx';
+import JobList from '@dashboard/jobsearchcomponents/JobList.jsx';
+import DetailedJob from '@dashboard/detailedjob/DetailedJob.jsx';
+import SideBar from '@dashboard/nav/SideBar.jsx';
 
 const { Sider, Content } = Layout;
 
