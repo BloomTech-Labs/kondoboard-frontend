@@ -1,5 +1,3 @@
-import AppliedJob from "@dashboard/appliedjobs/AppliedJob";
-
 export const SET_JOBS_LIST = 'GET_JOBS_LIST';
 export const SET_SAVED_JOB = 'ADD_TO_TAGGED_LIST';
 export const SET_SAVED_JOB_LIST = 'SET_SAVED_JOB_LIST';
