@@ -17,6 +17,7 @@ const TagDisplay = props => {
     const tags = useSelector(selectJobTags)
     const jobTags = TagMatcher.matchTagsToJobs(tags, job_id)
     const lessTags = TagHelper.shortenArr(jobTags)
+    console.log('display', jobTags)
 
     useEffect(() => {
         JobController.getJobTags(id)
@@ -33,7 +34,7 @@ const TagDisplay = props => {
             </>
             :
             <>
-                {tags && tags.map(tag => {
+                {jobTags && jobTags.map(tag => {
                         return <div style={{backgroundColor: `${tag.color}`, height: '20px', width: '20px', borderRadius: '50%', marginRight: '2%'}}></div>
                     })
                 }

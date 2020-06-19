@@ -1,3 +1,5 @@
+import AppliedJobList from "../../view/dashboard/appliedjobs/AppliedJobList";
+
 export const SET_JOBS_LIST = 'GET_JOBS_LIST';
 export const SET_SAVED_JOB = 'ADD_TO_TAGGED_LIST';
 export const SET_SAVED_JOB_LIST = 'SET_SAVED_JOB_LIST';
@@ -8,6 +10,7 @@ export const SELECT_SAVED_JOB = 'SELECT_SAVED_JOB';
 export const ADD_NEW_TAG = 'ADD_NEW_TAG';
 export const GET_JOB_TAGS = 'GET_JOB_TAGS';
 export const SELECT_TAGGED_JOBS = 'SELECT_TAGGED_JOBS';
+export const SET_FILTER_BOARD = 'SET_FILTER_BOARD';
 
 export const GET_APPLIED_JOB = 'GET_APPLIED_JOB';
 export const GET_APPLIED_JOBS = 'GET_APPLIED_JOBS';
@@ -50,12 +53,16 @@ export const getJobTags = tags => {
     return { type: GET_JOB_TAGS, tags }
 }
 
-export const setAppliedJob = AppliedJob => {
-    return { type: GET_APPLIED_JOB, AppliedJob }
+export const setAppliedJob = appliedJobList => {
+    return { type: GET_APPLIED_JOB, appliedJobList }
 }
 
 export const setSelectTaggedJob = taggedJob => {
     return { type: SELECT_TAGGED_JOBS, taggedJob }
+}
+
+export const setFilterBoard = savedJobList => {
+    return { type: SET_FILTER_BOARD, savedJobList }
 }
 
 export const getJobColumns = columns => {

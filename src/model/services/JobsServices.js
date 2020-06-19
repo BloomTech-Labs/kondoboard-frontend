@@ -61,8 +61,18 @@ class JobsService {
     }
 
     async addColumn(id, name, location) {
-        const response = await axiosWithAuth().post(`${backEndUrl}/jobs/${id}/column`, {name, location})
+        const response = await axiosWithAuth().post(`${backEndUrl}/jobs/column/${id}`, {name, location})
         return response.data;
+    }
+
+    async addApplied(users_jobs_id) {
+        const columns_id = 6
+        const response = await axiosWithAuth().post(`${backEndUrl}/jobs/column/`, {users_jobs_id, columns_id})
+        return response.data;
+    }
+
+    async updateAppliedCol(users_jobs_id, columns_id) {
+        const response = await axiosWithAuth().put(`${backEndUrl}/jobs/column/`, {users_jobs_id, columns_id})
     }
 }
 

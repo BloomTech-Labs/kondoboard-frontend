@@ -13,7 +13,7 @@ const DetailedJob = () => {
     const [visible, setVisible] = useState(false);
 
     const job = useSelector(selectSavedJob);
-    const id = job.jobs_id;
+    const users_jobs_id = job.jobs_id;
 
     const daysAgo = DateHelper.convertToDays(job.date_published);
 
@@ -22,7 +22,8 @@ const DetailedJob = () => {
     }
 
     const handleOk = e => {
-        JobController.setApplied(id)
+        JobController.setApplied(users_jobs_id, job)
+        JobController.addToCol(users_jobs_id)
         setVisible(false)
     }
 

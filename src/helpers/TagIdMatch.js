@@ -3,7 +3,7 @@ class JobTags {
         const filterId = tags.filter(tag => {
             return (tag.job_id === job_id)
         })
-
+        console.log('helper', filterId)
         return filterId;
     }
 }

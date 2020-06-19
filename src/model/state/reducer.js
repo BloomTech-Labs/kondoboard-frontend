@@ -50,6 +50,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 userQuery: [...action.userQuery.jobs]
             }
+        case Actions.SET_FILTER_BOARD:
+            return {
+                ...state,
+                savedJobList: [...action.savedJobList]
+            }
         case Actions.ADD_NEW_TAG:
             return {
                 ...state,
@@ -59,6 +64,12 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 tags: [...action.tags]
+            }
+        case Actions.GET_APPLIED_JOB:
+            console.log('reducer', action)
+            return {
+                ...state,
+                appliedJobList: [...state.appliedJobList, action.appliedJobList]
             }
         case Actions.SELECT_TAGGED_JOBS:
             return {
