@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { axiosWithAuth } from '@helpers/utils/axiosWithAuth';
 
-const dataUrl = new URL('https://l24api.kondoboard.org/');
+const dataUrl = new URL('https://l24api.kondoboard.org');
 const backEndUrl = new URL('https://kondo-board-api.herokuapp.com/api');
 
 class JobsService { 

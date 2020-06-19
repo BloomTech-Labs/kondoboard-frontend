@@ -14,18 +14,21 @@ const SearchTagged = props => {
     const job = props.job;
     const id = useSelector(selectUserId)
     const daysAgo = DateHelper.convertToDays(job.date_published);
-    const [visible, setVisible] = useState(false)
+    const [state, setState] = useState({visible: false, pending: false})
 
     const showModal = () => {
-        setVisible(true);
+        setState({...state, visible: true});
     }
 
     const handleOk = e => {
-        setVisible(false);
+        setState({...state, pending: true});
+        setTimeout(() => {
+            setState({visible: false, pending: false});
+        }, 1000);
     }
 
     const handleCancel = e => {
-        setVisible(false)
+        setState({...state, visible: false});
     }
 
     const selectJob = e => {
@@ -48,26 +51,30 @@ const SearchTagged = props => {
                 </Col>
                 <Col span={2}></Col>
                 <Col span={8} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
-                    <p onClick={showModal}>{'Add Tag'}<CaretDownFilled />
-                        <TagDisplay job={job} />
-                    </p>
+                    <p onClick={showModal}>Add Tag<CaretDownFilled /></p>
+                    <TagDisplay job={job} extended={false}/>
                     <p>{daysAgo === 0 ? 'Today' : daysAgo === 1 ? '1 day ago' : `${daysAgo} days ago`}</p>
                 </Col>
                 <Modal
-                    style={{width: '260px'}}
+                    className='user-tag-modal'
                     title='Add Tag'
-                    visible={visible}
+                    visible={state.visible}
+                    closable={false}
                     onOk={handleOk}
                     onCancel={handleCancel}
+                    okButtonProps={{className: 'modal-save'}} 
+                    cancelButtonProps={{className: 'modal-cancel'}}
+                    okText='Confirm' 
+                    cancelText='Cancel'
                 >
                     <AddTag job={job} />
                 </Modal>
             </div>
-                    :
-                        null    
+            :
+            null    
             }
         </>
     )
 }
-
+ 
 export default SearchTagged;

@@ -1,0 +1,57 @@
+.applied-listings {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 90%;
+    min-height: 100%;
+    margin-top: 2rem;
+    background-color: @secondary-background;
+    .drop-box {
+        height: 100%;
+        width: 80%;
+        text-align: center;
+        overflow-x: auto;
+        .overflow-box {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: stretch;
+            min-width: 100vw;
+            height: 100%;
+            .job-card {
+                background-color: @secondary-background;
+                margin-bottom: 1rem;
+                border-radius: 3%;
+                border: 1px solid @primary-border;
+                width: 95%;
+            }
+            h2 {
+                position: sticky;
+                top: 0;
+                background-color: @secondary-background;
+                width: 100%;
+                padding-bottom: 1rem;
+            }
+            .applied {
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: start;
+                align-items: center;
+                background-color: @primary-background;
+                width: 50%;
+                margin-left: 1rem;
+                overflow-y: auto;
+            }
+            .interview {
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: start;
+                align-items: center;
+                background-color: @primary-background;
+                width: 50%;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                overflow-y: auto;
+            }
+        }
+
+    }
+}

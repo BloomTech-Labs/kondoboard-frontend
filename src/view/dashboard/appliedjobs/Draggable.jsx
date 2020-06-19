@@ -25,7 +25,7 @@ const AppliedJob = props => {
         e.stopPropagation();
     }
     return(
-        <div
+        <div className='job-card'
         id={job.id}
         draggable='true'
         onDragStart={dragStart}

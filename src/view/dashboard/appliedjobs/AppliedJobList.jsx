@@ -58,28 +58,58 @@ const AppliedJobList = () => {
     },[]);
 
     return(
-        <div style={{display: 'flex', overflowX: 'scroll'}}>
-            <>
-                <div
-                    onDrop={drop}
-                    onDragOver={dragOver}
-                    style={{width: '300px', height: '75vh'}}
+        <div className='drop-box'>
+            <div className='overflow-box'>
+            <div className='applied'
+                id='1'
+                onDrop={drop}
+                onDragOver={dragOver}
                 >
                     <h2>Applied</h2>
                     {jobs && jobs.map(job => {
                         return <Draggable job={job} />
                     })}
                 </div>
-                {columns && columns.map(column => {
-                    return <DropZone column={column} draggable='true' />
-                })}
-            </>
+                <>
+                    {columns && columns.map(column => {
+                        return <DropZone column={column} draggable='true' />
+                    })}
+                </>
             <div><AddColumn /></div>
             <div>
                 {tagsList && tagsList.map(tag => {
                     return <p name={tag.tag_name} id={tag.job_id} onMouseDown={setFilter} onMouseUp={runFilter} style={{color: `${tag.color}`, marginTop: '5%'}}>{tag.tag_name}</p>
                 })}
             </div>
+            <div className='interview'
+                id='2'
+                onDrop={drop}
+                onDragOver={dragOver}
+            >
+                <h2>Phone Interview</h2>
+            </div>
+            <div className='interview'
+                id='3'
+                onDrop={drop}
+                onDragOver={dragOver}
+            >
+                <h2>First Interview</h2>
+            </div>
+            <div className='interview'
+                id='4'
+                onDrop={drop}
+                onDragOver={dragOver}
+            >
+                <h2>Second Interview</h2>
+            </div>
+            <div className='interview'
+                id='4'
+                onDrop={drop}
+                onDragOver={dragOver}
+            >
+                <h2>Third Interview</h2>
+            </div>
+        </div>
         </div>
     )
 }

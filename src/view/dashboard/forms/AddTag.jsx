@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { colors } from '@helpers/Colors.js';
-import { CaretDownFilled } from '@ant-design/icons';
-import { Select } from 'antd';
+import { Button, Menu, Dropdown } from 'antd';
 
 import { useSelector } from 'react-redux';
 
@@ -20,7 +19,7 @@ import TagsDisplay from '@dashboard/savedjobcomponents/TagsDisplay.jsx';
 
 
 const AddTag = props => {
-    const [tag_name, setTag_Name] = useState('');
+    const [tagName, setTagName] = useState('');
     const [color, setColor] = useState(null);
     const saved = useSelector(selectSavedJobList)
     const id = useSelector(selectUserId);
@@ -31,14 +30,19 @@ const AddTag = props => {
     const tags = useSelector(selectJobTags);
     const list = DupHelpers.removeDuplicates(tags)
     const notTagged = ArrHelpers.filterOutTag(list, job_id);
-    const { Option } = Select;
 
-    function handleValueChange(value) {
-        console.log(value)
+
+    useEffect(() => {
+    },[color]);
+
+
+    const menuClick = (e) => {
+        setTagName(e.item.props.name);
+        setColor(e.item.props.color);
     }
 
     const enterTag = e => {
-        setTag_Name(e.target.value)
+        setTagName(e.target.value)
     }
 
     const enterColor = e => {
@@ -51,39 +55,52 @@ const AddTag = props => {
 
     const submitTag = e => {
         e.preventDefault();
-        {savedIds.includes(job.ds_id || job.id) ? JobController.getJobTags() : JobController.addSavedJob(id, saved_job)}
-        JobController.addTag(tag_name, id, color, job_id)
-        setTag_Name("")
+        savedIds.includes(job.ds_id || job.id) ? JobController.getJobTags() : JobController.addSavedJob(id, saved_job)
+        JobController.addTag(tagName, id, color, job_id)
+        setTagName('')
         setColor(null)
     }
+
+    const menu = (
+        <Menu onClick={menuClick}>
+            {notTagged && notTagged.map(tag => {
+                return <Menu.Item 
+                className='tag-search-item' 
+                style={{color: `${tag.color}`}}
+                name={tag.tag_name} 
+                color={tag.color}
+                ds_id={tag.job_id}
+                >
+                    {tag.tag_name}
+                </Menu.Item>
+            })}
+        </Menu>
+    )
 
     return(
         <>
         <form onSubmit={submitTag}>
-            <Select defaultValue="+ Add new tag" onChange={handleValueChange}> <CaretDownFilled /> 
-                {notTagged && notTagged.map(tag => {
-                    return <Option style={{color: `${tag.color}`}} value={tag.tag_name}>{tag.tag_name}</Option>
-                })}
-            </Select>
-            <div>
-                <TagsDisplay job={job} />   
-            </div>
-            <h3>Tag name:</h3>
+                <TagsDisplay job={job} extended={true}/>   
+            <div className='container'>
+            <Dropdown overlay={menu} trigger={['focus']} placement='bottomCenter'>
             <input
-                placeholder='Add a tag'
+                placeholder='New Tag...'
                 name='tag_name'
                 label='tag_name'
-                value={tag_name}
+                value={tagName}
                 id='tag_name'
                 type='text'
                 onChange={enterTag}
+                style={{color: `${color===null ? 'black' : color}`}}
             />
-            <div style={{display: 'flex', flexWrap: 'wrap', width: '40%'}}>
-                {colors.map(color => {
-                    return <div onClick={enterColor} style={{borderRadius: '50%', margin: '2%', width: '20px', height: '20px', background: `${color}`}}></div>
+            </Dropdown>
+            <Button size='normal' className='modal-add' htmlType='submit' disabled={color===null || tagName===''} onClick={submitTag}>Add</Button>
+            </div>
+            <div className='tag-colors-box'>
+                {colors.map(col => {
+                    return <button key={col} className={`${col===color ? 'tag-color-active' : ''} tag-color `} onClick={enterColor} style={{background: col}} />
                 })}
             </div>
-            <button type='submit' onClick={submitTag}>Save</button>
         </form>
         </>
     )

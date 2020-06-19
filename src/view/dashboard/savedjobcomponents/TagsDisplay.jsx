@@ -12,7 +12,7 @@ import TagMatcher from '@helpers/TagIdMatch.js';
 
 const TagDisplay = props => {
     let job_id;
-    {props.job.ds_id ? job_id = props.job.ds_id : job_id = props.job.id}
+    props.job.ds_id ? job_id = props.job.ds_id : job_id = props.job.id
     const id = useSelector(selectUserId)
     const tags = useSelector(selectJobTags)
     const jobTags = TagMatcher.matchTagsToJobs(tags, job_id)
@@ -25,17 +25,17 @@ const TagDisplay = props => {
     
     return(
         <div style={{display: 'flex', justifyContent: 'flex-start'}}>
-            {tags.length > 3 ?
+            {!props.extended ?
             <>
                 {lessTags && lessTags.map(tag => {
-                        return <div style={{backgroundColor: `${tag.color}`, height: '20px', width: '20px', borderRadius: '50%', marginRight: '2%'}}></div>
+                        return <div key={tag.tag_name} style={{backgroundColor: `${tag.color}`, height: '20px', width: '20px', borderRadius: '50%', marginRight: '2%'}}></div>
                     })
                 }
             </>
             :
             <>
                 {jobTags && jobTags.map(tag => {
-                        return <div style={{backgroundColor: `${tag.color}`, height: '20px', width: '20px', borderRadius: '50%', marginRight: '2%'}}></div>
+                        return <div key={tag.tag_name} style={{backgroundColor: `${tag.color}`, height: '20px', width: '20px', borderRadius: '50%', marginRight: '2%'}}></div>
                     })
                 }
             </>

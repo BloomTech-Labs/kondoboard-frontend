@@ -14,6 +14,8 @@ html {
   /* 2 */
   min-height: 100%;
   min-width: 100%;
+  max-height: 100vh;
+  overflow-x: hidden;
 }
 /* Sections
      ========================================================================== */
@@ -22,8 +24,9 @@ html {
    */
 body {
   margin: 0;
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 100%;
+  min-width: 100%;
+  max-height: 100%;
 }
 /**
    * Render the `main` element consistently in IE.
@@ -318,17 +321,40 @@ template {
 }
 #root {
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 .App {
   width: 100%;
-  height: 100vh;
-  background-color: #FAFAFA;
+  height: 90%;
+  background-color: #FFFFFF;
 }
 .loading {
   margin: 5% auto 0 auto;
   width: 100%;
   height: 50%;
+}
+.app-container {
+  display: flex;
+  flex-flow: row nowrap;
+  min-height: 100%;
+  max-height: 100%;
+  margin-top: 1rem;
+  width: 100%;
+}
+.app-container .job-listings {
+  width: 90%;
+  height: 100%;
+  margin-left: 1rem;
+}
+.not-found {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.not-found p {
+  font-size: 3rem;
+  font-weight: 600;
 }
 .okta-logo {
   margin-right: 1rem;
@@ -338,7 +364,6 @@ template {
   font-weight: 700;
 }
 .header {
-  border: 1px solid #E9E9E9;
   background-color: #FFFFFF;
   display: flex;
   flex-direction: row;
@@ -389,21 +414,24 @@ template {
   width: 100%;
 }
 .profile {
+  width: 90%;
+  height: 100%;
+  margin-left: 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
-  background-color: #FAFAFA;
+  justify-content: left;
+  background-color: #FFFFFF;
 }
 .profile .user-box {
   width: 70%;
+  height: 100%;
 }
 .profile .user-box .user-form {
   width: 100%;
-  margin: 1rem auto;
+  margin: 1rem auto 0 1rem;
   padding: 1rem;
   background-color: #FFFFFF;
-  border: solid 1px #E9E9E9;
 }
 .profile .user-box .user-form .field-container {
   margin-top: 0.5rem;
@@ -499,6 +527,28 @@ template {
   border: 1px solid black;
   color: rgba(255, 255, 255, 0.712);
 }
+.user-tag-modal {
+  display: flex;
+  justify-content: center;
+}
+.user-tag-modal .ant-modal-content {
+  width: auto;
+}
+.user-tag-modal .ant-modal-content .ant-modal-body .container {
+  margin: 1rem auto 0 auto;
+  width: max-content;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.user-tag-modal .ant-modal-content .ant-modal-body .container input {
+  margin-left: 0.5rem;
+}
+.tag-search-item {
+  background-color: #f4f4f4;
+  font-weight: 600;
+  color: g;
+}
 .modal-save {
   background-color: #6335BF;
   border: 1px solid #E9E9E9;
@@ -558,4 +608,109 @@ template {
   flex-flow: row wrap;
   align-content: space-between;
   justify-content: left;
+}
+.tag-colors-box {
+  margin: 1rem auto;
+  display: flex;
+  flex-flow: row wrap;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+}
+.tag-color {
+  border: 1px solid rgba(0, 0, 0, 0.685);
+  border-radius: 50%;
+  margin: 2%;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.tag-color:hover {
+  opacity: 0.7;
+}
+.tag-color-active {
+  border-radius: 40%;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 2px solid black;
+}
+.applied-listings {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 90%;
+  min-height: 100%;
+  margin-top: 2rem;
+  background-color: #FFFFFF;
+}
+.applied-listings .drop-box {
+  height: 100%;
+  width: 80%;
+  text-align: center;
+  overflow-x: auto;
+}
+.applied-listings .drop-box .overflow-box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  min-width: 100vw;
+  height: 100%;
+}
+.applied-listings .drop-box .overflow-box .job-card {
+  background-color: #FFFFFF;
+  margin-bottom: 1rem;
+  border-radius: 3%;
+  border: 1px solid #E9E9E9;
+  width: 95%;
+}
+.applied-listings .drop-box .overflow-box h2 {
+  position: sticky;
+  top: 0;
+  background-color: #FFFFFF;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+.applied-listings .drop-box .overflow-box .applied {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: center;
+  background-color: #f4f4f4;
+  width: 50%;
+  margin-left: 1rem;
+  overflow-y: auto;
+}
+.applied-listings .drop-box .overflow-box .interview {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: center;
+  background-color: #f4f4f4;
+  width: 50%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  overflow-y: auto;
+}
+.side-bar {
+  background-color: #FFFFFF;
+  width: 10rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: start;
+}
+.side-bar h6 {
+  color: black;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.side-bar h6:hover {
+  cursor: pointer;
+}
+.side-bar .selected {
+  color: #6335BF;
+  background-color: #e1d8f334;
 }
