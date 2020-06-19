@@ -14,18 +14,17 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
 
     switch(action.type) {
-        case Actions.TYPES.SET_USER_DATA:
+        case Actions.SET_USER_DATA:
             return {
                 ...state,
                 user: { ...action.payload }
             }
-
-        case Actions.TYPES.SET_HISTORY:
+        case Actions.SET_HISTORY:
             return {
                 ...state,
                 history: action.payload
             }
-        case Actions.GET_JOBS_LIST:
+        case Actions.SET_JOBS_LIST:
             return {
                 ...state,
                 jobList: [...action.jobList.jobs]
@@ -75,6 +74,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 taggedJob: [...action.taggedJob]
+            }
+        case Actions.GET_APPLIED_JOB:
+            return {
+                ...state,
+                columns: [...state.columns, action.columns]
             }
             default:
                 return state;

@@ -24,18 +24,8 @@ class JobsService {
         return response.data;
     }
 
-    async removeTaggedJob(id) {
-        const response = await axios.delete(`${backEndUrl}/tagged/${id}`)
-        return response.data;
-    }
-
-    async addAppliedJob(job) {
-        const response = await axios.post(`${backEndUrl}/applied`, {job})
-        return response.data;
-    }
-
-    async removeJob(job) {
-        const response = await axios.post(`${backEndUrl}/removed`, {job});
+    async fetchSavedJobList(id) {
+        const response = await axiosWithAuth().get(`${backEndUrl}/users/${id}/favorite`)
         return response.data;
     }
 

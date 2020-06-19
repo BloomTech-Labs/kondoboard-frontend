@@ -6,7 +6,7 @@ import DetailedJob from '@dashboard/detailedjob/DetailedJob.jsx';
 
 const { Content } = Layout;
 
-const BoardContainer = () => {
+const JobListing = () => {
     return(
         <div className='job-listings'>
             <Layout style={{height: '80vh', background: 'white'}}>
@@ -22,4 +22,4 @@ const BoardContainer = () => {
     )
 }
 
-export default BoardContainer;
+export default JobListing;

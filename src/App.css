@@ -397,6 +397,15 @@ template {
   justify-content: right;
   width: 50%;
 }
+.header .user img {
+  height: 32px;
+  width: 32px;
+  margin: 0.5rem 0.5rem 0.3rem 0.3rem;
+}
+.header .user img:hover {
+  border: 2px solid black;
+  border-radius: 46%;
+}
 .header .user p {
   font-weight: 900;
   font-family: 'Noto Sans', sans-serif;

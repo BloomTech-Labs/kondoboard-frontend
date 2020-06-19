@@ -21,7 +21,7 @@ import SideBar from '@dashboard/nav/SideBar';
 
 const App = () => {
 
-// Initialize OktaAuth
+  // Initialize OktaAuth
 
   const { authState } = useOktaAuth();
 
@@ -45,8 +45,7 @@ const App = () => {
           ? <Redirect to='/'/>
           : <Component/>
         )}/>
-      );
-
+      )
 
   return (
     <div className="App">
