@@ -1,4 +1,4 @@
-/ Core
+// Core
 import React from 'react'
 import { useLocation, useHistory } from 'react-router-dom';
 import { Menu, Dropdown, Button } from 'antd';
