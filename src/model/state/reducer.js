@@ -3,9 +3,9 @@ import * as Actions from './actions';
 const initialState = {
     user: {},
     authStatus: null,
-    jobList: [{}],
-    savedJobList: [{}],
-    savedJobIds: [{}],
+    jobList: [],
+    savedJobList: [],
+    savedJobIds: [],
     job: {},
     tags: []
 }
@@ -59,7 +59,6 @@ export const reducer = (state = initialState, action) => {
                 taggedJob: [...action.taggedJob]
             }
         case Actions.GET_APPLIED_JOB:
-            console.log('action', action)
             return {
                 ...state,
                 AppliedJob: [...action.AppliedJob]

@@ -3,7 +3,6 @@ import { Layout, Row, Col } from 'antd';
 
 import SavedJobList from '@dashboard/savedjobcomponents/SavedJobsList.jsx';
 import DetailedJob from '@dashboard/detailedjob/DetailedJob.jsx';
-import SideBar from '@dashboard/nav/SideBar.jsx';
 
 const { Sider, Content } = Layout;
 
@@ -12,9 +11,6 @@ const SavedListings = () => {
         <div>
             <Layout>
                 <Layout>
-                    <Sider style={{background: 'white'}}>
-                        <SideBar />
-                    </Sider>
                     <Layout style={{height: '80vh', background: 'white'}}>
                         <Content>
                             <Row>

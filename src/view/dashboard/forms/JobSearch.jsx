@@ -56,7 +56,7 @@ const JobSearch = () => {
                     <h2>State</h2>
                     <Select defaultValue="Select State" onChange={handleStateChange}>
                         {states && states.map(qState => {
-                            return <Option value={qState}>{qState}</Option>
+                            return <Option key={qState} value={qState}>{qState}</Option>
                         })}
                     </Select>
                 </Col>

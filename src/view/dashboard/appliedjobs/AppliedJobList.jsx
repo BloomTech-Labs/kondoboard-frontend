@@ -30,50 +30,47 @@ const AppliedJobList = () => {
     }
 
     return(
-        <div style={{display: 'flex'}}>
-            <div
+        <div className='drop-box'>
+            <div className='overflow-box'>
+            <div className='applied'
                 id='1'
                 onDrop={drop}
                 onDragOver={dragOver}
-                style={{width: '300px', height: '75vh'}}
                 >
                 <h2>Applied Jobs</h2>
                 {savedJobList && savedJobList.map(job => {
                     return <AppliedJob job={job} key={job.id} draggable='true' />
                 })}
             </div>
-            <div
+            <div className='interview'
                 id='2'
                 onDrop={drop}
                 onDragOver={dragOver}
-                style={{width: '300px', height: '75vh', outline: '1px solid blue'}}
             >
                 <h2>Phone Interview</h2>
             </div>
-            <div
+            <div className='interview'
                 id='3'
                 onDrop={drop}
                 onDragOver={dragOver}
-                style={{width: '300px', height: '75vh', outline: '1px solid blue'}}
             >
                 <h2>First Interview</h2>
             </div>
-            <div
+            <div className='interview'
                 id='4'
                 onDrop={drop}
                 onDragOver={dragOver}
-                style={{width: '300px', height: '75vh', outline: '1px solid blue'}}
             >
                 <h2>Second Interview</h2>
             </div>
-            <div
+            <div className='interview'
                 id='4'
                 onDrop={drop}
                 onDragOver={dragOver}
-                style={{width: '300px', height: '75vh', outline: '1px solid blue'}}
             >
                 <h2>Third Interview</h2>
             </div>
+        </div>
         </div>
     )
 }

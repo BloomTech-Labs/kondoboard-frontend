@@ -15,7 +15,6 @@ const DetailedJob = () => {
 
     const job = useSelector(selectSavedJob);
     const id = job.jobs_id;
-    console.log('detail', id)
 
     const daysAgo = DateHelper.convertToDays(job.date_published);
 
@@ -41,8 +40,8 @@ const DetailedJob = () => {
                         <div style={{display: 'flex', justifyContent: 'space-between'}}>
                             <h1>{job && job.company}</h1>
                             <p>{(daysAgo === 0) ? job && 'Today' : (daysAgo === 1) ? job && '1 day ago' : job && `${daysAgo} days ago`}</p>
-                            <p>{job && 'Add Tag'}{job && <CaretDownFilled />}
-                                                <TagsDisplay job={job} /></p>
+                            <p>{job && 'Add Tag'}{job && <CaretDownFilled />}</p>
+                            <TagsDisplay job={job} extended={false}/>
                         </div>
                         <div style={{display: 'flex', justifyContent: 'space-between'}}>
                             <div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { axiosWithAuth } from '@helpers/utils/axiosWithAuth';
 
-const dataUrl = new URL('https://l24api.kondoboard.org/');
+const dataUrl = new URL('https://l24api.kondoboard.org');
 const backEndUrl = new URL('https://kondo-board-api.herokuapp.com/api');
 
 class JobsService { 
@@ -31,7 +31,6 @@ class JobsService {
 
     async submitTag(tag_name, id, color, job_id) {
         const response = await axiosWithAuth().post(`${backEndUrl}/users/${id}/tag/`, {tag_name, color, job_id})
-        console.log('service', response.data)
         return response.data;
     }
 

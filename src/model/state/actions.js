@@ -21,7 +21,7 @@ export const getJobList = jobList => {
 export const getSavedList = savedJobList => {
     return { type: SET_SAVED_JOB_LIST, savedJobList }
 }
-
+ 
 export const getQueryList = userQuery => {
     return { type: SET_QUERY_LIST, userQuery }
 }
@@ -39,7 +39,6 @@ export const selectSavedJob = job => {
 }
 
 export const setTag = tag => {
-    console.log('action file', tag)
     return { type: ADD_NEW_TAG, tag }
 }
 

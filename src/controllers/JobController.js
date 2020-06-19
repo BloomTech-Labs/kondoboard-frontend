@@ -14,7 +14,10 @@ class JobController {
     }
     async fetchSavedJobList(id) {
         const savedJobList = await JobsService.fetchSavedJobList(id);
-        store.dispatch(Action.getSavedList(savedJobList));
+        if (savedJobList.message === undefined) { // message property indicates no saved jobs found response from back end
+            store.dispatch(Action.getSavedList(savedJobList));
+        } 
+ 
     }
     async searchJobs(search, city, state) {
         const userQuery = await JobsService.queryJob(search, city, state)
