@@ -2,11 +2,28 @@ export const GET_JOBS_LIST = 'GET_JOBS_LIST';
 export const ADD_TO_TAGGED_LIST = 'ADD_TO_TAGGED_LIST';
 export const REMOVE_FROM_TAGGED_LIST = 'REMOVE_FROM_TAGGED_LIST';
 export const ADD_TO_APPLIED_LIST = 'ADD_TO_APPLIED_LIST';
+export const SET_JOBS_LIST = 'GET_JOBS_LIST';
+export const SET_SAVED_JOB = 'ADD_TO_TAGGED_LIST';
+export const SET_SAVED_JOB_LIST = 'SET_SAVED_JOB_LIST';
+export const SET_SAVED_JOB_IDS = 'SET_SAVED_JOB_IDS';
+export const SET_QUERY_LIST = 'SET_QUERY_LIST';
+
+export const SELECT_SAVED_JOB = 'SELECT_SAVED_JOB';
+export const ADD_NEW_TAG = 'ADD_NEW_TAG';
+export const GET_JOB_TAGS = 'GET_JOB_TAGS';
+export const SELECT_TAGGED_JOBS = 'SELECT_TAGGED_JOBS';
+export const SET_FILTER_BOARD = 'SET_FILTER_BOARD';
+export const SET_USER_DATA = 'SET_USER_DATA';
+export const GET_APPLIED_JOB = 'GET_APPLIED_JOB';
+export const GET_APPLIED_JOBS = 'GET_APPLIED_JOBS';
+export const GET_JOB_COLUMNS = 'GET_JOB_COLUMNS';
+export const SET_JOB_COLUMN = 'SET_JOB_COLUMN';
 
 export const TYPES = {
     SET_USER_DATA: 'SET_USER_DATA',
     SET_HISTORY: 'SET_HISTORY'
 }
+
 
 export const getJobList = jobList => {
     return { type: GET_JOBS_LIST, jobList }
@@ -15,17 +32,61 @@ export const getJobList = jobList => {
 export const addToTaggedList = taggedList => {
     return { type: ADD_TO_TAGGED_LIST, taggedList }
 }
-
-export const removeFromTaggedList = taggedList => {
-    return { type: REMOVE_FROM_TAGGED_LIST, taggedList }
+ 
+export const getSavedList = savedJobList => {
+    return { type: SET_SAVED_JOB_LIST, savedJobList }
 }
 
-export const addToAppliedList = appliedList => {
-    return { type: ADD_TO_APPLIED_LIST, appliedList }
+export const getQueryList = userQuery => {
+    return { type: SET_QUERY_LIST, userQuery }
 }
 
-export const setUserData = userData => {
-    return { type: TYPES.SET_USER_DATA, payload: userData }
+export const getSavedIds = savedJobIds => {
+    return { type: SET_SAVED_JOB_IDS, savedJobIds }
+}
+
+export const setSavedJob = savedJob => {
+    return { type: SET_SAVED_JOB, savedJob }
+}
+
+export const selectSavedJob = job => {
+    return { type: SELECT_SAVED_JOB, job }
+}
+
+export const setTag = tag => {
+    return { type: ADD_NEW_TAG, tag }
+}
+
+export const getJobTags = tags => {
+    return { type: GET_JOB_TAGS, tags }
+}
+
+export const setAppliedJob = appliedJobList => {
+    return { type: GET_APPLIED_JOB, appliedJobList }
+}
+
+export const setSelectTaggedJob = taggedJob => {
+    return { type: SELECT_TAGGED_JOBS, taggedJob }
+}
+
+export const setFilterBoard = savedJobList => {
+    return { type: SET_FILTER_BOARD, savedJobList }
+}
+
+export const getJobColumns = columns => {
+    return { type: GET_JOB_COLUMNS, columns }
+}
+
+export const setColumn = column => {
+    return { type: SET_JOB_COLUMN, column }
+}
+
+export const getAppliedList = appliedJobs => {
+    return { type: GET_APPLIED_JOBS, appliedJobs }
+}
+
+export const setUserData = user => {
+    return { type: SET_USER_DATA, payload: user }
 }
 
 

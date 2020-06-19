@@ -1,19 +1,12 @@
 // Core
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Switch } from 'react-router';
-import { Route, useHistory, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
 import { useOktaAuth, LoginCallback } from '@okta/okta-react';
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
 import './App.css';
 
 //Model & Helpers
-import { selectHistory } from '@state/selectors';
-import store from './store';
-import * as Action from '@state/actions';
-
-
+import Spinner from '@helpers/Spinner';
 
 // Components
 import Login from '@containers/Login';
@@ -21,7 +14,10 @@ import Profile from '@containers/Profile';
 import Header from '@containers/Header';
 import NotFound from '@containers/NotFound';
 import JobListings from '@containers/JobListings.jsx';
-
+import SavedListings from './view/dashboard/containers/SavedListings.jsx';
+import AppliedJobListings from './view/dashboard/containers/AppliedListings.jsx';
+import UserValidation from '@dashboard/profile/UserValidation';
+import SideBar from '@dashboard/nav/SideBar';
 
 const App = () => {
 
@@ -29,52 +25,45 @@ const App = () => {
 
   const { authState } = useOktaAuth();
 
-    const history = useHistory();
-    const stateHistory = useSelector(selectHistory);
-
-    if (stateHistory === null) {
-      store.dispatch(Action.setHistory(history));
-    }
-
   if (authState.isAuthenticated && !window.localStorage.getItem('kondotoken')) {
     window.localStorage.setItem('kondotoken', authState.idToken);
   }
-  useEffect(() => {
 
-  }, []);
+  const PrivateRoute = ({ component: Component, ...rest}) => (
+    <Route {...rest} render={(props) => (
+      authState.isPending  ? <Spinner /> :
+      authState.isAuthenticated === true 
+      ? <Component/>
+      : <Redirect to='/login'/>
+    )}/>
+  );
 
-    const PrivateRoute = ({ component: Component, ...rest}) => (
-        <Route {...rest} render={(props) => (
-          authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
-          authState.isAuthenticated === true 
-          ? <Component/>
-          : <Redirect to='/login'/>
-        )}/>
-      );
-    
     const PublicRoute = ({component: Component, ...rest}) => (
         <Route {...rest} render={() => (
-          authState.isPending ? <Spin indicator={<LoadingOutlined style={{ fontSize: 72}} spin/>}/> :
+          authState.isPending ? <Spinner /> :
           authState.isAuthenticated === true
-          ? <Redirect to='/profile'/>
+          ? <Redirect to='/'/>
           : <Component/>
         )}/>
-      )
+      );
+
 
   return (
     <div className="App">
       <Header />
+      <UserValidation />
+      <div className='app-container'>
+      {authState.isAuthenticated && <SideBar />}
       <Switch>
-
         <PublicRoute path='/login' component={Login}/>
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
-        
-        <PrivateRoute path='/listings' component={JobListings} />
+        <PrivateRoute path='/applied' component={AppliedJobListings} />
+        <PrivateRoute path='/saved' component={SavedListings} />
         <PrivateRoute exact path='/' component={JobListings}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>
-
+      </div>
     </div>
   );
 }

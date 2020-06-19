@@ -13,6 +13,7 @@
     "jsonwebtoken": "^8.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -23,7 +24,9 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-reqired test",
+    "lint": "npx eslint src",
+    "lintFix": "npx eslint --fix src",
+    "test": "jest",
     "eject": "react-scripts eject",
     "less": "less-watch-compiler ./src/less ./src App.less"
   },
@@ -43,6 +46,9 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
     "less-watch-compiler": "^1.14.6",
     "react-app-rewired": "^2.1.6"
   }

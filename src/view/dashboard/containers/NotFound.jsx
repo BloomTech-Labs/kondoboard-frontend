@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import { Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectHistory } from '@state/selectors.js'; 
+import { useHistory } from 'react-router-dom';
+
 
 const NotFound = () => {
 
-    const history = useSelector(selectHistory);
+    const history = useHistory();
 
     let [timer, setTimer] = useState(6);
 
@@ -21,8 +20,8 @@ const NotFound = () => {
     
 
     return (
-        <div>
-            Looks like you navigated to the wrong page, don't worry. We'll Redirect you in {timer}
+        <div className='not-found'>
+            <p>Looks like you navigated to the wrong page, don't worry. We'll Redirect you in {timer}</p>
         </div>
     )
 }

@@ -1,13 +1,17 @@
-import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import JobController from '@controllers/JobController.js';
-import {selectJobList} from '@state/selectors.js';
+import { selectJobList } from '@state/selectors.js';
+import { selectUserQuery } from '@state/selectors.js';
 
-import Job from './Job.jsx';
+import JobSearch from '@dashboard/forms/JobSearch.jsx';
+import SearchTagged from './SearchTagged.jsx';
 
 const JobList = () => {
     const jobList = useSelector(selectJobList);
+    const queryList = useSelector(selectUserQuery);
 
     useEffect(() => {
         JobController.fetchJobsList();
@@ -15,10 +19,15 @@ const JobList = () => {
 
     return(
         <div>
-            <h2>Latest Jobs</h2>
-            {jobList && jobList.map(job => {
-                return <Job job={job} key={job.id} />
+            <Link to='/'>Results</Link><Link to='/saved'> Tagged</Link>
+            <JobSearch />
+            {queryList && queryList.map(job => {
+                return <SearchTagged job={job} key={job.id} />
             })}
+            {jobList && jobList.map(job => {
+                return <SearchTagged job={job} key={job.id} />
+            })}
+
         </div>
     )
 }

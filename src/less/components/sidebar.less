@@ -1,0 +1,25 @@
+.side-bar {
+    background-color: @secondary-background;
+    width: 10rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: start;
+    h6 {
+        color: black;
+        width: 100%;
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .selected {
+        color: @primary-color;
+        background-color: @primary-color-light;
+    }
+}
+

@@ -1,0 +1,109 @@
+.profile {
+    width: 90%;
+    height: 100%;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+    background-color: @secondary-background;
+    .user-box {
+        width: 70%;
+        height: 100%;
+        .user-form {
+            width: 100%;
+            margin: 1rem auto 0 1rem;
+            padding: 1rem;
+            background-color: @secondary-background;
+            .field-container {
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                width: 55%;
+                .ant-dropdown-link {
+                    background-color: inherit;
+                    border: none;
+                    font-weight: bold;
+                    color: @primary-color;
+                    font-size: 1rem;
+                    width: fit-content;
+                    min-width: fit-content;
+                    margin-left: auto;
+                    text-align: right;
+                    max-height: min-content;
+                    height: min-content;
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    .ico-caret {
+                        font-size: 1.2rem;
+                        color: black;
+                    }
+                }
+                p {
+                    font-weight: bold;
+                    font-size: 1.12rem;
+                }
+                .container {
+                    width: 100%;
+                    .skill-box, .location-box {
+                        width: 100%;
+                        display: flex;
+                        flex-flow: row wrap;
+                        align-content: space-between;
+                        justify-content: left;
+                        
+                        .skill, .location {
+                            font-size: 1rem;
+                            font-weight: 600;
+                            margin-left: 1rem;
+                        }
+                        .saved {
+                            color: black;
+                        }
+                        .pending {
+                            color: @primary-color-faded;
+                        }
+                    }
+                    .suggested {
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                    }
+                    .track, .remote {
+                        font-size: 1rem;
+                        font-weight: 600;
+                        color: black;
+                        margin-left: 1rem;
+                    }
+                }
+            }
+            .err {
+                background-color: rgba(250, 191, 191, 0.795);
+                color: rgb(199, 10, 10);
+                border: 1px solid red;
+                padding: 0 0.4rem;
+                display: inline-block;
+                font-weight: 600;
+                font-size: small;
+            }
+            .submit-all {
+                margin-left: auto;
+                background-color: @primary-color;
+                border: 1px solid @primary-border;
+                color: white;
+                font-size: 1rem;
+                line-height: 0.5rem;
+                &:hover, &:focus {
+                    background: @primary-color-faded;
+                    border: 1px solid black;
+                    color: rgba(255, 255, 255, 0.712)
+                }
+                
+            }    
+        }
+    }
+}
