@@ -9,9 +9,13 @@ export const ADD_NEW_TAG = 'ADD_NEW_TAG';
 export const GET_JOB_TAGS = 'GET_JOB_TAGS';
 export const SELECT_TAGGED_JOBS = 'SELECT_TAGGED_JOBS';
 
-export const GET_APPLIED_JOB = 'GET_APPLIED_JOB'
+export const GET_APPLIED_JOB = 'GET_APPLIED_JOB';
+export const GET_APPLIED_JOBS = 'GET_APPLIED_JOBS';
+export const GET_JOB_COLUMNS = 'GET_JOB_COLUMNS';
+export const SET_JOB_COLUMN = 'SET_JOB_COLUMN';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
+export const SET_HISTORY = 'SET_HISTORY';
 
 
 export const getJobList = jobList => {
@@ -39,7 +43,6 @@ export const selectSavedJob = job => {
 }
 
 export const setTag = tag => {
-    console.log('action file', tag)
     return { type: ADD_NEW_TAG, tag }
 }
 
@@ -55,6 +58,22 @@ export const setSelectTaggedJob = taggedJob => {
     return { type: SELECT_TAGGED_JOBS, taggedJob }
 }
 
+export const getJobColumns = columns => {
+    return { type: GET_JOB_COLUMNS, columns }
+}
+
+export const setColumn = column => {
+    return { type: SET_JOB_COLUMN, column }
+}
+
+export const getAppliedList = appliedJobs => {
+    return { type: GET_APPLIED_JOBS, appliedJobs }
+}
+
 export const setUserData = user => {
     return { type: SET_USER_DATA, payload: user }
+}
+
+export const setHistory = history => {
+    return { type: SET_HISTORY, payload: history}
 }

@@ -2,17 +2,23 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import JobController from '@controllers/JobController.js';
+import { selectAppliedJobs } from '@state/selectors.js';
 import { selectSavedJobList } from '@state/selectors.js';
 import { selectUserId } from '@state/selectors.js';
+import { selectJobColumns } from '@state/selectors.js';
 
-import AppliedJob from './AppliedJob.jsx';
+import Draggable from './Draggable.jsx';
+import AddColumn from '../forms/AddColumn.jsx';
+import DropZone from './DropZone.jsx';
 
 const AppliedJobList = () => {
-    const savedJobList = useSelector(selectSavedJobList);
-    const id = useSelector(selectUserId)
+    const appliedJobList = useSelector(selectSavedJobList);
+    const jobColumns = useSelector(selectJobColumns);
+    const id = useSelector(selectUserId);
 
     useEffect(() => {
-        JobController.fetchSavedJobList(id);
+        JobController.fetchAppliedJobList(id);
+        JobController.fetchJobColumns(id);
     },[]);
 
     const drop = e => {
@@ -38,42 +44,16 @@ const AppliedJobList = () => {
                 style={{width: '300px', height: '75vh'}}
                 >
                 <h2>Applied Jobs</h2>
-                {savedJobList && savedJobList.map(job => {
-                    return <AppliedJob job={job} key={job.id} draggable='true' />
+                {appliedJobList && appliedJobList.map(job => {
+                    return <Draggable job={job} key={job.id} draggable='true' />
                 })}
             </div>
-            <div
-                id='2'
-                onDrop={drop}
-                onDragOver={dragOver}
-                style={{width: '300px', height: '75vh', outline: '1px solid blue'}}
-            >
-                <h2>Phone Interview</h2>
-            </div>
-            <div
-                id='3'
-                onDrop={drop}
-                onDragOver={dragOver}
-                style={{width: '300px', height: '75vh', outline: '1px solid blue'}}
-            >
-                <h2>First Interview</h2>
-            </div>
-            <div
-                id='4'
-                onDrop={drop}
-                onDragOver={dragOver}
-                style={{width: '300px', height: '75vh', outline: '1px solid blue'}}
-            >
-                <h2>Second Interview</h2>
-            </div>
-            <div
-                id='4'
-                onDrop={drop}
-                onDragOver={dragOver}
-                style={{width: '300px', height: '75vh', outline: '1px solid blue'}}
-            >
-                <h2>Third Interview</h2>
-            </div>
+            <>
+                {jobColumns && jobColumns.map(column => {
+                    return <DropZone column={column} draggable='true' />
+                })}
+            </>
+            <div><AddColumn /></div>
         </div>
     )
 }

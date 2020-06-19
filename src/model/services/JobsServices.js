@@ -31,7 +31,6 @@ class JobsService {
 
     async submitTag(tag_name, id, color, job_id) {
         const response = await axiosWithAuth().post(`${backEndUrl}/users/${id}/tag/`, {tag_name, color, job_id})
-        console.log('service', response.data)
         return response.data;
     }
 
@@ -48,6 +47,21 @@ class JobsService {
     async setApplied(id) {
         await axiosWithAuth().put(`${backEndUrl}/users/saved_job/${id}`, {applied: true});
         const response = await axiosWithAuth().get(`${backEndUrl}/users/saved_job/${id}`)
+        return response.data;
+    }
+
+    async fetchAppliedList(id) {
+        const response = await axiosWithAuth().get(`${backEndUrl}/users/${id}/applied`);
+        return response.data;
+    }
+
+    async getColumns(id) {
+        const response = await axiosWithAuth().get(`${backEndUrl}/jobs/${id}/column`)
+        return response.data;
+    }
+
+    async addColumn(id, name, location) {
+        const response = await axiosWithAuth().post(`${backEndUrl}/jobs/${id}/column`, {name, location})
         return response.data;
     }
 }

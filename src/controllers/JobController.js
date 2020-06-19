@@ -36,8 +36,20 @@ class JobController {
         store.dispatch(Action.setSelectTaggedJob(id))
     }
     async setApplied(id) {
-        const appliedJob = await JobsService.setApplied(id);
-        store.dispatch(Action.setAppliedJob(appliedJob))
+        await JobsService.setApplied(id);
+    }
+    async fetchAppliedJobList(id) {
+        const appliedJobList = await JobsService.fetchAppliedList(id);
+        store.dispatch(Action.getAppliedList(appliedJobList))
+    }
+    async addColumn(id, name, location) {
+        const column = {name, location}
+        await JobsService.addColumn(id, name, location);
+        store.dispatch(Action.setColumn(column))
+    }
+    async fetchJobColumns(id) {
+        const columns = await JobsService.getColumns(id);
+        store.dispatch(Action.getJobColumns(columns));
     }
 }
 

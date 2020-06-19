@@ -40,7 +40,7 @@ const TagList = () => {
                     return <Option style={{color: `${tag.color}`}} value={tag.tag_name}>{tag.tag_name}</Option>
                 })}
             </Select>
-            <button onMouseUp={selectTag}>Search</button>
+            <button style={{background: 'purple', color: 'white', height: '30px'}} onClick={selectTag}>Search</button>
         </div>
     )
 }

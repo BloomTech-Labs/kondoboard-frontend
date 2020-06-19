@@ -1,7 +1,8 @@
 import React from 'react';
 
-const DropZone = () => {
-    
+const DropZone = props => {
+    const column = props.column;
+
     const drop = e => {
         e.preventDefault();
         const card_id = e.dataTransfer.getData('card_id');
@@ -18,10 +19,12 @@ const DropZone = () => {
 
     return(
         <div
+            style={{marginTop: '-5%'}}
             onDrop={drop}
             onDragOver={dragOver}
-            style={{width: '200px', height: '75vh'}}
+            style={{width: '300px', height: '75vh'}}
         >
+            <h2>{column.name}</h2>
         </div>
     )
 }

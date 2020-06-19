@@ -49,6 +49,7 @@ const JobSearch = () => {
                         value={search}
                         id='search'
                         type='text'
+                        style={{height: '30px'}}
                         onChange={handleSearchChange}
                     />
                 </Col>
@@ -70,7 +71,7 @@ const JobSearch = () => {
                 </Col>
                 <Col span={6}>
                     <h2>Go</h2>
-                    <button type="submit" onSubmit={handleSearchSubmit}>Search</button>
+                    <button style={{background: 'purple', color: 'white', height: '30px'}} type="submit" onSubmit={handleSearchSubmit}>Search</button>
                 </Col>
             </form>
         </>
