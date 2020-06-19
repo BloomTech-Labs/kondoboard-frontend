@@ -14,7 +14,10 @@ class JobController {
     }
     async fetchSavedJobList(id) {
         const savedJobList = await JobsService.fetchSavedJobList(id);
-        store.dispatch(Action.getSavedList(savedJobList));
+        if (savedJobList.message === undefined) { // message property indicates no saved jobs found response from back end
+            store.dispatch(Action.getSavedList(savedJobList));
+        } 
+ 
     }
     async searchJobs(search, city, state) {
         const userQuery = await JobsService.queryJob(search, city, state)
@@ -35,12 +38,16 @@ class JobController {
     async selectTaggedJobs(id) {
         store.dispatch(Action.setSelectTaggedJob(id))
     }
-    async setApplied(id) {
+    async filterBoard(id) {
+        store.dispatch(Action.setFilterBoard(id))
+    }
+    async setApplied(id, job) {
         await JobsService.setApplied(id);
+        store.dispatch(Action.setAppliedJob(job))
     }
     async fetchAppliedJobList(id) {
-        const appliedJobList = await JobsService.fetchAppliedList(id);
-        store.dispatch(Action.getAppliedList(appliedJobList))
+        const dDisplay = await JobsService.fetchAppliedList(id);
+        store.dispatch(Action.getAppliedList(dDisplay))
     }
     async addColumn(id, name, location) {
         const column = {name, location}
@@ -50,6 +57,12 @@ class JobController {
     async fetchJobColumns(id) {
         const columns = await JobsService.getColumns(id);
         store.dispatch(Action.getJobColumns(columns));
+    }
+    async addToCol(users_jobs_id) {
+        await JobsService.addApplied(users_jobs_id)
+    }
+    async updateAppliedCol(users_jobs_id, columns_id) {
+        await JobsService.updateAppliedCol(users_jobs_id, columns_id)
     }
 }
 

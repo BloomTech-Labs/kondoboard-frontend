@@ -20,8 +20,8 @@ const NotFound = () => {
     
 
     return (
-        <div>
-            Looks like you navigated to the wrong page, don't worry. We'll Redirect you in {timer}
+        <div className='not-found'>
+            <p>Looks like you navigated to the wrong page, don't worry. We'll Redirect you in {timer}</p>
         </div>
     )
 }

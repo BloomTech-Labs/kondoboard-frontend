@@ -4,8 +4,6 @@ import { CaretDownFilled, AimOutlined } from '@ant-design/icons';
 import { locations } from '@helpers/Locations';
 
 
-// This would have been much simpler if we stuck with a single locations array on the user instead of city and state separately.
-
 const UserLocations = ({form, setForm, user}) => {
 
     const [state, setState] = useState({visible: false, pending: false});
@@ -56,7 +54,8 @@ const UserLocations = ({form, setForm, user}) => {
         // Filters all results by whole string inclusion
         locations.filter(loc => {
             return loc.city.toLowerCase().includes(typed.toLowerCase()) 
-            && !pendingJoined.includes(`${loc.city}, ${loc.state}`) && !form.cities.includes(loc)
+            && !pendingJoined.includes(`${loc.city}, ${loc.state}`) && form.cities.includes(loc.city) ? 
+            removedLocations.includes(`${loc.city}, ${loc.state}`) ? true : false : true
         }).forEach(loc => {
 
             // Add marker to end of string to signify exit condition for next loop
@@ -112,11 +111,13 @@ const UserLocations = ({form, setForm, user}) => {
         setTimeout(() => {
             setState({visible: false, pending: false});
         }, 1000);
+
         let tmp = {city: [], state: []};
         let edditedLocations = [
-            ...joinedLocations.filter(loc => {return pendingJoined.includes(loc)}),
+            ...joinedLocations,
             ...pendingJoined.filter(loc => {return !joinedLocations.includes(loc)})
         ].filter(loc => {return !removedLocations.includes(loc)});
+
         for (let i = 0; i < edditedLocations.length; i++) {
             let split = edditedLocations[i].split(', ');
             tmp.city.push(split[0]);
@@ -130,6 +131,9 @@ const UserLocations = ({form, setForm, user}) => {
         setState({...state, visible: false});
         setTimeout(() => {
             setPendingLocations({city: [], state: []});
+            setRemovedLocations(removedLocations.filter(loc => {
+                return !joinedLocations.includes(loc);
+            }));
         }, 500);
     }
 
@@ -178,9 +182,9 @@ const UserLocations = ({form, setForm, user}) => {
                 })}
                 </div>
             </div>
-        <button className='ant-dropdown-link' onClick={showModal}>Add City <CaretDownFilled className='ico-caret'/></button>
+        <button className='ant-dropdown-link' onClick={showModal}>Edit Cities <CaretDownFilled className='ico-caret'/></button>
         <Modal
-         title='Add City' visible={state.visible} closable={false} onOk={handleOk} confirmLoading={state.pending} onCancel={handleCancel}
+         title='Edit Cities' visible={state.visible} closable={false} onOk={handleOk} confirmLoading={state.pending} onCancel={handleCancel}
          okText='Save' cancelText='Cancel' okButtonProps={{className: 'modal-save'}} cancelButtonProps={{className: 'modal-cancel'}}>
 
             <form className='modal-input' onSubmit={addPendingLocations} autoComplete='off'>

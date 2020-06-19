@@ -16,7 +16,7 @@ const UserInfo = ({user}) => {
         cities: user.cities || [],
         states: user.states || [],
         skills: user.skills || [],
-        remote: user.remote === 1 ? true : false
+        remote: user.remote
     });
     const [err, setErr] = useState({
         trackErr: form.user_track === '' ? true : false,
@@ -31,7 +31,7 @@ const UserInfo = ({user}) => {
             cities: user.cities || [],
             states: user.states || [],
             skills: user.skills || [],
-            remote: user.remote === 1 ? true : false
+            remote: user.remote
         });
     }, [user]);
 
@@ -47,7 +47,7 @@ const UserInfo = ({user}) => {
     let submitAll = (e) => {
         e.preventDefault();
         ProfileController.updateUser(form, user.id).catch(err => {
-            console.log(err);
+            throw err;
         });
     }
 

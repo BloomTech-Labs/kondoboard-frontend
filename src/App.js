@@ -17,6 +17,7 @@ import JobListings from '@containers/JobListings.jsx';
 import SavedListings from './view/dashboard/containers/SavedListings.jsx';
 import AppliedJobListings from './view/dashboard/containers/AppliedListings.jsx';
 import UserValidation from '@dashboard/profile/UserValidation';
+import SideBar from '@dashboard/nav/SideBar';
 
 const App = () => {
 
@@ -30,7 +31,7 @@ const App = () => {
 
   const PrivateRoute = ({ component: Component, ...rest}) => (
     <Route {...rest} render={(props) => (
-      authState.isPending ? <Spinner /> :
+      authState.isPending  ? <Spinner /> :
       authState.isAuthenticated === true 
       ? <Component/>
       : <Redirect to='/login'/>
@@ -50,6 +51,8 @@ const App = () => {
     <div className="App">
       <Header />
       <UserValidation />
+      <div className='app-container'>
+      {authState.isAuthenticated && <SideBar />}
       <Switch>
         <PublicRoute path='/login' component={Login}/>
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
@@ -59,7 +62,7 @@ const App = () => {
         <PrivateRoute exact path='/' component={JobListings}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>
-
+      </div>
     </div>
   );
 }

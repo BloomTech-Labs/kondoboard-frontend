@@ -22,10 +22,11 @@ const UserSkills = ({form, setForm, user}) => {
         setState({...state, pending: true});
         setTimeout(() => {
             setState({visible: false, pending: false});
+            document.getElementById('skill-search').value = '';
         }, 1000);
 
         let edittedSkills = [
-            ...form.skills.filter(skill => {return pendingSkills.includes(skill)}), 
+            ...form.skills, 
             ...pendingSkills.filter(skill => {return !form.skills.includes(skill)})
         ].filter(skill => {return !removedSkills.includes(skill)});
 
@@ -36,11 +37,15 @@ const UserSkills = ({form, setForm, user}) => {
         setState({...state, visible: false});
         setTimeout(() => {
             setPendingSkills([]);
+            setRemovedSkills(removedSkills.filter(skill => {
+                return !form.skills.includes(skill);
+            }));
         }, 500);
+
     }
 
     const menuClick = (e) => {
-        document.getElementById('location-search').value = e.item.props.value;
+        document.getElementById('skill-search').value = e.item.props.value;
         setIsValid(true);
     }
 
@@ -51,7 +56,8 @@ const UserSkills = ({form, setForm, user}) => {
         // Filters all results by whole string inclusion
         skills.filter(s => {
             return s.toLowerCase().includes(typed.toLowerCase()) 
-            && !pendingSkills.includes(s) && !form.skills.includes(s)
+            && !pendingSkills.includes(s) && form.skills.includes(s) ? 
+            removedSkills.includes(s) ? true : false : true
         }).forEach(s => {
 
             // Add marker to end of string to signify exit condition for next loop
@@ -94,17 +100,19 @@ const UserSkills = ({form, setForm, user}) => {
         e.preventDefault();
         let skill = e.target[0].value;
         let duplicate = false;
-        setRemovedSkills([...removedSkills.filter(s => {return s !== skill})]);
-        if (pendingSkills.includes(skill) || form.skills.includes(skill)) {
+        if (pendingSkills.includes(skill) | form.skills.includes(skill) && !removedSkills.includes(skill)) {
             duplicate = true;
         }
         if (duplicate) {
             alert('Already Added');
         } else {
             setPendingSkills([...pendingSkills, e.target[0].value]);
+            setSearch({typed: '', filter: []})
         }
+        setRemovedSkills([...removedSkills.filter(s => {return s !== skill})]);
         e.target.reset();
     }
+
     const addSuggestedSkill = (skill) => {
         let duplicate = false;
         setRemovedSkills([...removedSkills.filter(s => {return s !== skill})]);
@@ -116,8 +124,9 @@ const UserSkills = ({form, setForm, user}) => {
             setForm({...form, skills: [...form.skills, skill]});
         }
     }
+
     const removeSkill = (skill) => {
-        setPendingSkills(pendingSkills.filter((s) => {
+        setPendingSkills(pendingSkills.filter(s => {
             return s !== skill;
         }));
         setRemovedSkills([...removedSkills, skill])
@@ -143,18 +152,18 @@ const UserSkills = ({form, setForm, user}) => {
             </div>
             <SuggestedSkills form={form} setForm={setForm} user={user} pendingSkills={pendingSkills} addSuggestedSkill={addSuggestedSkill} />
             </div>
-            <button className='ant-dropdown-link' onClick={showModal}>Add Skills <CaretDownFilled className='ico-caret'/></button>
+            <button className='ant-dropdown-link' onClick={showModal}>Edit Skills <CaretDownFilled className='ico-caret'/></button>
             <Modal
-             title='Add Skills' visible={state.visible} closable={false} onOk={handleOk} confirmLoading={state.pending} onCancel={handleCancel}
+             title='Edit Skills' visible={state.visible} closable={false} onOk={handleOk} confirmLoading={state.pending} onCancel={handleCancel}
              okText='Save' cancelText='Cancel' okButtonProps={{className: 'modal-save'}} cancelButtonProps={{className: 'modal-cancel'}}>
 
                 <form className='modal-input' onSubmit={addPendingSkills} autoComplete='off'>
                 <AuditOutlined style={{fontSize: '2.4rem'}}/>
                 <Dropdown overlay={menu} trigger={['focus']} placement='bottomCenter'>
-                    <input placeholder='Search...' size='large' onChange={handleSearch} id='location-search' prefix={<SearchOutlined style={{fontSize: '2rem'}}/>} />
+                    <input placeholder='Search...' size='large' onChange={handleSearch} id='skill-search' prefix={<SearchOutlined style={{fontSize: '2rem'}}/>} />
                 </Dropdown>
                     <Button size='large' className='modal-add' htmlType='submit' disabled={!isValid}>Add</Button>
-                </form>
+                </form> 
                 {pendingSkills && <div className='skill-box-modal'>
                     {form.skills.map(skill => {
                         return pendingSkills.includes(skill) === true ? 

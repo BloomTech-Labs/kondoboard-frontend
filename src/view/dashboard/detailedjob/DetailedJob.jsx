@@ -7,13 +7,16 @@ import { Modal } from 'antd';
 import DateHelper from '@helpers/DateConversion.js';
 import JobController from '@controllers/JobController.js';
 
-import TagAdder from './TagAdder.jsx';
+import TagsDisplay from '../savedjobcomponents/TagsDisplay.jsx';
+
+import { CaretDownFilled } from '@ant-design/icons';
 
 const DetailedJob = () => {
     const [visible, setVisible] = useState(false);
 
     const job = useSelector(selectSavedJob);
     const id = job.jobs_id;
+    const users_jobs_id = job.id;
 
     const daysAgo = DateHelper.convertToDays(job.date_published);
 
@@ -22,7 +25,8 @@ const DetailedJob = () => {
     }
 
     const handleOk = e => {
-        JobController.setApplied(id)
+        JobController.setApplied(users_jobs_id, job)
+        JobController.addToCol(users_jobs_id)
         setVisible(false)
     }
 
@@ -39,7 +43,8 @@ const DetailedJob = () => {
                         <div style={{display: 'flex', justifyContent: 'space-between'}}>
                             <h1 style={{marginTop: '-3%'}}>{job && job.company}</h1>
                             <p>{(daysAgo === 0) ? job && 'Today' : (daysAgo === 1) ? job && '1 day ago' : job && `${daysAgo} days ago`}</p>
-                            <TagAdder job={job} />
+                            <p>{job && 'Add Tag'}{job && <CaretDownFilled />}</p>
+                            <TagsDisplay job={job} extended={false}/>
                         </div>
                         <div style={{display: 'flex', justifyContent: 'space-between'}}>
                             <div>
