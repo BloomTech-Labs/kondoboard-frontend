@@ -18,67 +18,66 @@ export const SET_JOB_COLUMN = 'SET_JOB_COLUMN';
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_HISTORY = 'SET_HISTORY';
 
-
 export const getJobList = jobList => {
-    return { type: SET_JOBS_LIST, jobList }
-}
+  return { type: SET_JOBS_LIST, jobList };
+};
  
 export const getSavedList = savedJobList => {
-    return { type: SET_SAVED_JOB_LIST, savedJobList }
-}
+  return { type: SET_SAVED_JOB_LIST, savedJobList };
+};
 
 export const getQueryList = userQuery => {
-    return { type: SET_QUERY_LIST, userQuery }
-}
+  return { type: SET_QUERY_LIST, userQuery };
+};
 
 export const getSavedIds = savedJobIds => {
-    return { type: SET_SAVED_JOB_IDS, savedJobIds }
-}
+  return { type: SET_SAVED_JOB_IDS, savedJobIds };
+};
 
 export const setSavedJob = savedJob => {
-    return { type: SET_SAVED_JOB, savedJob }
-}
+  return { type: SET_SAVED_JOB, savedJob };
+};
 
 export const selectSavedJob = job => {
-    return { type: SELECT_SAVED_JOB, job }
-}
+  return { type: SELECT_SAVED_JOB, job };
+};
 
 export const setTag = tag => {
-    return { type: ADD_NEW_TAG, tag }
-}
+  return { type: ADD_NEW_TAG, tag };
+};
 
 export const getJobTags = tags => {
-    return { type: GET_JOB_TAGS, tags }
-}
+  return { type: GET_JOB_TAGS, tags };
+};
 
 export const setAppliedJob = appliedJobList => {
-    return { type: GET_APPLIED_JOB, appliedJobList }
-}
+  return { type: GET_APPLIED_JOB, appliedJobList };
+};
 
 export const setSelectTaggedJob = taggedJob => {
-    return { type: SELECT_TAGGED_JOBS, taggedJob }
-}
+  return { type: SELECT_TAGGED_JOBS, taggedJob };
+};
 
 export const setFilterBoard = savedJobList => {
-    return { type: SET_FILTER_BOARD, savedJobList }
-}
+  return { type: SET_FILTER_BOARD, savedJobList };
+};
 
 export const getJobColumns = columns => {
-    return { type: GET_JOB_COLUMNS, columns }
-}
+  return { type: GET_JOB_COLUMNS, columns };
+};
 
 export const setColumn = column => {
-    return { type: SET_JOB_COLUMN, column }
-}
+  return { type: SET_JOB_COLUMN, column };
+};
 
 export const getAppliedList = appliedJobs => {
-    return { type: GET_APPLIED_JOBS, appliedJobs }
-}
+  return { type: GET_APPLIED_JOBS, appliedJobs };
+};
 
 export const setUserData = user => {
-    return { type: SET_USER_DATA, payload: user }
-}
+  return { type: SET_USER_DATA, payload: user };
+};
 
 export const setHistory = history => {
-    return { type: SET_HISTORY, payload: history}
-}
+  return { type: SET_HISTORY, payload: history};
+};

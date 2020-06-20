@@ -7,9 +7,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Security } from '@okta/okta-react';
 import Config from './helpers/utils/okta-sdk';
 
-
-
-
 ReactDOM.render(
   <Provider store={store}>
     <Security {...Config}>
@@ -18,6 +15,6 @@ ReactDOM.render(
       </Router>
     </Security>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 

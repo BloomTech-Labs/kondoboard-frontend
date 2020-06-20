@@ -1,0 +1,23 @@
+name: pr-beta
+​
+on:
+  pull_request:
+    branches: 
+    - 'master'
+    - 'dev'
+​
+jobs:
+  main:
+    name: Install and Predeploy
+    runs-on: ubuntu-latest
+​
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+​
+    - name: Installs project
+      run: |
+        npm install
+    - name: Runs through predeploy steps
+      run: |
+        npm run predeploy
