@@ -58,11 +58,18 @@ class JobController {
         const columns = await JobsService.getColumns(id);
         store.dispatch(Action.getJobColumns(columns));
     }
-    async addToCol(users_jobs_id) {
-        await JobsService.addApplied(users_jobs_id)
+    async fetchJobsColumns(id) {
+        const jobsColumns = await JobsService.getJobsColumns(id);
+        store.dispatch(Action.getJobsColumns(jobsColumns));
     }
-    async updateAppliedCol(users_jobs_id, columns_id) {
-        await JobsService.updateAppliedCol(users_jobs_id, columns_id)
+    async addToCol(users_jobs_id, columns_id) {
+        await JobsService.addApplied(users_jobs_id, columns_id);
+    }
+    async updateAppliedCol(columns_id, users_jobs_id) {
+        await JobsService.updateAppliedCol(columns_id, users_jobs_id)
+    }
+    async passTarget(jobId) {
+        store.dispatch(Action.passTarget(jobId));
     }
 }
 

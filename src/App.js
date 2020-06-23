@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch } from 'react-router';
 import { Route, Redirect } from 'react-router-dom';
 import { useOktaAuth, LoginCallback } from '@okta/okta-react';

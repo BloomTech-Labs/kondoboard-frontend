@@ -21,3 +21,5 @@ export const selectAppliedJobs = state => state.appliedJobList;
 export const selectJobColumns = state => state.columns;
 
 export const selectDisplay = state => state.dDisplay;
+
+export const selectTargetJob = state => state.cTarget;

@@ -8,7 +8,9 @@ const initialState = {
     savedJobIds: [],
     job: {},
     tags: [],
-    columns: []
+    columns: [],
+    jobsColumns: [],
+    jobId: null
 }
 
 export const reducer = (state = initialState, action) => {
@@ -64,21 +66,25 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 tags: [...action.tags]
             }
-        case Actions.GET_APPLIED_JOB:
-            console.log('reducer', action)
-            return {
-                ...state,
-                appliedJobList: [...state.appliedJobList, action.appliedJobList]
-            }
         case Actions.SELECT_TAGGED_JOBS:
             return {
                 ...state,
                 taggedJob: [...action.taggedJob]
             }
-        case Actions.GET_APPLIED_JOB:
+        case Actions.GET_JOB_COLUMNS:
             return {
                 ...state,
-                columns: [...state.columns, action.columns]
+                columns: action.columns
+            }
+        case Actions.GET_JOBS_COLUMNS:
+            return {
+                ...state,
+                jobsColumns: [...action.jobsColumns]
+            }
+        case Actions.PASS_TARGET:
+            return {
+                ...state,
+                jobId: action.jobId
             }
             default:
                 return state;
