@@ -22,4 +22,4 @@ export const selectJobColumns = state => state.columns;
 
 export const selectDisplay = state => state.dDisplay;
 
-export const selectTargetJob = state => state.cTarget;
+export const selectTargetJob = state => state.jobId;
