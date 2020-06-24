@@ -1,13 +1,12 @@
 import React from 'react';
-
 import { useSelector } from 'react-redux';
-
-import { selectTargetJob } from '@state/selectors';
 
 import ColumnHelpers from '@helpers/MatchJobToCol.js';
 
+import { selectTargetJob } from '@state/selectors.js'
+
 import Draggable from './Draggable.jsx';
-import JobController from '../../../controllers/JobController.js';
+import JobController from '@controllers/JobController.js';
 
 const DropZone = props => {
     const column = props.column;
@@ -18,33 +17,40 @@ const DropZone = props => {
     const drop = e => {
         e.preventDefault();
         const card_id = e.dataTransfer.getData('card_id');
+        console.log('targeting', e.target)
         const card = document.getElementById(card_id);
-        card.style.display = 'initial';
-        const columns_id = parseInt(e.target.id);
+        card.style.display = 'block';
 
         e.target.appendChild(card);
+        const columns_id = e.target.id;
         JobController.updateAppliedCol(columns_id, users_jobs_id)
     }
-    
+
     const dragOver = e => {
         e.preventDefault();
     }
 
     return(
         <div
-            className='applied'
+            style={{marginTop: '-5%'}}
             onDrop={drop}
             onDragOver={dragOver}
         >
             <h2>{column.name}</h2>
-            <div style={{border: 'none'}}
+            <div
                 id={column.id}
                 onDrop={drop}
                 onDragOver={dragOver}
                 >
-                {matchingJobs && matchingJobs.map(job => {
-                    return <Draggable column={column} job={job} key={job.id} draggable='true' />
-                })}
+                {matchingJobs ? 
+                <>
+                    {matchingJobs && matchingJobs.map(job => {
+                        return <Draggable  newCol={column.id} column={column} job={job} key={job.id} draggable='true' />
+                    })}
+                </>
+                :
+                null               
+                }
             </div>
         </div>
     )
