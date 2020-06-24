@@ -76,7 +76,7 @@ class JobsService {
     }
 
     async updateAppliedCol(columns_id, users_jobs_id) {
-        const response = await axiosWithAuth().put(`${backEndUrl}/jobs/column/${columns_id}`, {columns_id, users_jobs_id})
+        const response = await axiosWithAuth().put(`${backEndUrl}/column/update/job`, {columns_id, users_jobs_id})
     }
 }
 
