@@ -19,11 +19,9 @@ const DropZone = props => {
         const card_id = e.dataTransfer.getData('card_id');
         const card = document.getElementById(card_id);
         card.style.display = 'block';
-        console.log(e.target)
         
         e.target.appendChild(card);
         const columns_id = e.target.id;
-        console.log('targeting', columns_id, users_jobs_id)
         JobController.updateAppliedCol(columns_id, users_jobs_id)
     }
 
@@ -40,7 +38,6 @@ const DropZone = props => {
             >
             <h2>{column.name}</h2>
             <div
-                // id={column.id}
                 onDrop={drop}
                 onDragOver={dragOver}
                 >
