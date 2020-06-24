@@ -7,21 +7,55 @@
     background-color: @secondary-background;
     .drop-box {
         height: 100%;
-        width: 80%;
+        width: 90%;
         text-align: center;
         overflow-x: auto;
         .overflow-box {
             display: flex;
-            flex-flow: row nowrap;
+            flex-flow: row nowrap; 
             justify-content: stretch;
-            min-width: 100vw;
+            min-width: 80vw;
             height: 100%;
+            .draggable {
+                min-width: 100%;
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+            }
             .job-card {
-                background-color: @secondary-background;
+                min-width: 100%;
+                height: min-content;
+                border-radius: 4px;
+                border: 2px solid @primary-border;
+                display: flex;
+                flex-flow: column nowrap;
                 margin-bottom: 1rem;
-                border-radius: 3%;
-                border: 1px solid @primary-border;
-                width: 95%;
+                padding: 1rem;
+                .top-row {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: space-between;
+                    h1 {
+                        padding: 0;
+                        margin: 0;
+                        width: 70%;
+                        text-align: left
+                    }
+                }
+                .middle-row {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: space-between;
+                    p {
+                        width: 50%;
+                        text-align: left;
+                    }
+                }
+                .bottom-row {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: space-between;
+                }
+        
             }
             h2 {
                 position: sticky;
@@ -33,23 +67,18 @@
             .applied {
                 display: flex;
                 flex-flow: column nowrap;
-                justify-content: start;
+                justify-content: flex-start;
                 align-items: center;
                 background-color: @primary-background;
-                width: 50%;
+                min-width: 35%;
+                max-width: 35%;
                 margin-left: 1rem;
                 overflow-y: auto;
             }
-            .interview {
+            .add-column {
                 display: flex;
-                flex-flow: column nowrap;
-                justify-content: start;
-                align-items: center;
-                background-color: @primary-background;
-                width: 50%;
-                margin-left: 1rem;
-                margin-right: 1rem;
-                overflow-y: auto;
+                flex-flow: row nowrap;
+                padding-right: 1rem;
             }
         }
 

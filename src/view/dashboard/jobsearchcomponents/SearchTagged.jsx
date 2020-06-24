@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CaretDownFilled } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
-import { Col, Modal } from 'antd';
+import { Modal } from 'antd';
 
 import JobController from '@controllers/JobController.js';
 import AddTag from '@dashboard/forms/AddTag.jsx';
@@ -33,28 +33,34 @@ const SearchTagged = props => {
 
     const selectJob = e => {
         e.preventDefault();
-        JobController.selectJob(job)
+        JobController.selectJob(job);
+        if (props.currentJob !== undefined) {
+            props.setCurrentJob(job.id);
+        }
+
+        
     }
 
     useEffect(() => {
         JobController.getJobTags(id);
-    }, [])
+    }, []);
 
     return(
         <>
             {job.id ? 
-                <div onClick={selectJob} style={{border: '3px solid gray', borderRadius: '5%', display: 'flex', marginBottom: '5%'}}>
-                <Col span={14} style={{marginLeft: '7%'}}>
-                    <h1>{job.company}</h1>    
-                    <p>{job.title}</p>
-                    <p>{job.location_city}, {job.location_state}</p>  
-                </Col>
-                <Col span={2}></Col>
-                <Col span={8} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
-                    <p onClick={showModal}>Add Tag<CaretDownFilled /></p>
-                    <TagDisplay job={job} extended={false}/>
-                    <p>{daysAgo === 0 ? 'Today' : daysAgo === 1 ? '1 day ago' : `${daysAgo} days ago`}</p>
-                </Col>
+                <div className={props.currentJob === job.id ? 'job-card selected' : 'job-card'} onClick={selectJob}>
+                    <div className='top-row'>
+                        <h1>{job.company}</h1> 
+                        <p onClick={showModal}>Add Tag<CaretDownFilled /></p>
+                    </div>
+                    <div className='middle-row'>
+                        <p>{job.title}</p>
+                        <TagDisplay job={job} extended={false}/>
+                    </div>
+                    <div className='bottom-row'>
+                        <p>{job.location_city}, {job.location_state}</p>  
+                        <p>{daysAgo === 0 ? 'Today' : daysAgo === 1 ? '1 day ago' : `${daysAgo} days ago`}</p>
+                    </div>
                 <Modal
                     className='user-tag-modal'
                     title='Add Tag'
@@ -66,7 +72,7 @@ const SearchTagged = props => {
                     cancelButtonProps={{className: 'modal-cancel'}}
                     okText='Confirm' 
                     cancelText='Cancel'
-                >
+                > 
                     <AddTag job={job} />
                 </Modal>
             </div>
