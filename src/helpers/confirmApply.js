@@ -1,7 +1,7 @@
 class column {
     static filterApply(columns) {
         const appliedColumn = columns.filter(column => {
-            return column.name === 'apply'
+            return column.name === 'Applied'
         })
         const column_id = appliedColumn.map(column => {
             return column.id

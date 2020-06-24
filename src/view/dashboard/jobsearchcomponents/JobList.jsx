@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import JobController from '@controllers/JobController.js';
@@ -9,7 +8,7 @@ import { selectUserQuery } from '@state/selectors.js';
 import JobSearch from '@dashboard/forms/JobSearch.jsx';
 import SearchTagged from './SearchTagged.jsx';
 
-const JobList = () => {
+const JobList = ({ currentJob, setCurrentJob }) => {
     const jobList = useSelector(selectJobList);
     const queryList = useSelector(selectUserQuery);
 
@@ -18,14 +17,14 @@ const JobList = () => {
     }, []);
 
     return(
-        <div>
-            <Link to='/'>Results</Link><Link to='/saved'> Tagged</Link>
+        <div className='job-list'>
             <JobSearch />
+
             {queryList && queryList.map(job => {
-                return <SearchTagged job={job} key={job.id} />
+                return <SearchTagged job={job} key={job.id} currentJob={currentJob} setCurrentJob={setCurrentJob} />
             })}
             {jobList && jobList.map(job => {
-                return <SearchTagged job={job} key={job.id} />
+                return <SearchTagged job={job} key={job.id} currentJob={currentJob} setCurrentJob={setCurrentJob} />
             })}
 
         </div>

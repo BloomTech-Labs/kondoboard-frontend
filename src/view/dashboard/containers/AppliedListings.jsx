@@ -7,7 +7,6 @@ const AppliedJobListings = () => {
     return(
         <div className='applied-listings'>
             <AppliedJobList />
-            <div style={{width: '20%'}} />  {/* Filter Menu Goes Here */}
         </div>
     )
 }

@@ -51,6 +51,7 @@ class JobController {
     }
     async addColumn(id, name, location) {
         const column = {name, location}
+        
         await JobsService.addColumn(id, name, location);
         store.dispatch(Action.setColumn(column))
     }

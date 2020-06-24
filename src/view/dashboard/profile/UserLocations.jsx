@@ -54,8 +54,8 @@ const UserLocations = ({form, setForm, user}) => {
         // Filters all results by whole string inclusion
         locations.filter(loc => {
             return loc.city.toLowerCase().includes(typed.toLowerCase()) 
-            && !pendingJoined.includes(`${loc.city}, ${loc.state}`) && form.cities.includes(loc.city) ? 
-            removedLocations.includes(`${loc.city}, ${loc.state}`) ? true : false : true
+            && form.cities.includes(loc.city) ? removedLocations.includes(`${loc.city}, ${loc.state}`) ? true : false : true
+            && !pendingJoined.includes(`${loc.city}, ${loc.state}`)
         }).forEach(loc => {
 
             // Add marker to end of string to signify exit condition for next loop

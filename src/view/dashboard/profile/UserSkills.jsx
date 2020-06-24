@@ -56,8 +56,8 @@ const UserSkills = ({form, setForm, user}) => {
         // Filters all results by whole string inclusion
         skills.filter(s => {
             return s.toLowerCase().includes(typed.toLowerCase()) 
-            && !pendingSkills.includes(s) && form.skills.includes(s) ? 
-            removedSkills.includes(s) ? true : false : true
+            && form.skills.includes(s) ? removedSkills.includes(s) ? true : false : true 
+            && !pendingSkills.includes(s)
         }).forEach(s => {
 
             // Add marker to end of string to signify exit condition for next loop
@@ -160,7 +160,7 @@ const UserSkills = ({form, setForm, user}) => {
                 <form className='modal-input' onSubmit={addPendingSkills} autoComplete='off'>
                 <AuditOutlined style={{fontSize: '2.4rem'}}/>
                 <Dropdown overlay={menu} trigger={['focus']} placement='bottomCenter'>
-                    <input placeholder='Search...' size='large' onChange={handleSearch} id='skill-search' prefix={<SearchOutlined style={{fontSize: '2rem'}}/>} />
+                    <input placeholder='Search...' size='large' onChange={handleSearch} id='skill-search'/>
                 </Dropdown>
                     <Button size='large' className='modal-add' htmlType='submit' disabled={!isValid}>Add</Button>
                 </form> 

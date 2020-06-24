@@ -6,34 +6,37 @@ import { PlusOutlined } from '@ant-design/icons';
 import { selectJobColumns } from '@state/selectors.js';
 import { selectUserId } from '@state/selectors.js';
 
-import JobController from '../../../controllers/JobController';
+import JobController from '@controllers/JobController';
 
-const AddColumn = () => {
+const AddColumn = ({ update, setUpdate }) => {
     const columns = useSelector(selectJobColumns);
     const id = useSelector(selectUserId);
     const [name, setName] = useState('');
     const [location] = useState(columns.length + 1)
+
     const handleNameChange = e => {
         setName(e.target.value)
     }
-    const addColumn = e => {
+
+    const addColumn = async e => {
         e.preventDefault();
-        JobController.addColumn(id, name, location);
+        await JobController.addColumn(id, name, location);
         setName('');
+        setUpdate(!update);
     }
     return(
-        <div>
-            <form onSubmit={addColumn}>
+            <form className='add-column' onSubmit={addColumn}>
                 <input
+                    autoComplete='off'
+                    required
                     value={name}
                     placeholder='Add a column'
                     name='name'
                     type='text'
                     onChange={handleNameChange}
                 />
-                <span type='submit'><PlusOutlined /></span>
+                <button type='submit'><PlusOutlined /></button>
             </form>
-        </div>
     )
 }
 

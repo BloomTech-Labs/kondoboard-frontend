@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { selectSavedJob } from '@state/selectors.js';
-import { selectUserId } from '@state/selectors.js';
+import { selectUserId, selectJobColumns, selectSavedJob } from '@state/selectors.js';
 
 import DateHelper from '@helpers/DateConversion.js';
-
-import TagsDisplay from '../savedjobcomponents/TagsDisplay.jsx';
+import ColumnHelpers from '@helpers/confirmApply.js';
+import JobController from '@controllers/JobController.js';
+import TagsDisplay from '@dashboard/savedjobcomponents/TagsDisplay.jsx';
 import ApplyToJob from './ApplyToJob.jsx';
 
-const DetailedJob = () => {
+const DetailedJob = ({ nav }) => {
     const id = useSelector(selectUserId);
     const job = useSelector(selectSavedJob);
+    const columns = useSelector(selectJobColumns);
 
+    const columns_id = ColumnHelpers.filterApply(columns)
     const daysAgo = DateHelper.convertToDays(job.date_published);
+
+    useEffect(() => {
+        JobController.fetchJobColumns(id);
+    },[]);
 
     return(
         <>
@@ -28,7 +34,7 @@ const DetailedJob = () => {
                         <p>{job && job.title}</p>
                         <p>{job.location_city}, {job.location_state}</p>
                     </div>
-                    <ApplyToJob job={job} id={id} />
+                {nav === 'saved' && <ApplyToJob job={job} id={id} columns_id={columns_id}/> }
                 </div>
                     <p>{job && job.description}</p>
                 </div>

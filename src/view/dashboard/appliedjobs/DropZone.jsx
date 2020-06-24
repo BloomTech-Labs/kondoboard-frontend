@@ -19,7 +19,7 @@ const DropZone = props => {
         e.preventDefault();
         const card_id = e.dataTransfer.getData('card_id');
         const card = document.getElementById(card_id);
-        card.style.display = 'block';
+        card.style.display = 'initial';
         const columns_id = parseInt(e.target.id);
 
         e.target.appendChild(card);
@@ -32,17 +32,15 @@ const DropZone = props => {
 
     return(
         <div
-            style={{marginTop: '-5%'}}
+            className='applied'
             onDrop={drop}
             onDragOver={dragOver}
-            style={{width: '300px', height: '75vh'}}
         >
             <h2>{column.name}</h2>
-            <div
+            <div style={{border: 'none'}}
                 id={column.id}
                 onDrop={drop}
                 onDragOver={dragOver}
-                style={{width: '300px', height: '75vh'}}
                 >
                 {matchingJobs && matchingJobs.map(job => {
                     return <Draggable column={column} job={job} key={job.id} draggable='true' />

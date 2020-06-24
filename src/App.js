@@ -13,8 +13,7 @@ import Login from '@containers/Login';
 import Profile from '@containers/Profile';
 import Header from '@containers/Header';
 import NotFound from '@containers/NotFound';
-import JobListings from '@containers/JobListings.jsx';
-import SavedListings from './view/dashboard/containers/SavedListings.jsx';
+import Search from '@containers/Search';
 import AppliedJobListings from './view/dashboard/containers/AppliedListings.jsx';
 import UserValidation from '@dashboard/profile/UserValidation';
 import SideBar from '@dashboard/nav/SideBar';
@@ -58,8 +57,7 @@ const App = () => {
         <PublicRoute path='/implicit/callback' component={LoginCallback}/>
         <PrivateRoute path='/profile' component={Profile}/>
         <PrivateRoute path='/applied' component={AppliedJobListings} />
-        <PrivateRoute path='/saved' component={SavedListings} />
-        <PrivateRoute exact path='/' component={JobListings}/>
+        <PrivateRoute exact path='/' component={Search}/>
         <Route component={NotFound}/> {/* Catch all for non existing routes */}
       </Switch>
       </div>

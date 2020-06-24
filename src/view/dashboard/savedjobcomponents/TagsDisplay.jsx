@@ -19,8 +19,8 @@ const TagDisplay = props => {
     const lessTags = TagHelper.shortenArr(jobTags)
 
     useEffect(() => {
-        JobController.getJobTags(id)
-    }, [])
+        JobController.getJobTags(id);
+    },[id]);
     
     return(
         <div style={{display: 'flex', justifyContent: 'flex-start'}}>
