@@ -25,7 +25,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "lint": "npx eslint src",
-    "lintFix": "npx eslint --fix src",
+    "lint:fix": "npx eslint --fix src",
+    "predeploy": "npm run lint:fix && npm run lint",
     "test": "jest",
     "eject": "react-scripts eject",
     "less": "less-watch-compiler ./src/less ./src App.less"
