@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import ColumnHelpers from '@helpers/MatchJobToCol.js';
 
-import { selectTargetJob } from '@state/selectors.js'
+import { selectTargetJob, selectUserId } from '@state/selectors.js'
 
 import Draggable from './Draggable.jsx';
 import JobController from '@controllers/JobController.js';
@@ -11,10 +11,11 @@ import JobController from '@controllers/JobController.js';
 const DropZone = props => {
     const column = props.column;
     const jobs = props.jobs;
+    const id = useSelector(selectUserId)
     const users_jobs_id = useSelector(selectTargetJob);
     const matchingJobs = ColumnHelpers.matchJobToCol(column, jobs);
 
-    const drop = e => {
+    const drop = async e => {
         e.preventDefault();
         const card_id = e.dataTransfer.getData('card_id');
         const card = document.getElementById(card_id);
@@ -22,7 +23,8 @@ const DropZone = props => {
         
         e.target.appendChild(card);
         const columns_id = e.target.id;
-        JobController.updateAppliedCol(columns_id, users_jobs_id)
+        await JobController.updateAppliedCol(columns_id, users_jobs_id)
+        JobController.fetchSavedJobList(id);
     }
 
     const dragOver = e => {
@@ -31,7 +33,6 @@ const DropZone = props => {
 
     return(
         <div
-            style={{marginTop: '-5%'}}
             onDrop={drop}
             onDragOver={dragOver}
             id={column.id}
@@ -40,6 +41,7 @@ const DropZone = props => {
             <div
                 onDrop={drop}
                 onDragOver={dragOver}
+                id={column.id}
                 >
                 {matchingJobs ? 
                 <>

@@ -5,7 +5,6 @@ import JobController from '@controllers/JobController.js';
 
 const AppliedJob = props => {
     const job = props.job;
-    const users_jobs_id = job.jobs_id;
 
     const dragStart = e => {
         const target = e.target;
@@ -18,7 +17,8 @@ const AppliedJob = props => {
     }
 
     const dragOver = e => {
-        JobController.passTarget(users_jobs_id);
+        console.log('id is', job.jobs_id)
+        JobController.passTarget(job.jobs_id);
         e.stopPropagation();
     }
     return(

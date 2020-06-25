@@ -20,7 +20,8 @@ const AddColumn = ({ update, setUpdate }) => {
 
     const addColumn = async e => {
         e.preventDefault();
-        await JobController.addColumn(id, name, location);
+        const savedJobs = []
+        await JobController.addColumn(id, name, location, savedJobs);
         setName('');
         setUpdate(!update);
     }

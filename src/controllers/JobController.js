@@ -49,8 +49,8 @@ class JobController {
         const dDisplay = await JobsService.fetchAppliedList(id);
         store.dispatch(Action.getAppliedList(dDisplay))
     }
-    async addColumn(id, name, location) {
-        const column = {name, location}
+    async addColumn(id, name, location, savedJobs) {
+        const column = {name, location, savedJobs}
         
         await JobsService.addColumn(id, name, location);
         store.dispatch(Action.setColumn(column))
@@ -67,7 +67,9 @@ class JobController {
         await JobsService.addApplied(users_jobs_id, columns_id);
     }
     async updateAppliedCol(columns_id, users_jobs_id) {
+        const jobLocation = {columns_id, users_jobs_id}
         await JobsService.updateAppliedCol(columns_id, users_jobs_id)
+        store.dispatch(Action.moveJob(jobLocation))
     }
     async passTarget(jobId) {
         store.dispatch(Action.passTarget(jobId));

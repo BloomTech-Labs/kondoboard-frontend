@@ -16,6 +16,7 @@ export const GET_JOB_COLUMNS = 'GET_JOB_COLUMNS';
 export const GET_JOBS_COLUMNS = 'GET_JOBS_COLUMNS';
 export const SET_JOB_COLUMN = 'SET_JOB_COLUMN';
 export const PASS_TARGET = 'PASS_TARGET';
+export const MOVE_JOB = 'MOVE_JOB';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_HISTORY = 'SET_HISTORY';
@@ -83,6 +84,10 @@ export const getAppliedList = appliedJobs => {
 
 export const passTarget = jobId => {
     return { type: PASS_TARGET, jobId }
+}
+
+export const moveJob = jobLocation => {
+    return { type: MOVE_JOB, jobLocation }
 }
 
 export const setUserData = user => {
