@@ -86,10 +86,6 @@ export const passTarget = jobId => {
     return { type: PASS_TARGET, jobId }
 }
 
-export const moveJob = jobLocation => {
-    return { type: MOVE_JOB, jobLocation }
-}
-
 export const setUserData = user => {
     return { type: SET_USER_DATA, payload: user }
 }

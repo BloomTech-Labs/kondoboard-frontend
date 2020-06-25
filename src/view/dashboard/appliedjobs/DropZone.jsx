@@ -20,7 +20,8 @@ const DropZone = props => {
         const card_id = e.dataTransfer.getData('card_id');
         const card = document.getElementById(card_id);
         card.style.display = 'block';
-        
+        JobController.fetchSavedJobList(id);
+
         e.target.appendChild(card);
         const columns_id = e.target.id;
         await JobController.updateAppliedCol(columns_id, users_jobs_id)

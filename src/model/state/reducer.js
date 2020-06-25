@@ -10,8 +10,7 @@ const initialState = {
     tags: [],
     columns: [],
     jobsColumns: [],
-    jobId: null,
-    appliedJobs: []
+    jobId: null
 }
 
 export const reducer = (state = initialState, action) => {
@@ -92,12 +91,6 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 jobId: action.jobId
             }
-        // case Actions.MOVE_JOB:
-        //     console.log('reducer', action)
-        //     return {
-        //         ...state,
-        //         appliedJobs: [...state.columns.savedJobs]
-        //     }
             default:
                 return state;
     }

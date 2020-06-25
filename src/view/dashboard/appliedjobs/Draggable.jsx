@@ -17,7 +17,6 @@ const AppliedJob = props => {
     }
 
     const dragOver = e => {
-        console.log('id is', job.jobs_id)
         JobController.passTarget(job.jobs_id);
         e.stopPropagation();
     }
