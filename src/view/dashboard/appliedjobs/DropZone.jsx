@@ -1,24 +1,31 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+import ColumnHelpers from '@helpers/MatchJobToCol.js';
+
+import { selectTargetJob, selectUserId } from '@state/selectors.js'
 
 import Draggable from './Draggable.jsx';
-
-import { useSelector } from 'react-redux';
-import { selectAppliedJobs } from '@state/selectors.js';
+import JobController from '@controllers/JobController.js';
 
 const DropZone = props => {
     const column = props.column;
-    const appliedJobList = useSelector(selectAppliedJobs);
+    const jobs = props.jobs;
+    const id = useSelector(selectUserId)
+    const users_jobs_id = useSelector(selectTargetJob);
+    const matchingJobs = ColumnHelpers.matchJobToCol(column, jobs);
 
-    console.log('dz', props)
-
-    const drop = e => {
+    const drop = async e => {
         e.preventDefault();
         const card_id = e.dataTransfer.getData('card_id');
-
         const card = document.getElementById(card_id);
         card.style.display = 'block';
+        JobController.fetchSavedJobList(id);
 
         e.target.appendChild(card);
+        const columns_id = e.target.id;
+        await JobController.updateAppliedCol(columns_id, users_jobs_id)
+        JobController.fetchSavedJobList(id);
     }
 
     const dragOver = e => {
@@ -27,22 +34,25 @@ const DropZone = props => {
 
     return(
         <div
-            style={{marginTop: '-5%'}}
             onDrop={drop}
             onDragOver={dragOver}
-            style={{width: '300px', height: '75vh'}}
-        >
+            id={column.id}
+            >
             <h2>{column.name}</h2>
             <div
-                id='1'
                 onDrop={drop}
                 onDragOver={dragOver}
-                style={{width: '300px', height: '75vh'}}
+                id={column.id}
                 >
-                {/* uncomment when tables on back end are ready, compare job id to column job id to determine whether to display */}
-                {/* {appliedJobList && appliedJobList.map(job => {
-                    return <Draggable column={column} job={job} key={job.id} draggable='true' />
-                })} */} 
+                {matchingJobs ? 
+                <>
+                    {matchingJobs && matchingJobs.map(job => {
+                        return <Draggable  newCol={column.id} column={column} job={job} key={job.id} draggable='true' />
+                    })}
+                </>
+                :
+                null               
+                }
             </div>
         </div>
     )

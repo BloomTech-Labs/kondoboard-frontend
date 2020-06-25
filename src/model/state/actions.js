@@ -13,7 +13,10 @@ export const SET_FILTER_BOARD = 'SET_FILTER_BOARD';
 export const GET_APPLIED_JOB = 'GET_APPLIED_JOB';
 export const GET_APPLIED_JOBS = 'GET_APPLIED_JOBS';
 export const GET_JOB_COLUMNS = 'GET_JOB_COLUMNS';
+export const GET_JOBS_COLUMNS = 'GET_JOBS_COLUMNS';
 export const SET_JOB_COLUMN = 'SET_JOB_COLUMN';
+export const PASS_TARGET = 'PASS_TARGET';
+export const MOVE_JOB = 'MOVE_JOB';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_HISTORY = 'SET_HISTORY';
@@ -67,12 +70,20 @@ export const getJobColumns = columns => {
     return { type: GET_JOB_COLUMNS, columns }
 }
 
+export const getJobsColumns = jobsColumns => {
+    return { type: GET_JOBS_COLUMNS, jobsColumns }
+}
+
 export const setColumn = column => {
     return { type: SET_JOB_COLUMN, column }
 }
 
 export const getAppliedList = appliedJobs => {
     return { type: GET_APPLIED_JOBS, appliedJobs }
+}
+
+export const passTarget = jobId => {
+    return { type: PASS_TARGET, jobId }
 }
 
 export const setUserData = user => {

@@ -25,7 +25,7 @@ const UserTrack = ({form, setForm}) => {
                     <Menu.Item menu='DS' op={1}>{dataSet['display']['DS'][1]}</Menu.Item>
                     <Menu.Item menu='DS' op={2}>{dataSet['display']['DS'][2]}</Menu.Item>
                     <Menu.Item menu='DS' op={3}>{dataSet['display']['DS'][3]}</Menu.Item>
-                    <Menu.Item mneu='DS' op={4}>{dataSet['display']['DS'][4]}</Menu.Item>
+                    <Menu.Item menu='DS' op={4}>{dataSet['display']['DS'][4]}</Menu.Item>
             </SubMenu>
             <SubMenu title='UI / UX'>
                 <Menu.Item menu='UX' op={1}>{dataSet['display']['UX'][1]}</Menu.Item>

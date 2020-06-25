@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
+import { useLogout } from '@helpers/utils/useLogout';
  
 const SideBar = () => {
 
     const history = useHistory();
     const [to, setTo] = useState(null);
+    const logout = useLogout();
 
     useEffect(() => {
         setTo(null);
@@ -18,6 +20,8 @@ const SideBar = () => {
             <h6 className={history.location.pathname === '/applied' ? 'selected' : ''} onClick={() => setTo('/applied')}>App Dash</h6>
 
             <h6 className={history.location.pathname === '/profile' ? 'selected' : ''} onClick={() => setTo('/profile')}>Profile</h6>
+
+            <h6 className={'sign-out'} onClick={() => logout()}>Sign Out</h6>
         </div>
     )
 }
