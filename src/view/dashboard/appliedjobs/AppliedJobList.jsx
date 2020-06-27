@@ -26,13 +26,13 @@ const AppliedJobList = () => {
     },[update]);
 
     return(
-        <div className='drop-box'>
-            <div className='overflow-box'>
-                <>
+        <div>
+            <div className='drop-box'>
+                <div className='overflow-box'>
                     {columns && columns.map(column => {
                         return <DropZone jobs={jobs} column={column} draggable='true' />
                     })}
-                </>
+                </div>
                 <div><AddColumn update={update} setUpdate={setUpdate}/></div>
             </div>
         </div>

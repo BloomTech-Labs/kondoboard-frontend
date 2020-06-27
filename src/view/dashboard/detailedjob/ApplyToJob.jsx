@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { Modal } from 'antd';
 
-import { selectJobColumns } from '@state/selectors.js';
-
 import JobController from '@controllers/JobController.js';
-
-import ColumnHelpers from '@helpers/confirmApply.js';
 
 const ApplyToJob = props => {
     const [visible, setVisible] = useState(false);
@@ -24,7 +19,6 @@ const ApplyToJob = props => {
         const location = 1;
 
         props.columns_id ? JobController.addToCol(users_jobs_id, props.columns_id) : JobController.addColumn(id, name, location);
-        JobController.addToCol(users_jobs_id, props.columns_id);
         setVisible(false)
     }
 
