@@ -11,6 +11,7 @@ export const axiosWithAuth = () => {
       window.localStorage.removeItem('okta-token-storage'); // delete the token, thus logging out the user
     } else {
     token = JSON.parse(storage).accessToken.value;
+    console.log(token)
     }
   } 
   return axios.create({

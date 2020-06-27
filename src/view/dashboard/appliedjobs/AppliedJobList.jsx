@@ -32,8 +32,8 @@ const AppliedJobList = () => {
                     {columns && columns.map(column => {
                         return <DropZone jobs={jobs} column={column} draggable='true' />
                     })}
+                    <div><AddColumn update={update} setUpdate={setUpdate}/></div>
                 </div>
-                <div><AddColumn update={update} setUpdate={setUpdate}/></div>
             </div>
         </div>
     )
