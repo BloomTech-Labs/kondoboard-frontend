@@ -50,7 +50,7 @@ class JobController {
         store.dispatch(Action.getAppliedList(dDisplay))
     }
     async addColumn(id, name, location, savedJobs) {
-        const column = {name, location}
+        const column = {name, location, savedJobs}
         
         await JobsService.addColumn(id, name, location);
         store.dispatch(Action.setColumn(column))
