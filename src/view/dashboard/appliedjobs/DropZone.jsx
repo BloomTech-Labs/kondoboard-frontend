@@ -33,6 +33,7 @@ const DropZone = props => {
 
     return(
         <div
+            className='column'
             onDrop={drop}
             onDragOver={dragOver}
             id={column.id}
