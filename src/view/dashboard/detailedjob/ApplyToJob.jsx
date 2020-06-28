@@ -15,15 +15,13 @@ const ApplyToJob = props => {
     
     const handleOk = e => {
         e.preventDefault();
-        const name = 'Applied';
-        const location = 1;
-
-        props.columns_id ? JobController.addToCol(users_jobs_id, props.columns_id) : JobController.addColumn(id, name, location);
+        JobController.addToCol(users_jobs_id, props.columns_id);
         setVisible(false)
     }
 
     const apply = e => {
         e.preventDefault();
+        JobController.fetchJobColumns(id);
         window.open(job.source_url); 
         setVisible(true);
     }

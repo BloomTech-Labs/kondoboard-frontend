@@ -5,7 +5,6 @@ import JobController from '@controllers/JobController.js';
 
 const AppliedJob = props => {
     const job = props.job;
-    const column = props.column;
     
     const dragStart = e => {
         const target = e.target;
@@ -15,7 +14,7 @@ const AppliedJob = props => {
         
         setTimeout(() => {
             target.style.display = "none";
-        }, 0);
+        }, 0)
     }
     
     const dragOver = e => {
