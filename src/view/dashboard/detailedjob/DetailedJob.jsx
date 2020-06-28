@@ -12,17 +12,13 @@ const DetailedJob = ({ nav }) => {
     const id = useSelector(selectUserId);
     const job = useSelector(selectSavedJob);
     const columns = useSelector(selectJobColumns);
-    console.log('columns', columns)
-
+    
     const columns_id = ColumnHelpers.filterApply(columns)
     const daysAgo = DateHelper.convertToDays(job.date_published);
 
     useEffect(() => {
         JobController.fetchJobColumns(id);
-        const name = 'Applied';
-        const location = 1;
-        columns_id ? JobController.fetchSavedJobList(id) : JobController.addColumn(id, name, location);
-    },[id]);
+    }, [id]);
 
     return(
         <>
