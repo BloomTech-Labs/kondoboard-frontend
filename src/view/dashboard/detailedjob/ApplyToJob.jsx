@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import { Modal } from 'antd';
 
 import JobController from '@controllers/JobController.js';
+import { useEffect } from 'react';
 
 const ApplyToJob = props => {
     const [visible, setVisible] = useState(false);
     const job = props.job;
     const id = props.id;
     const users_jobs_id = job.id;
+    const columns_id = props.columns_id;
+    
+    useEffect(() => {
+        const name = 'Applied';
+        const location = 1;
+        columns_id ? JobController.fetchSavedJobList(id) : JobController.addColumn(id, name, location);
+    }, [id])
 
     const handleCancel = e => {
         setVisible(false)
@@ -21,7 +29,6 @@ const ApplyToJob = props => {
 
     const apply = e => {
         e.preventDefault();
-        JobController.fetchJobColumns(id);
         window.open(job.source_url); 
         setVisible(true);
     }
